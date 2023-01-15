@@ -1,0 +1,49 @@
+{
+  "name": "@vitest/web-worker",
+  "type": "module",
+  "version": "0.27.1",
+  "description": "Web Worker support for testing in Vitest",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitest-dev/vitest.git",
+    "directory": "packages/web-worker"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./pure": {
+      "types": "./pure.d.ts",
+      "import": "./dist/pure.js",
+      "default": "./dist/pure.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./index.d.ts",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "dev": "rollup -c --watch --watch.include 'src/**'",
+    "prepublishOnly": "pnpm build",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vitest": "*"
+  },
+  "dependencies": {
+    "debug": "^4.3.4",
+    "vite-node": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/ungap__structured-clone": "^0.3.0",
+    "@ungap/structured-clone": "^1.0.1",
+    "rollup": "^2.79.1"
+  }
+}

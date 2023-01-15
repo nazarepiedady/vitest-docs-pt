@@ -1,31 +1,50 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "module": "esnext",
     "target": "esnext",
-    "lib": ["DOM", "ESNext"],
-    "strict": true,
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "strict": true,
     "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": [
-      "vite/client",
-      "vite-plugin-pwa/client",
-      "vitepress"
-    ],
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "declaration": true,
+    "inlineSourceMap": true,
     "paths": {
-      "~/*": ["src/*"]
-    }
+      "@vitest/ws-client": ["./packages/ws-client/src/index.ts"],
+      "@vitest/ui": ["./packages/ui/node/index.ts"],
+      "@vitest/utils": ["./packages/utils/src/index.ts"],
+      "@vitest/spy": ["./packages/spy/src/index.ts"],
+      "@vitest/expect": ["./packages/expect/src/index.ts"],
+      "@vitest/browser": ["./packages/browser/src/node/index.ts"],
+      "#types": ["./packages/vitest/src/index.ts"],
+      "~/*": ["./packages/ui/client/*"],
+      "vitest": ["./packages/vitest/src/index.ts"],
+      "vitest/globals": ["./packages/vitest/globals.d.ts"],
+      "vitest/node": ["./packages/vitest/src/node/index.ts"],
+      "vitest/config": ["./packages/vitest/src/config.ts"],
+      "vitest/browser": ["./packages/vitest/src/browser.ts"],
+      "vite-node": ["./packages/vite-node/src/index.ts"],
+      "vite-node/client": ["./packages/vite-node/src/client.ts"],
+      "vite-node/server": ["./packages/vite-node/src/server.ts"],
+      "vite-node/utils": ["./packages/vite-node/src/utils.ts"]
+    },
+    "types": [
+      "node",
+      "vite/client"
+    ]
   },
-  "include": [
-    "./*.ts",
-    "./.vitepress/**/*.ts",
-    "./.vitepress/**/*.vue"
-  ],
-  "exclude": ["dist", "node_modules"]
+  "exclude": [
+    "**/dist/**",
+    "./packages/vitest/dist/**",
+    "./packages/vitest/*.d.ts",
+    "./packages/vitest/*.d.cts",
+    "./packages/ui/client/**",
+    "./examples/**/*.*",
+    "./bench/**",
+    "./test/typescript/**"
+  ]
 }

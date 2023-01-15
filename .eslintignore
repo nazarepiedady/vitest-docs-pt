@@ -1,0 +1,8 @@
+dist
+node_modules
+*.svelte
+*.snap
+*.d.ts
+coverage
+!.vitepress
+test/core/src/self
