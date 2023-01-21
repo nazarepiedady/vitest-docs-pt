@@ -9,26 +9,26 @@ import { teamMembers } from '../contributors'
       <main class="main">
         <div class="vp-doc" flex flex-col items-center mt-10>
           <h2 id="meet-the-team" op50 font-normal p="t-10 b-2">
-            Meet The Team
+            Conheça A Equipa
           </h2>
           <div w-full p-10>
             <VPTeamMembers size="small" :members="teamMembers" />
           </div>
           <h2 id="the-team" op50 font-normal pt-5 pb-2>
-            Contributors
+            Colaboradores
           </h2>
           <p text-lg max-w-200 text-center leading-7>
             <Contributors />
             <br>
-            <a href="https://chat.vitest.dev" rel="noopener noreferrer">Join the community</a> and get involved!
+            <a href="https://chat.vitest.dev" rel="noopener noreferrer">Junta-te a comunidade</a> e envolva-te!
           </p>
 
           <h2 id="sponsored-by" op50 font-normal pt-5 pb-2>
-            Sponsored by
+            Patrocinado por
           </h2>
           <div grid="~ cols-1 lg:cols-2" w-full text-center mt-10>
             <div class="flex flex-col">
-              <a text-lg h="32px" href="https://github.com/sponsors/antfu" rel="noopener noreferrer">Anthony's Sponsors</a>
+              <a text-lg h="32px" href="https://github.com/sponsors/antfu" rel="noopener noreferrer">Patrocinadores do Anthony Fu</a>
               <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg" target="_blank" rel="noopener noreferrer">
                 <img
                   crossorigin="anonymous"
@@ -37,12 +37,12 @@ import { teamMembers } from '../contributors'
                   class="resizable-img"
                   loading="lazy"
                   src="/sponsors/antfu.svg"
-                  alt="Anthony Fu's sponsors"
+                  alt="Patrocinadores do Anthony Fu"
                 >
               </a>
             </div>
             <div class="flex flex-col">
-              <a text-lg h="32px" href="https://github.com/sponsors/sheremet-va" rel="noopener noreferrer">Vladimir's Sponsors</a>
+              <a text-lg h="32px" href="https://github.com/sponsors/sheremet-va" rel="noopener noreferrer">Patrocinadores do Vladimir</a>
               <a href="https://cdn.jsdelivr.net/gh/sheremet-va/static/sponsors.svg" target="_blank" rel="noopener noreferrer">
                 <img
                   crossorigin="anonymous"
@@ -51,12 +51,12 @@ import { teamMembers } from '../contributors'
                   class="resizable-img"
                   loading="lazy"
                   src="/sponsors/sheremet-va.svg"
-                  alt="Vladimir's sponsors"
+                  alt="Patrocinadores do Vladimir"
                 >
               </a>
             </div>
             <div class="flex flex-col">
-              <a text-lg h="32px" href="https://github.com/sponsors/patak-dev" rel="noopener noreferrer">Patak's Sponsors</a>
+              <a text-lg h="32px" href="https://github.com/sponsors/patak-dev" rel="noopener noreferrer">Patrocinadores do Patak</a>
               <a href="https://cdn.jsdelivr.net/gh/patak-dev/static/sponsors.svg" target="_blank" rel="noopener noreferrer">
                 <img
                   crossorigin="anonymous"
@@ -65,14 +65,14 @@ import { teamMembers } from '../contributors'
                   class="resizable-img"
                   loading="lazy"
                   src="/sponsors/patak-dev.svg"
-                  alt="Patak's sponsors"
+                  alt="Patrocinadores do Patak"
                 >
               </a>
             </div>
           </div>
           <p class="text-center opacity-75">
             <a href="https://www.netlify.com" rel="noopener noreferrer">
-              <img src="/netlify.svg" alt="Deploys by Netlify" width="114" height="151">
+              <img src="/netlify.svg" alt="Implementado em Produção com a Netlify" width="114" height="151">
             </a>
           </p>
         </div>
