@@ -1,28 +1,31 @@
 import { defineConfig } from 'vitepress'
+import { withPwa } from '@vite-pwa/vitepress'
 import { version } from '../../package.json'
 import {
   contributing,
   discord,
   font,
   github,
+  mastodon,
   ogImage,
   ogUrl,
   releases,
   twitter,
-  vitestDescription,
-  vitestName,
+  vitestDescription, vitestName,
 } from './meta'
+import { pwa } from './scripts/pwa'
+import { transformHead } from './scripts/transformHead'
 import { teamMembers } from './contributors'
 
-export default defineConfig({
-  lang: 'pt-PT',
+export default withPwa(defineConfig({
+  lang: 'en-US',
   title: vitestName,
   description: vitestDescription,
   head: [
     ['meta', { name: 'theme-color', content: '#729b1a' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'alternate icon', href: '/favicon.ico', type: 'image/png', sizes: '16x16' }],
-    ['meta', { name: 'author', content: `${teamMembers.map(c => c.name).join(', ')} e colaboradores da ${vitestName}` }],
+    ['meta', { name: 'author', content: `${teamMembers.map(c => c.name).join(', ')} and ${vitestName} contributors` }],
     ['meta', { name: 'keywords', content: 'vitest, vite, test, coverage, snapshot, react, vue, preact, svelte, solid, lit, ruby, cypress, puppeteer, jsdom, happy-dom, test-runner, jest, typescript, esm, tinypool, tinyspy, c8, node' }],
     ['meta', { property: 'og:title', content: vitestName }],
     ['meta', { property: 'og:description', content: vitestDescription }],
@@ -32,7 +35,8 @@ export default defineConfig({
     ['meta', { name: 'twitter:description', content: vitestDescription }],
     ['meta', { name: 'twitter:image', content: ogImage }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['link', { href: font, rel: 'stylesheet' }],
+    ['link', { rel: 'preload', as: 'style', onload: 'this.onload=null;this.rel=\'stylesheet\'', href: font }],
+    ['noscript', {}, `<link rel="stylesheet" crossorigin="anonymous" href="${font}" />`],
     ['link', { rel: 'mask-icon', href: '/logo.svg', color: '#ffffff' }],
     ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' }],
   ],
@@ -48,7 +52,7 @@ export default defineConfig({
 
     editLink: {
       pattern: 'https://github.com/vitest-dev/vitest/tree/main/docs/:path',
-      text: 'Sugerir alterações para esta página',
+      text: 'Suggest changes to this page',
     },
 
     algolia: {
@@ -61,37 +65,38 @@ export default defineConfig({
     },
 
     localeLinks: {
-      text: 'Português',
+      text: 'English',
       items: [
-        { text: 'English', link: 'https://vitest.dev' },
         { text: '简体中文', link: 'https://cn.vitest.dev' },
       ],
     },
 
     socialLinks: [
+      { icon: 'mastodon', link: mastodon },
       { icon: 'twitter', link: twitter },
       { icon: 'discord', link: discord },
       { icon: 'github', link: github },
     ],
 
     footer: {
-      message: 'Lançado sob a licença MIT.',
-      copyright: 'Copyright © 2021-PRESENT Anthony Fu, Matías Capeletto e colaboradores da Vitest',
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2021-PRESENT Anthony Fu, Matías Capeletto and Vitest contributors',
     },
 
     nav: [
-      { text: 'Guia', link: '/guide/' },
+      { text: 'Guide', link: '/guide/' },
       { text: 'API', link: '/api/' },
-      { text: 'Configuração', link: '/config/' },
+      { text: 'Config', link: '/config/' },
+      { text: 'Advanced', link: '/advanced/api' },
       {
         text: `v${version}`,
         items: [
           {
-            text: 'Notas de Lançamento ',
+            text: 'Release Notes ',
             link: releases,
           },
           {
-            text: 'Contribuir ',
+            text: 'Contributing ',
             link: contributing,
           },
         ],
@@ -100,80 +105,95 @@ export default defineConfig({
 
     sidebar: {
       // TODO: bring sidebar of apis and config back
-      '/': [
+      '/advanced': [
         {
-          text: 'Guia',
+          text: 'Advanced',
           items: [
             {
-              text: 'Porquê Vitest',
+              text: 'Vitest Node API',
+              link: '/advanced/api',
+            },
+            {
+              text: 'Runner API',
+              link: '/advanced/runner',
+            },
+          ],
+        },
+      ],
+      '/': [
+        {
+          text: 'Guide',
+          items: [
+            {
+              text: 'Why Vitest',
               link: '/guide/why',
             },
             {
-              text: 'Começar',
+              text: 'Getting Started',
               link: '/guide/',
             },
             {
-              text: 'Funcionalidades',
+              text: 'Features',
               link: '/guide/features',
             },
             {
-              text: 'Interface da Linha de Comando',
+              text: 'CLI',
               link: '/guide/cli',
             },
             {
-              text: 'Filtragem de Teste',
+              text: 'Test Filtering',
               link: '/guide/filtering',
             },
             {
-              text: 'Cobertura',
+              text: 'Coverage',
               link: '/guide/coverage',
             },
             {
-              text: 'Fotografia',
+              text: 'Snapshot',
               link: '/guide/snapshot',
             },
             {
-              text: 'Imitação',
+              text: 'Mocking',
               link: '/guide/mocking',
             },
             {
-              text: 'Tipos de Testagem',
+              text: 'Testing Types',
               link: '/guide/testing-types',
             },
             {
-              text: 'Interface do Utilizador da Vitest',
+              text: 'Vitest UI',
               link: '/guide/ui',
             },
             {
-              text: 'Testagem do Código-fonte',
+              text: 'In-source Testing',
               link: '/guide/in-source',
             },
             {
-              text: 'Contexto do Teste',
+              text: 'Test Context',
               link: '/guide/test-context',
             },
             {
-              text: 'Ambiente',
+              text: 'Environment',
               link: '/guide/environment',
             },
             {
-              text: 'Correspondentes de Extensão',
+              text: 'Extending Matchers',
               link: '/guide/extending-matchers',
             },
             {
-              text: 'Integração de IDE',
+              text: 'IDE Integration',
               link: '/guide/ide',
             },
             {
-              text: 'Depuração',
+              text: 'Debugging',
               link: '/guide/debugging',
             },
             {
-              text: 'Comparações',
+              text: 'Comparisons',
               link: '/guide/comparisons',
             },
             {
-              text: 'Guia de Migração',
+              text: 'Migration Guide',
               link: '/guide/migration',
             },
           ],
@@ -182,15 +202,15 @@ export default defineConfig({
           text: 'API',
           items: [
             {
-              text: 'Referência da API de Teste',
+              text: 'Test API Reference',
               link: '/api/',
             },
             {
-              text: 'Funções de Imitação',
+              text: 'Mock Functions',
               link: '/api/mock',
             },
             {
-              text: 'Utilitário de Vi',
+              text: 'Vi Utility',
               link: '/api/vi',
             },
             {
@@ -208,10 +228,10 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Configuração',
+          text: 'Config',
           items: [
             {
-              text: 'Referência da Configuração',
+              text: 'Config Reference',
               link: '/config/',
             },
           ],
@@ -219,4 +239,6 @@ export default defineConfig({
       ],
     },
   },
-})
+  pwa,
+  transformHead,
+}))
