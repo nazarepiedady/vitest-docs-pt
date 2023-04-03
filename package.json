@@ -4,10 +4,10 @@
   "version": "0.27.1",
   "scripts": {
     "dev": "vitepress --port 3333 --open",
-    "build": "nr prefetch && vitepress build",
-    "build-no-prefetch": "vitepress build",
+    "build": "nr prefetch && vitepress build docs",
+    "build-no-prefetch": "vitepress build docs",
     "serve": "vitepress serve",
-    "preview-https": "pnpm run build && serve .vitepress/dist",
+    "preview-https": "pnpm run build && serve docs/.vitepress/dist",
     "preview-https-no-prefetch": "pnpm run build-no-prefetch && serve .vitepress/dist",
     "prefetch": "esno docs/.vitepress/scripts/fetch-avatars.ts"
   },
