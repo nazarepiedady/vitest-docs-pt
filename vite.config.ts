@@ -16,8 +16,8 @@ export default defineConfig({
     // TODO remove cast when moved to Vite 3
     Components({
       include: [/\.vue/, /\.md/],
-      dirs: '.vitepress/components',
-      dts: '.vitepress/components.d.ts',
+      dirs: 'docs/.vitepress/components',
+      dts: 'docs/.vitepress/components.d.ts',
     }) as Plugin,
     Unocss({
       shortcuts: [
