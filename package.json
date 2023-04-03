@@ -4,7 +4,7 @@
   "version": "0.27.1",
   "scripts": {
     "dev": "vitepress --port 3333 --open",
-    "build": "pnpm run prefetch && pnpm run build-no-prefetch",
+    "build": "nr prefetch && vitepress build",
     "build-no-prefetch": "vitepress build",
     "serve": "vitepress serve",
     "preview-https": "pnpm run build && serve .vitepress/dist",
@@ -17,6 +17,7 @@
     "vue": "latest"
   },
   "devDependencies": {
+  	"@antfu/ni": "^0.18.8",
     "@iconify-json/carbon": "^1.1.13",
     "@unocss/reset": "^0.48.3",
     "@vite-pwa/vitepress": "^0.0.4",
