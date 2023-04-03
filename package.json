@@ -9,7 +9,7 @@
     "serve": "vitepress serve",
     "preview-https": "pnpm run build && serve .vitepress/dist",
     "preview-https-no-prefetch": "pnpm run build-no-prefetch && serve .vitepress/dist",
-    "prefetch": "esno .vitepress/scripts/fetch-avatars.ts"
+    "prefetch": "esno docs/.vitepress/scripts/fetch-avatars.ts"
   },
   "dependencies": {
     "@vueuse/core": "^9.10.0",
