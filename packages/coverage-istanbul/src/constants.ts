@@ -1,1 +1,0 @@
-export const COVERAGE_STORE_KEY = '__VITEST_COVERAGE__'

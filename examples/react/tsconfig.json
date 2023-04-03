@@ -1,6 +1,0 @@
-{
-  "compilerOptions": {
-    "jsx": "react",
-    "types": ["vitest/globals"]
-  }
-}
