@@ -38,7 +38,7 @@ A blazing fast unit test framework powered by Vite.
 - [Native code coverage](https://vitest.dev/guide/features.html#coverage) via [c8](https://github.com/bcoe/c8) or [`istanbul`](https://istanbul.js.org/).
 - [Tinyspy](https://github.com/tinylibs/tinyspy) built-in for mocking, stubbing, and spies.
 - [JSDOM](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom) for DOM and browser API mocking
-- Components testing ([Vue](./examples/vue), [React](./examples/react), [Svelte](./examples/svelte), [Lit](./examples/lit), [Vitesse](./examples/vitesse))
+- Components testing ([Vue](https://github.com/vitest-dev/vitest/blob/main/examples/vue), [React](https://github.com/vitest-dev/vitest/blob/main/examples/react), [Svelte](https://github.com/vitest-dev/vitest/blob/main/examples/svelte), [Lit](https://github.com/vitest-dev/vitest/blob/main/examples/lit), [Vitesse](https://github.com/vitest-dev/vitest/blob/main/examples/vitesse))
 - Workers multi-threading via [Tinypool](https://github.com/tinylibs/tinypool) (a lightweight fork of [Piscina](https://github.com/piscinajs/piscina))
 - Benchmarking support with [Tinybench](https://github.com/tinylibs/tinybench)
 - ESM first, top level await
@@ -112,4 +112,4 @@ See [Contributing Guide](https://github.com/vitest-dev/vitest/blob/main/CONTRIBU
 
 ## License
 
-[MIT](./LICENSE) License © 2021-Present [Anthony Fu](https://github.com/antfu), [Matias Capeletto](https://github.com/patak-dev)
+[MIT](https://github.com/vitest-dev/vitest/blob/main/LICENSE) License © 2021-Present [Anthony Fu](https://github.com/antfu), [Matias Capeletto](https://github.com/patak-dev)
