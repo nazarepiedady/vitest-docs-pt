@@ -126,6 +126,10 @@ import { vi } from 'vitest'
   Vitest statically analyzes your files to hoist `vi.mock`. It means that you cannot use `vi` that was not imported directly from `vitest` package (for example, from some utility file). To fix this, always use `vi.mock` with `vi` imported from `vitest`, or enable [`globals`](/config/#globals) config option.
   :::
 
+  ::: warning
+	Mocking modules is not currently supported in the [browser mode](/guide/browser). You can track this feature in the GitHub <a href="https://github.com/vitest-dev/vitest/issues/3046">issue</a>.
+  :::
+
   If `factory` is defined, all imports will return its result. Vitest calls factory only once and caches result for all subsequent imports until [`vi.unmock`](#vi-unmock) or [`vi.doUnmock`](#vi-dounmock) is called.
 
   Unlike in `jest`, the factory can be asynchronous, so you can use [`vi.importActual`](#vi-importactual) or a helper, received as the first argument, inside to get the original module.
@@ -208,7 +212,9 @@ import { vi } from 'vitest'
 
 ```ts
 // ./increment.js
-export const increment = number => number + 1
+export function increment(number) {
+  return number + 1
+}
 ```
 
 ```ts
@@ -246,6 +252,7 @@ test('importing the next module imports mocked one', async () => {
   When `partial` is `true` it will expect a `Partial<T>` as a return value.
   ```ts
   import example from './example'
+  
   vi.mock('./example')
 
   test('1+1 equals 2', async () => {
@@ -291,23 +298,24 @@ test('importing the next module imports mocked one', async () => {
 
 - **Type**: `() => Vitest`
 
-  Resets modules registry by clearing cache of all modules. Might be useful to isolate modules where local state conflicts between tests.
+  Resets modules registry by clearing cache of all modules. This allows modules to be reevaluated when reimported. Top-level imports cannot be reevaluated. Might be useful to isolate modules where local state conflicts between tests.
 
   ```ts
   import { vi } from 'vitest'
+  import { data } from './data.js' // Will not get reevaluated beforeEach test
 
-  beforeAll(() => {
+  beforeEach(() => {
     vi.resetModules()
   })
 
   test('change state', async () => {
-    const mod = await import('./some/path')
+    const mod = await import('./some/path.js') // Will get reevaluated
     mod.changeLocalState('new value')
     expect(mod.getLocalState()).toBe('new value')
   })
 
   test('module has old state', async () => {
-    const mod = await import('./some/path')
+    const mod = await import('./some/path.js') // Will get reevaluated
     expect(mod.getLocalState()).toBe('old value')
   })
   ```
@@ -594,7 +602,9 @@ IntersectionObserver === undefined
 
 ```ts
 // ./increment.js
-export const increment = number => number + 1
+export function increment(number) {
+  return number + 1
+}
 ```
 
 ```ts

@@ -23,15 +23,10 @@ export default withPwa(defineConfig({
   description: vitestDescription,
   locales: {
     root: {
-      label: 'Português',
-      lang: 'pt'
-    },
-    en: {
       label: 'English',
       lang: 'en',
-      link: 'https://vitest.dev/'
     },
-    zh: {
+    en: {
       label: '简体中文',
       lang: 'zh',
       link: 'https://cn.vitest.dev/',
@@ -78,6 +73,13 @@ export default withPwa(defineConfig({
       // searchParameters: {
       //   facetFilters: ['tags:en'],
       // },
+    },
+
+    localeLinks: {
+      text: 'English',
+      items: [
+        { text: '简体中文', link: 'https://cn.vitest.dev' },
+      ],
     },
 
     socialLinks: [

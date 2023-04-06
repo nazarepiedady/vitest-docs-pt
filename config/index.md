@@ -54,8 +54,7 @@ export default defineConfig({
 When using a separate `vitest.config.js`, you can also extend Vite's options from another config file if needed:
 
 ```ts
-import { mergeConfig } from 'vite'
-import { defineConfig } from 'vitest/config'
+import { defineConfig, mergeConfig } from 'vitest/config'
 import viteConfig from './vite.config'
 
 export default mergeConfig(viteConfig, defineConfig({
@@ -64,6 +63,10 @@ export default mergeConfig(viteConfig, defineConfig({
   },
 }))
 ```
+
+::: warning
+`mergeConfig` helper is availabe in Vitest since v0.30.0. You can import it from `vite` directly, if you use lower version.
+:::
 
 ## Options
 
@@ -448,59 +451,6 @@ Custom reporters for output. Reporters can be [a Reporter instance](https://gith
   - `'html'` -  outputs HTML report based on [`@vitest/ui`](/guide/ui)
   - `'hanging-process'` - displays a list of hanging processes, if Vitest cannot exit process safely. This might be a heavy operation, enable it only if Vitest consistently cannot exit process
   - path of a custom reporter (e.g. `'./path/to/reporter.ts'`, `'@scope/reporter'`)
-
-### outputTruncateLength
-
-- **Type:** `number`
-- **Default:** `stdout.columns || 80`
-- **CLI:** `--outputTruncateLength=<length>`, `--output-truncate-length=<length>`
-
-Truncate the size of diff line up to `stdout.columns` or `80` number of characters. You may wish to tune this, depending on your terminal window width. Vitest includes `+-` characters and spaces for this. For example, you might see this diff, if you set this to `6`:
-
-```diff
-// actual line: "Text that seems correct"
-- Text...
-+ Test...
-```
-
-### outputDiffLines
-
-- **Type:** `number`
-- **Default:** `15`
-- **CLI:** `--outputDiffLines=<lines>`, `--output-diff-lines=<lines>`
-
-Limit the number of single output diff lines up to `15`. Vitest counts all `+-` lines when determining when to stop. For example, you might see diff like this, if you set this property to `3`:
-
-```diff
-- test: 1,
-+ test: 2,
-- obj: '1',
-...
-- test2: 1,
-+ test2: 1,
-- obj2: '2',
-...
-```
-
-### outputDiffMaxLines
-
-- **Type:** `number`
-- **Default:** `50`
-- **CLI:** `--outputDiffMaxLines=<lines>`, `--output-diff-max-lines=<lines>`
-- **Version:** Since Vitest 0.26.0
-
-The maximum number of lines to display in diff window. Beware that if you have a large object with many small diffs, you might not see all of them at once.
-
-### outputDiffMaxSize
-
-- **Type:** `number`
-- **Default:** `10000`
-- **CLI:** `--outputDiffMaxSize=<length>`, `--output-diff-max-size=<length>`
-- **Version:** Since Vitest 0.26.0
-
-The maximum length of the stringified object before the diff happens. Vitest tries to stringify an object before doing a diff, but if the object is too large, it will reduce the depth of the object to fit within this limit. Because of this, if the object is too big or nested, you might not see the diff.
-
-Increasing this limit can increase the duration of diffing.
 
 ### outputFile
 
@@ -1001,7 +951,7 @@ Listen to port and serve API. When set to true, the default port is 51204
 - **Version:** Since Vitest 0.29.4
 - **CLI:** `--browser`, `--browser=<name>`, `--browser.name=chrome --browser.headless`
 
-Run Vitest tests in a browser. If the browser name is not specified, Vitest will try to determine your default browser automatically. We use [WebdriverIO](https://webdriver.io/) for running tests by default, but it can be configured with [browser.provider](/config/#browser-provider) option.
+Run Vitest tests in a browser. We use [WebdriverIO](https://webdriver.io/) for running tests by default, but it can be configured with [browser.provider](/config/#browser-provider) option.
 
 ::: tip NOTE
 Read more about testing in a real browser in the [guide page](/guide/browser).
@@ -1022,11 +972,13 @@ Run all tests inside a browser by default. Can be overriden with [`poolMatchGlob
 #### browser&#46;name
 
 - **Type:** `string`
-- **Default:** _tries to find default browser automatically_
 - **CLI:** `--browser=safari`
 
-Run all tests in a specific browser. If not specified, tries to find a browser automatically.
+Run all tests in a specific browser. Possible options in different providers:
 
+- `webdriverio`: `firefox`, `chrome`, `edge`, `safari`
+- `playwright`: `firefox`, `webkit`, `chromium`
+- custom: any string that will be passed to the provider
 
 #### browser.headless
 
@@ -1046,21 +998,19 @@ Configure options for Vite server that serves code in the browser. Does not affe
 
 #### browser.provider
 
-- **Type:** `string`
+- **Type:** `'webdriverio' | 'playwright' | string`
 - **Default:** `'webdriverio'`
-- **CLI:** `--browser.provider=./custom-provider.ts`
+- **CLI:** `--browser.provider=playwright`
 
-Path to a provider that will be used when running browser tests. Provider should be exported using `default` export and have this shape:
+Path to a provider that will be used when running browser tests. Vitest provides two providers which are `webdriverio` (default) and `playwright`. Custom providers should be exported using `default` export and have this shape:
 
 ```ts
 export interface BrowserProvider {
-  initialize(ctx: Vitest): Awaitable<void>
-  createPool(): {
-    runTests: (files: string[], invalidated: string[]) => void
-    close: () => Awaited<void>
-  }
-  // signals that test file stopped running, if it was opened with `id=` query
-  testFinished?(testId: string): Awaitable<void>
+  name: string
+  getSupportedBrowsers(): readonly string[]
+  initialize(ctx: Vitest, options: { browser: string }): Awaitable<void>
+  openPage(url: string): Awaitable<void>
+  close(): Awaitable<void>
 }
 ```
 
@@ -1386,3 +1336,34 @@ Path to custom tsconfig, relative to the project root.
 - **Default**: `300`
 
 The number of milliseconds after which a test is considered slow and reported as such in the results.
+
+### chaiConfig
+
+- **Type:** `{ includeStack?, showDiff?, truncateThreshold? }`
+- **Default:** `{ includeStack: false, showDiff: true, truncateThreshold: 40 }`
+- **Version:** Vitest 0.30.0
+
+Equivalent to [Chai config](https://github.com/chaijs/chai/blob/4.x.x/lib/chai/config.js).
+
+#### chaiConfig.includeStack
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+Influences whether stack trace is included in Assertion error message. Default of false suppresses stack trace in the error message.
+
+#### chaiConfig.showDiff
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+Influences whether or not the `showDiff` flag should be included in the thrown AssertionErrors. `false` will always be `false`; `true` will be true when the assertion has requested a diff to be shown.
+
+#### chaiConfig.truncateThreshold
+
+- **Type:** `number`
+- **Default:** `40`
+
+Sets length threshold for actual and expected values in assertion errors. If this threshold is exceeded, for example for large data structures, the value is replaced with something like `[ Array(3) ]` or `{ Object (prop1, prop2) }`. Set it to `0` if you want to disable truncating altogether.
+
+This config option affects truncating values in `test.each` titles and inside the assertion error message.
