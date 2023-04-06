@@ -3,7 +3,7 @@ import Theme from 'vitepress/theme'
 import { inBrowser } from 'vitepress'
 import '../style/main.css'
 import '../style/vars.css'
-import 'uno.css'
+import 'unocss'
 import HomePage from '../components/HomePage.vue'
 
 if (inBrowser)

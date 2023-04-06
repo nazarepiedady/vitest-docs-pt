@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
-import { version } from '../../package.json'
+import { version } from '../package.json'
 import {
   contributing,
   discord,
@@ -21,6 +21,17 @@ export default withPwa(defineConfig({
   lang: 'en-US',
   title: vitestName,
   description: vitestDescription,
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en',
+    },
+    en: {
+      label: '简体中文',
+      lang: 'zh',
+      link: 'https://cn.vitest.dev/',
+    },
+  },
   head: [
     ['meta', { name: 'theme-color', content: '#729b1a' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
@@ -163,6 +174,10 @@ export default withPwa(defineConfig({
             {
               text: 'Vitest UI',
               link: '/guide/ui',
+            },
+            {
+              text: 'Browser Mode',
+              link: '/guide/browser',
             },
             {
               text: 'In-source Testing',
