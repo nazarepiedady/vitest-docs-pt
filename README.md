@@ -5,19 +5,23 @@
 <h1 align="center">
 Vitest
 </h1>
+
 <p align="center">
 A blazing fast unit test framework powered by Vite.
-<p>
+</p>
+
 <p align="center">
   <a href="https://www.npmjs.com/package/vitest"><img src="https://img.shields.io/npm/v/vitest?color=729B1B&label="></a>
-<p>
+</p>
 
 <p align="center">
 <a href="https://chat.vitest.dev"><b>Get involved!</b></a>
 </p>
+
 <p align="center">
  <a href="https://vitest.dev">Documentation</a> | <a href="https://vitest.dev/guide/">Getting Started</a> | <a href="https://vitest.dev/guide/#examples">Examples</a> | <a href="https://vitest.dev/guide/why">Why Vitest?</a>
 </p>
+
 <p align="center">
 <a href="https://cn.vitest.dev">中文文档</a>
 </p>
