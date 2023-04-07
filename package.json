@@ -1,9 +1,9 @@
 {
-  "name": "docs",
+  "name": "vitest-docs-pt",
   "version": "0.29.8",
   "private": true,
   "scripts": {
-    "dev": "vitepress --port 3333 --open",
+    "dev": "vitepress --port 3333",
     "build": "nr prefetch && vitepress build",
     "build-no-prefetch": "vitepress build",
     "serve": "vitepress serve",
