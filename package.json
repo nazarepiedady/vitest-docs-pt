@@ -2,6 +2,7 @@
   "name": "docs",
   "version": "0.29.8",
   "private": true,
+  "packageManager": "pnpm@latest",
   "scripts": {
     "dev": "vitepress --port 3333 --open",
     "build": "nr prefetch && vitepress build",
