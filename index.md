@@ -3,36 +3,36 @@ layout: home
 sidebar: false
 
 title: Vitest
-titleTemplate: A blazing fast unit test framework powered by Vite
+titleTemplate: Uma abstração de teste unitário extremamente rápida alimentada pela Vite
 
 hero:
   name: Vitest
-  text: Blazing Fast Unit Test Framework
-  tagline: A Vite-native unit test framework. It's fast!
+  text: Uma Abstração de Teste Unitário Extremamente Rápida
+  tagline: Uma abstração de teste unitário nativa de Vite. É rápida!
   image:
     src: /logo-shadow.svg
     alt: Vitest
   actions:
     - theme: brand
-      text: Get Started
+      text: Começar
       link: /guide/
     - theme: alt
-      text: Features
+      text: Funcionalidades
       link: /guide/features
     - theme: alt
-      text: Why Vitest?
+      text: Porquê Vitest?
       link: /guide/why
     - theme: alt
-      text: View on GitHub
+      text: Ver na GitHub
       link: https://github.com/vitest-dev/vitest
 
 features:
-  - title: Vite Powered
-    details: Reuse Vite's config, transformers, resolvers, and plugins - consistent across your app and tests.
-  - title: Jest Compatible
-    details: Expect, snapshot, coverage, and more - migrating from Jest is straightforward.
-  - title: Smart & instant watch mode
-    details: Only rerun the related changes, just like HMR for tests!
+  - title: Alimentada pela Vite
+    details: Reutilize a configuração, transformadores, resolvedores, e extensões da Vite - consistente através da tua aplicação e testes.
+  - title: Compatível com a Jest
+    details: Espera, fotografia, cobertura, e muito mais - migrar da Jest é simples.
+  - title: Modo de Observação Inteligente e Instantâneo
+    details: Apenas executa novamente as mudanças relacionadas, tal como HMR para testes!
   - title: ESM, TypeScript, JSX
-    details: Out-of-box ESM, TypeScript and JSX support powered by esbuild
+    details: Suporte a ESM, TypeScript e JSX fora da caixa alimentada pela esbuild
 ---
