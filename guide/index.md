@@ -90,7 +90,7 @@ Learn more about [IDE Integrations](./ide.md)
 
 ## Examples
 
-[@@include](.../examples/README.md)
+[@@include](../examples/README.md)
 
 ## Projects using Vitest
 
