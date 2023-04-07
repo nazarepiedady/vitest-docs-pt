@@ -7,7 +7,7 @@ titleTemplate: Uma abstração de teste unitário extremamente rápida alimentad
 
 hero:
   name: Vitest
-  text: Uma Abstração de Teste Unitário Extremamente Rápida
+  text: Abstração de Teste Unitário Extremamente Rápida
   tagline: Uma abstração de teste unitário nativa de Vite. É rápida!
   image:
     src: /logo-shadow.svg
