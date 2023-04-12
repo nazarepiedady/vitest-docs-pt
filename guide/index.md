@@ -1,53 +1,56 @@
 ---
-title: Getting Started | Guide
+title: Começar | Guia
 ---
 
-# Getting Started
+# Começar {#getting-started}
 
-## Overview
+## Visão de Conjunto {#overview}
 
-Vitest is a blazing fast unit test framework powered by Vite.
+A Vitest é uma abstração de teste unitário extremamente rápido alimentado pela Vite.
 
-You can learn more about the rationale behind the project in the [Why Vitest](./why) section.
+Tu podes aprender mais sobre o fundamento lógico por trás do projeto na seção [Porquê Vitest](./why).
 
-## Trying Vitest Online
+## Experimentando a Vitest Online {#trying-vitest-online}
 
-You can try Vitest online on [StackBlitz](https://vitest.new). It runs Vitest directly in the browser, and it is almost identical to the local setup but doesn't require installing anything on your machine.
+Tu podes experimentar a Vitest online na [StackBlitz](https://vitest.new). Ela executa a Vitest diretamente no navegador, e é quase idêntico à configuração local mas não exige a instalação de nada na tua máquina.
 
-## Adding Vitest to your Project
+## Adicionando a Vitest ao teu Projeto {#adding-vitest-to-your-project}
 
-<CourseLink href="https://vueschool.io/lessons/how-to-install-vitest?friend=vueuse">Learn how to install by Video</CourseLink>
+<CourseLink href="https://vueschool.io/lessons/how-to-install-vitest?friend=vueuse">Saiba como instalar com Vídeo</CourseLink>
 
-With npm
+Com o npm:
+
 ```bash
 npm install -D vitest
 ```
-or with yarn
+ou com yarn:
+
 ```bash
 yarn add -D vitest
 ```
-or with pnpm
+ou com pnpm:
+
 ```bash
 pnpm add -D vitest
 ```
 
 :::tip
-Vitest requires Vite >=v3.0.0 and Node >=v14
+A Vitest exige a Vite >= v3.0.0 e Node >= v14.
 :::
 
-It is recommended that you install a copy of `vitest` in your `package.json`, using one of the methods listed above. However, if you would prefer to run `vitest` directly, you can use `npx vitest` (the `npx` command comes with npm and Node.js).
+É recomendado que instales uma cópia de `vitest` no teu `package.json`, usando dos métodos listados acima. No entanto, se preferirias executar `vitest` diretamente, podes usar `npx vitest` (o comando `npx` vem com o npm e a Node.js).
 
-The `npx` command will execute the command either from a local `node_modules/.bin` installing any packages needed in order for the command to run. By default, npx will check whether command exists in $PATH, or in the local project binaries, and execute that. If command is not found, it will be installed prior to execution.
+O comando `npx` executará o comando a partir de um `node_modules/.bin` local instalando quaisquer pacotes necessários para executar o comando. Por padrão, `npx` verificará se o comando existe no `PATH`, ou no binários do projeto local, e executa-o. Se o comando não for encontrado, será instalado antes da execução.
 
-## Configuring Vitest
+## Configurando a Vitest {#configuring-vitest}
 
-One of the main advantages of Vitest is its unified configuration with Vite. If present, `vitest` will read your root `vite.config.ts` to match with the plugins and setup as your Vite app. For example, your Vite [resolve.alias](https://vitejs.dev/config/shared-options.html#resolve-alias) and [plugins](https://vitejs.dev/guide/using-plugins.html) configuration will work out-of-the-box. If you want a different configuration during testing, you can:
+Uma das principais vantagens da Vitest é a sua configuração unificada com a Vite. Se presente, `vitest` lerá o teu `vite.config.ts` de raiz para condizer com as extensões e configuração de acordo com a tua aplicação de Vite. Por exemplo, a tua configuração de [`resolve.alias`](config/shared-options#resolve-alias) e [extensões](guide/using-plugins) funcionará fora da caixa. Se quiseres uma configuração diferente durante a testagem, podes:
 
-- Create `vitest.config.ts`, which will have the higher priority
-- Pass `--config` option to CLI, e.g. `vitest --config ./path/to/vitest.config.ts`
-- Use `process.env.VITEST` or `mode` property on `defineConfig` (will be set to `test` if not overridden) to conditionally apply different configuration in `vite.config.ts`
+- Criar o `vitest.config.ts`, o qual terá a prioridade mais alta.
+- Passar a opção `--config` para interface da linha de comando, por exemplo `vitest --config ./path/to/vitest.config.ts`
+- Usar a propriedade `process.env.VITEST` ou `mode` na `defineConfig` (será definida para `test` se for sobreposta) para aplicar condicionalmente configuração diferente no `vite.config.ts`
 
-To configure `vitest` itself, add `test` property in your Vite config. You'll also need to add a reference to Vitest types using a [triple slash command](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-types-) at the top of your config file, if you are importing `defineConfig` from `vite` itself.
+Para configurares a própria `vitest`, adicione a propriedade `test` na tua configuração de Vite. Também precisarás de adicionar uma referência aos tipos de Vitest usando um [comando de tríplice barra](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-types-) no inicio do teu ficheiro de configuração, se estiveres a importar `defineConfig` a partir da própria `vite`:
 
 ```ts
 import { defineConfig } from 'vitest/config'
@@ -59,11 +62,11 @@ export default defineConfig({
 })
 ```
 
-See the list of config options in the [Config Reference](../config/)
+Consulte a lista de opções de configuração na [Referência de Configuração](../config/).
 
-## Command Line Interface
+## Interface da Linha de Comando {#command-line-interface}
 
-In a project where Vitest is installed, you can use the `vitest` binary in your npm scripts, or run it directly with `npx vitest`. Here are the default npm scripts in a scaffolded Vitest project:
+Num projeto onde a Vitest estivesse instalada, podes usar o binário `vitest` nos teus programas de npm, ou executá-la diretamente com o `npx vitest`. Aqui estão os programas de npm padrão num projeto de Vitest estruturado:
 
 <!-- prettier-ignore -->
 ```json
@@ -75,22 +78,21 @@ In a project where Vitest is installed, you can use the `vitest` binary in your 
 }
 ```
 
-To run tests once without watching for file changes, use `vitest run`.
-You can specify additional CLI options like `--port` or `--https`. For a full list of CLI options, run `npx vitest --help` in your project.
+Para executar os testes uma vez sem observar as mudanças de ficheiro, use `vitest run`. Tu podes especificar opções de interface da linha de comando adicionais como `--port` ou `--https`. Para uma lista completa de opções de interface da linha de comando, execute `npx vitest --help` no teu projeto.
 
-Learn more about the [Command Line Interface](./cli.md)
+Saiba mais sobre a [Interface da Linha de Comando](./cli.md)
 
-## IDE Integrations
+## Integrações da IDE {#ide-integrations}
 
-We also provided a official extension for Visual Studio Code to enhance your testing experience with Vitest.
+Nós também fornecemos uma extensão oficial para o Visual Studio Code para melhorar a tua experiência de testagem com a Vitest.
 
-[Install from VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer)
+[Instalar a partir do Mercado da VS Code](https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer).
 
-Learn more about [IDE Integrations](./ide.md)
+Saiba mais sobre as [Integrações de IDE](./ide.md).
 
-## Examples
+## Exemplos {#examples}
 
-| Example | Source | Playground |
+| Exemplo | Código-fonte | Zona de Testes |
 |---|---|---|
 | `basic` | [GitHub](https://github.com/vitest-dev/vitest/tree/main/examples/basic) | [Play Online](https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/basic?initialPath=__vitest__) |
 | `fastify` | [GitHub](https://github.com/vitest-dev/vitest/tree/main/examples/fastify) | [Play Online](https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/fastify?initialPath=__vitest__) |
@@ -115,7 +117,7 @@ Learn more about [IDE Integrations](./ide.md)
 | `vue` | [GitHub](https://github.com/vitest-dev/vitest/tree/main/examples/vue) | [Play Online](https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/vue?initialPath=__vitest__) |
 | `vue2` | [GitHub](https://github.com/vitest-dev/vitest/tree/main/examples/vue2) | [Play Online](https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/vue2?initialPath=__vitest__) |
 
-## Projects using Vitest
+## Projetos usando a Vitest {#projects-using-vitest}
 
 - [unocss](https://github.com/antfu/unocss)
 - [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)
@@ -143,9 +145,9 @@ We no longer accept new entries to this list a this moment.
 Thanks for choosing Vitest!
 -->
 
-## Using Unreleased Commits
+## Usando Consolidações Não Lançadas {#using-unreleased-commits}
 
-If you can't wait for a new release to test the latest features, you will need to clone the [vitest repo](https://github.com/vitest-dev/vitest) to your local machine and then build and link it yourself ([pnpm](https://pnpm.io/) is required):
+Se não puderes esperar por um novo lançamento para testar as funcionalidades mais recentes, precisarás de clonar o [repositório da Vitest](https://github.com/vitest-dev/vitest) para a tua máquina local e depois construir e ligá-lo tu mesmo ([pnpm](https://pnpm.io/) é obrigatório):
 
 ```bash
 git clone https://github.com/vitest-dev/vitest.git
@@ -153,11 +155,11 @@ cd vitest
 pnpm install
 cd packages/vitest
 pnpm run build
-pnpm link --global # you can use your preferred package manager for this step
+pnpm link --global # podes usar o teu gestor de pacote preferido para esta etapa.
 ```
 
-Then go to the project where you are using Vitest and run `pnpm link --global vitest` (or the package manager that you used to link `vitest` globally).
+A seguir ires ao projeto onde estás a usar a Vitest e executar `pnpm link --global vitest` (ou o gestor de pacote que usaste para ligar a `vitest` globalmente).
 
-## Community
+## Comunidade {#community}
 
-If you have questions or need help, reach out to the community at [Discord](https://chat.vitest.dev) and [GitHub Discussions](https://github.com/vitest-dev/vitest/discussions).
+Se tiveres questões ou precisares de ajuda, chame a comunidade na [Discord](https://chat.vitest.dev) e [Discussões de GitHub](https://github.com/vitest-dev/vitest/discussions).
