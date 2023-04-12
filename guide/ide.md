@@ -1,36 +1,36 @@
 ---
-title: IDE Integrations | Guide
+title: Integrações de IDE | Guia
 ---
 
-# IDE Integrations
+# Integrações de IDE {#ide-integrations}
 
-## VS Code <sup><code>Official</code></sup>
+## VS Code <sup><code>Oficial</code></sup> {#vs-code-official}
 
 <p text-center>
 <img src="https://raw.githubusercontent.com/vitest-dev/vscode/main/img/cover.png" w-60>
 </p>
 
-[GitHub](https://github.com/vitest-dev/vscode) | [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer)
+[GitHub](https://github.com/vitest-dev/vscode) | [Mercado da VS Code](https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer)
 
 ![](https://i.ibb.co/bJCbCf2/202203292020.gif)
 
-## JetBrains IDE
+## IDE da JetBrains {#jetbrains-ide}
 
-WebStorm, PhpStorm, IntelliJ IDEA Ultimate, and other JetBrains IDEs come with built-in support for Vitest.
+A WebStorm, PhpStorm, IntelliJ IDEA Ultimate, e outras IDEs da JetBrains vem com suporte embutido para Vitest.
 
 <p text-center>
 <img src="https://raw.githubusercontent.com/kricact/WS-info/main/banners/vitest-jb.png" w-60>
 </p>
 
-[WebStorm Help](https://www.jetbrains.com/help/webstorm/vitest.html) | [IntelliJ IDEA Ultimate Help](https://www.jetbrains.com/help/idea/vitest.html) | [PhpStorm Help](https://www.jetbrains.com/help/phpstorm/vitest.html)
+[Ajuda de WebStorm](https://www.jetbrains.com/help/webstorm/vitest.html) | [Ajuda de IntelliJ IDEA Ultimate](https://www.jetbrains.com/help/idea/vitest.html) | [Ajuda de PhpStorm](https://www.jetbrains.com/help/phpstorm/vitest.html)
 
-![Vitest WebStorm Demo](https://raw.githubusercontent.com/kricact/WS-info/main/gifs/vitest-run-all.gif)
+![Demonstração da WebStorm de Vitest](https://raw.githubusercontent.com/kricact/WS-info/main/gifs/vitest-run-all.gif)
 
-## Wallaby.js <sup><code>Paid (free for OSS)</code></sup>
+## Wallaby.js <sup><code>Pago (gratuito para código-aberto)</code></sup> {#wallabyjs-paid-free-for-oss}
 
-Created by [The Wallaby Team](https://wallabyjs.com)
+Criado pela [Equipa da Wallaby](https://wallabyjs.com)
 
-[Wallaby.js](https://wallabyjs.com) runs your Vitest tests immediately as you type, highlighting results in your IDE right next to your code.
+[Wallaby.js](https://wallabyjs.com) executa os teus testes de Vitest imediatamente a medida que digitas, destacando os resultados na tua IDE exatamente próximo ao teu código.
 
 <p text-left>
 <img src="https://wallabyjs.com/assets/img/vitest_cover.png" w-142 />
@@ -39,4 +39,4 @@ Created by [The Wallaby Team](https://wallabyjs.com)
 [VS Code](https://marketplace.visualstudio.com/items?itemName=WallabyJs.wallaby-vscode) | [JetBrains](https://plugins.jetbrains.com/plugin/15742-wallaby) |
 [Visual Studio](https://marketplace.visualstudio.com/items?itemName=vs-publisher-999439.WallabyjsforVisualStudio2022) | [Sublime Text](https://packagecontrol.io/packages/Wallaby)
 
-![Wallaby VS Code Demo](https://wallabyjs.com/assets/img/vitest_demo.gif)
+![Demonstração de VS Code da Wallaby](https://wallabyjs.com/assets/img/vitest_demo.gif)
