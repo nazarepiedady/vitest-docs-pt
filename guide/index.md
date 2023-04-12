@@ -44,7 +44,7 @@ O comando `npx` executará o comando a partir de um `node_modules/.bin` local in
 
 ## Configurando a Vitest {#configuring-vitest}
 
-Uma das principais vantagens da Vitest é a sua configuração unificada com a Vite. Se presente, `vitest` lerá o teu `vite.config.ts` de raiz para condizer com as extensões e configuração de acordo com a tua aplicação de Vite. Por exemplo, a tua configuração de [`resolve.alias`](/config/#resolve-alias) e [extensões](/guide/using-plugins) funcionará fora da caixa. Se quiseres uma configuração diferente durante a testagem, podes:
+Uma das principais vantagens da Vitest é a sua configuração unificada com a Vite. Se presente, `vitest` lerá o teu `vite.config.ts` de raiz para condizer com as extensões e configuração de acordo com a tua aplicação de Vite. Por exemplo, a tua configuração de [`resolve.alias`](https://pt.vitejs.dev/config/shared-options#resolve-alias) e [extensões](https://pt.vitejs.dev/guide/using-plugins) funcionará fora da caixa. Se quiseres uma configuração diferente durante a testagem, podes:
 
 - Criar o `vitest.config.ts`, o qual terá a prioridade mais alta.
 - Passar a opção `--config` para interface da linha de comando, por exemplo `vitest --config ./path/to/vitest.config.ts`
