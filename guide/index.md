@@ -8,7 +8,7 @@ title: Começar | Guia
 
 A Vitest é uma abstração de teste unitário extremamente rápido alimentado pela Vite.
 
-Tu podes aprender mais sobre o fundamento lógico por trás do projeto na seção [Porquê Vitest](./why).
+Tu podes aprender mais sobre o fundamento lógico por trás do projeto na seção [Porquê Vitest](/guide/why).
 
 ## Experimentando a Vitest Online {#trying-vitest-online}
 
@@ -44,7 +44,7 @@ O comando `npx` executará o comando a partir de um `node_modules/.bin` local in
 
 ## Configurando a Vitest {#configuring-vitest}
 
-Uma das principais vantagens da Vitest é a sua configuração unificada com a Vite. Se presente, `vitest` lerá o teu `vite.config.ts` de raiz para condizer com as extensões e configuração de acordo com a tua aplicação de Vite. Por exemplo, a tua configuração de [`resolve.alias`](config/shared-options#resolve-alias) e [extensões](guide/using-plugins) funcionará fora da caixa. Se quiseres uma configuração diferente durante a testagem, podes:
+Uma das principais vantagens da Vitest é a sua configuração unificada com a Vite. Se presente, `vitest` lerá o teu `vite.config.ts` de raiz para condizer com as extensões e configuração de acordo com a tua aplicação de Vite. Por exemplo, a tua configuração de [`resolve.alias`](/config/#resolve-alias) e [extensões](/guide/using-plugins) funcionará fora da caixa. Se quiseres uma configuração diferente durante a testagem, podes:
 
 - Criar o `vitest.config.ts`, o qual terá a prioridade mais alta.
 - Passar a opção `--config` para interface da linha de comando, por exemplo `vitest --config ./path/to/vitest.config.ts`
@@ -62,7 +62,7 @@ export default defineConfig({
 })
 ```
 
-Consulte a lista de opções de configuração na [Referência de Configuração](../config/).
+Consulte a lista de opções de configuração na [Referência de Configuração](/config/).
 
 ## Interface da Linha de Comando {#command-line-interface}
 
@@ -80,7 +80,7 @@ Num projeto onde a Vitest estivesse instalada, podes usar o binário `vitest` no
 
 Para executar os testes uma vez sem observar as mudanças de ficheiro, use `vitest run`. Tu podes especificar opções de interface da linha de comando adicionais como `--port` ou `--https`. Para uma lista completa de opções de interface da linha de comando, execute `npx vitest --help` no teu projeto.
 
-Saiba mais sobre a [Interface da Linha de Comando](./cli.md)
+Saiba mais sobre a [Interface da Linha de Comando](/guide/cli)
 
 ## Integrações da IDE {#ide-integrations}
 
@@ -88,7 +88,7 @@ Nós também fornecemos uma extensão oficial para o Visual Studio Code para mel
 
 [Instalar a partir do Mercado da VS Code](https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer).
 
-Saiba mais sobre as [Integrações de IDE](./ide.md).
+Saiba mais sobre as [Integrações de IDE](/guide/ide).
 
 ## Exemplos {#examples}
 
