@@ -1,7 +1,7 @@
 ---
-title: Using Plugins | Guide
+title: Usando Extensões | Guia
 ---
 
-# Using Plugins
+# Usando Extensões {#using-plugins}
 
-Vitest can be extended using plugins...
+A Vitest pode ser estendida usando extensões...
