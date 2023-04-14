@@ -1,22 +1,22 @@
 ---
-title: Migration Guide | Guide
+title: Guia de Migração | Guia
 ---
 
-# Migration Guide
+# Guia de Migração {#migration-guide}
 
-## Migrating from Jest
+## Migrando da Jest {#migrating-from-jest}
 
-Vitest has been designed with a Jest compatible API, in order to make the migration from Jest as simple as possible. Despite those efforts, you may still run into the following differences:
+A Vitest tem sido desenhada com uma API compatível de Jest, para tornar a migração a partir de Jest o mais simples possível. Apesar destes esforços, ainda podes deparar-te com as seguintes diferenças:
 
-**Globals as a Default**
+**Globais como um Padrão**
 
-Jest has their [globals API](https://jestjs.io/docs/api) enabled by default. Vitest does not. You can either enable globals via [the `globals` configuration setting](/config/#globals) or update your code to use imports from the `vitest` module instead.
+A Jest tem as suas [API globais](https://jestjs.io/docs/api) ativadas por padrão. A Vitest não. Tu podes ou ativar os globais através da [definição da configuração `globals`](/config/#globals) ou atualizar o teu código para usar as importações do módulo `vitest`.
 
-If you decide to keep globals disabled, be aware that common libraries like [`testing-library`](https://testing-library.com/) will not run auto DOM [cleanup](https://testing-library.com/docs/svelte-testing-library/api/#cleanup).
+Se decidires manter os globais desativado, esteja ciente de que bibliotecas comuns como [`testing-library`](https://testing-library.com/) não executarão a [limpeza](https://testing-library.com/docs/svelte-testing-library/api/#cleanup) do DOM automaticamente.
 
-**Module mocks**
+**Simulação de Módulo**
 
-When mocking a module in Jest, the factory argument's return value is the default export. In Vitest, the factory argument has to return an object with each export explicitly defined. For example, the following `jest.mock` would have to be updated as follows:
+Quando estiveres a simular um módulo na Jest, o valor de retorno do argumento de fábrica é a exportação padrão. Na Vitest, o argumento de fábrica tem de retornar um objeto com cada exportação explicita definida. Por exemplo, o seguinte `jest.mock` teria de ser atualizada como se segue:
 
 ```diff
 - jest.mock('./some-path', () => 'hello')
@@ -25,34 +25,34 @@ When mocking a module in Jest, the factory argument's return value is the defaul
 + })
 ```
 
-For more details please refer to the [`vi.mock` api section](/api/vi#vi-mock).
+Por mais detalhes consulte a [seção da API de `vi.mock`](/api/vi#vi-mock).
 
-**Auto-Mocking Behaviour**
+**Comportamento de Auto-Simulação**
 
-Unlike Jest, mocked modules in `<root>/__mocks__` are not loaded unless `vi.mock()` is called. If you need them to be mocked in every test, like in Jest, you can mock them inside [`setupFiles`](/config/#setupfiles).
+Ao contrário de Jest, os módulos simulados na `<root>/__mocks__` não são carregados a menos de `vi.mock()` seja chamada. Se precisares que elas sejam simuladas em todo teste, como na Jest, podes simulá-las dentro de [`setupFiles`](/config/#setupfiles).
 
-**Importing the original of a mocked package**
+**Importando o original de um pacote simulado**
 
-If you are only partially mocking a package, you might have previously used Jest's function `requireActual`. In Vitest, you should replace these calls with `vi.importActual`.
+Se apenas estiveres parcialmente simulando um pacote, podes ter usado antes a função da Jest `requireActual`. Na Vitest, podes substituir estas chamadas com `vi.importActual`:
 
 ```diff
 - const { cloneDeep } = jest.requireActual('lodash/cloneDeep')
 + const { cloneDeep } = await vi.importActual('lodash/cloneDeep')
 ```
 
-**Jasmine API**
+**API de Jasmine**
 
-Jest exports various [`jasmine`](https://jasmine.github.io/) globals (such as `jasmine.any()`). Any such instances will need to be migrated to [their Vitest counterparts](/api/).
+A Jest exporta vários globais de [`jasmine`](https://jasmine.github.io/) (tais como `jasmine.any()`). Quaisquer instâncias destas precisarão de ser migradas para [suas equivalentes de Vitest](/api/).
 
-**Envs**
+**Variáveis de Ambiente**
 
-Just like Jest, Vitest sets `NODE_ENV` to `test`, if it wasn't set before. Vitest also has a counterpart for `JEST_WORKER_ID` called `VITEST_POOL_ID` (always less than or equal to `maxThreads`), so if you rely on it, don't forget to rename it. Vitest also exposes `VITEST_WORKER_ID` which is a unique ID of a running worker - this number is not affected by `maxThreads`, and will increase with each created worker.
+Tal como a Jest, a Vitest define `NODE_ENV` para `test`, se foi definida antes. A Vitest também tem um equivalente para `JEST_WORKER_ID` chamado de `VITEST_POOL_ID` (sempre menor do ou igual à `maxThreads`), assim se dependeres dele, não te esqueças de renomeia-lo. A Vitest também expõe a `VITEST_WORKER_ID` que é um identificador único de um operário em execução - este número não é afetado pelo `maxThreads`, e aumentará com cada operário criado.
 
-If you want to modify the envs, you will use [replaceProperty API](https://jestjs.io/docs/jest-object#jestreplacepropertyobject-propertykey-value) in Jest, you can use [vi.stubEnv](https://vitest.dev/api/vi.html#vi-stubenv) to do it also in Vitest. 
+Se quiseres modificar as variáveis de ambiente, usarás a [API de `replaceProperty`](https://jestjs.io/docs/jest-object#jestreplacepropertyobject-propertykey-value) na Jest, podes usar a [`vi.stubEnv`](https://vitest.dev/api/vi.html#vi-stubenv) para também fazer isto na Vitest.
 
-**Done Callback**
+**Função de Resposta Feita**
 
-From Vitest v0.10.0, the callback style of declaring tests is deprecated. You can rewrite them to use `async`/`await` functions, or use Promise to mimic the callback style.
+Desde a versão 0.10.0 da Vitest, o estilo da função de resposta de declarar testes está depreciado. Tu podes reescrevê-los para usar funções `async` ou `await`, ou usar promessa para imitar o estilo da função de resposta:
 
 ```diff
 - it('should work', (done) => {
@@ -63,18 +63,18 @@ From Vitest v0.10.0, the callback style of declaring tests is deprecated. You ca
 + }))
 ```
 
-**Hooks**
+**Gatilhos**
 
-`beforeAll`/`beforeEach` hooks may return [teardown function](/api/#setup-and-teardown) in Vitest. Because of that you may need to rewrite your hooks declarations, if they return something other than `undefined` or `null`:
+Os gatilhos `beforeAll` e `beforeEach` podem retornar a [função de demolição](/api/#setup-and-teardown) na Vitest. Por causa disto podes precisares de reescrever as tuas declarações de gatilhos, se retornarem alguma coisa senão `undefined` ou `null`:
 
 ```diff
 - beforeEach(() => setActivePinia(createTestingPinia()))
 + beforeEach(() => { setActivePinia(createTestingPinia()) })
 ```
 
-**Types**
+**Tipos**
 
-Vitest doesn't expose a lot of types on `Vi` namespace, it exists mainly for compatibility with matchers, so you might need to import types directly from `vitest` instead of relying on `Vi` namespace:
+A Vitest não expõe muitos tipos sobre o nome de espaço `Vi`, ela existe principalmente para compatibilidade com os correspondentes, assim podes precisar de importar os tipos diretamente de `vitest` ao invés de depender do nome de espaço `Vi`:
 
 ```diff
 - let fn: jest.Mock<string, [string]>
@@ -82,15 +82,15 @@ Vitest doesn't expose a lot of types on `Vi` namespace, it exists mainly for com
 + let fn: Mock<[string], string>
 ```
 
-Also, Vitest has `Args` type as a first argument instead of `Returns`, as you can see in diff.
+Além disto, a Vitest tem o tipo `Args` como primeiro argumento ao invés de `Returns`, conforme podes ver na diferença:
 
-**Timers**
+**Temporizadores**
 
-Vitest doesn't support Jest's legacy timers.
+A Vitest não suporta os temporizadores de herança da Jest.
 
-**Vue Snapshots**
+**Fotografias de Vue**
 
-This is not a Jest-specific feature, but if you previously were using Jest with vue-cli preset, you will need to install [`jest-serializer-vue`](https://github.com/eddyerburgh/jest-serializer-vue) package, and use it inside [setupFiles](/config/#setupfiles):
+Isto não é uma funcionalidade específica de Jest, mas se antes estavas a usar a Jest com predefinição da `vue-cli`, precisarás de instalar o pacote [`jest-serializer-vue`](https://github.com/eddyerburgh/jest-serializer-vue), e usá-lo dentro de [`setupFiles`](/config/#setupfiles):
 
 `vite.config.js`
 
@@ -112,4 +112,4 @@ import vueSnapshotSerializer from 'jest-serializer-vue'
 expect.addSnapshotSerializer(vueSnapshotSerializer)
 ```
 
-Otherwise your snapshots will have a lot of escaped `"` characters.
+De outro modo as tuas fotografias terão de ter muitos caracteres `"` escapados.
