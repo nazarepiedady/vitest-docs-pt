@@ -6,7 +6,7 @@ title: Filtragem de Teste | Guia
 
 Filtragem, pausas, execuções simultâneas para grupos e testes.
 
-Use `.skip` para evitar a execução de certos grupos ou testes:
+Use `.skip` para evitares a execução de certos grupos ou testes:
 
 ```ts
 import { assert, describe, it } from 'vitest'
@@ -28,7 +28,7 @@ describe('suite', () => {
 
 ## Selecionando Grupos e Testes à Executar {#selecting-suites-and-tests-to-run}
 
-Use `.only` para apenas executar certos grupos ou testes:
+Use `.only` para apenas executares certos grupos ou testes:
 
 ```ts
 import { assert, describe, it } from 'vitest'
