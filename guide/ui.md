@@ -16,7 +16,7 @@ A seguir podes iniciar os testes com a interface de utilizador passando a opçã
 vitest --ui
 ```
 
-A seguir podes visitar a interface de utilizador da Vitest em [`http://localhost:51204/__vitest__/`](http://localhost:51204/__vitest__/).
+A seguir podes visitar a interface de utilizador da Vitest em `http://localhost:51204/__vitest__/`.
 
 
 <img alt="Vitest UI" img-light src="https://user-images.githubusercontent.com/11247099/171992267-5cae2fa0-b927-400a-8eb1-da776974cb61.png">
