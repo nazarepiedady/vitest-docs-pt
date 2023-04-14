@@ -75,13 +75,6 @@ export default withPwa(defineConfig({
       // },
     },
 
-    localeLinks: {
-      text: 'English',
-      items: [
-        { text: '简体中文', link: 'https://cn.vitest.dev' },
-      ],
-    },
-
     socialLinks: [
       { icon: 'mastodon', link: mastodon },
       { icon: 'twitter', link: twitter },
