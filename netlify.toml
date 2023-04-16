@@ -6,11 +6,11 @@
   publish = ".vitepress/dist"
   command = "pnpm run build"
 
-[[redirects]]
-  from = "https://vitest-docs-pt.netlify.app/*"
-  to = "https://pt.vitest.dev/:splat"
-  status = 301
-  force = true
+#[[redirects]]
+  #from = "https://vitest-docs-pt.netlify.app/*"
+  #to = "https://pt.vitest.dev/:splat"
+  #status = 301
+  #force = true
 
 [[redirects]]
   from = "/new"
