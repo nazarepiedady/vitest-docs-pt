@@ -1,21 +1,21 @@
 ---
-title: Test Environment | Guide
+title: Ambiente de Teste | Guia
 ---
 
-# Test Environment
+# Ambiente de Teste {#test-environment}
 
-Vitest provides [`environment`](/config/#environment) option to run code inside a specific environment. You can modify how environment behaves with [`environmentOptions`](/config/#environmentoptions) option.
+A Vitest fornece a opção [`environment`](/config/#environment) para executares código dentro de um ambiente específico. Tu podes modificar como o ambiente se comporta com a opção [`environmentOptions`](/config/#environmentoptions).
 
-By default, you can use these environments:
+Por padrão, podes usar estes ambientes:
 
-- `node` is default environment
-- `jsdom` emulates browser environment by providing Browser API, uses [`jsdom`](https://github.com/jsdom/jsdom) package
-- `happy-dom` emulates browser environment by providing Browser API, and considered to be faster than jsdom, but lacks some API, uses [`happy-dom`](https://github.com/capricorn86/happy-dom) package
-- `edge-runtime` emulates Vercel's [edge-runtime](https://edge-runtime.vercel.app/), uses [`@edge-runtime/vm`](https://www.npmjs.com/package/@edge-runtime/vm) package
+- `node` é o ambiente padrão.
+- `jsdom` emula o ambiente de navegador fornecendo a API do Navegador, usa o pacote [`jsdom`](https://github.com/jsdom/jsdom).
+- `happy-dom` emula o ambiente de navegador fornecendo a API do Navegador, e é considerada mais rápida do que a `jsdom`, mas carece de algumas APIs, usa o pacote [`happy-dom`](https://github.com/capricorn86/happy-dom).
+- `edge-runtime` emula o [`edge-runtime`](https://edge-runtime.vercel.app/) da Vercel, usa o pacote [`@edge-runtime/vm`](https://www.npmjs.com/package/@edge-runtime/vm).
 
-## Environments for specific files
+## Ambientes para Ficheiros Específicos {#environments-for-specific-files}
 
-When setting `environment` option in your config, it will apply to all the test files in your project. To have more fine-grained control, you can use control comments to specify environment for specific files. Control comments are comments that start with `@vitest-environment` and are followed by the environment name:
+Quando definires a opção `environment` na tua configuração, isto será aplicado para todos os ficheiros de teste no teu projeto. Para teres mais controlo fino, podes usar comentários de controlo para especificares o ambiente para ficheiros específicos. Os comentários de controlo são comentários que começam com `@vitest-environment` e são seguidos pelo nome do ambiente:
 
 ```ts
 // @vitest-environment jsdom
@@ -27,11 +27,11 @@ test('test', () => {
 })
 ```
 
-Or you can also set [`environmentMatchGlobs`](https://vitest.dev/config/#environmentmatchglobs) option specifying the environment based on the glob patterns.
+Ou também podes definir a opção [`environmentMatchGlobs`](https://vitest.dev/config/#environmentmatchglobs) especificando o ambiente baseado nos padrões de `glob`.
 
-## Custom Environment
+## Ambiente Personalizado {#custom-environment}
 
-Starting from 0.23.0, you can create your own package to extend Vitest environment. To do so, create package with the name `vitest-environment-${name}`. That package should export an object with the shape of `Environment`:
+Desde a versão 0.23.0, podes criar o teu próprio pacote para estenderes o ambiente de Vitest. Para fazeres isto, cria o pacote com o nome `vitest-environment-${name}`. Este pacote deve exportar um objeto com a forma do `Environment`:
 
 ```ts
 import type { Environment } from 'vitest'
@@ -39,17 +39,18 @@ import type { Environment } from 'vitest'
 export default <Environment>{
   name: 'custom',
   setup() {
-    // custom setup
+    // configuração personalizada
     return {
       teardown() {
-        // called after all tests with this env have been run
+        // chamada depois de todos os testes com
+        // este ambiente serem executados
       }
     }
   }
 }
 ```
 
-You also have access to default Vitest environments through `vitest/environments` entry:
+Tu também tens acesso aos ambientes de Vitest padrão através da entrada `vitest/environments`:
 
 ```ts
 import { builtinEnvironments, populateGlobal } from 'vitest/environments'
@@ -57,19 +58,21 @@ import { builtinEnvironments, populateGlobal } from 'vitest/environments'
 console.log(builtinEnvironments) // { jsdom, happy-dom, node, edge-runtime }
 ```
 
-Vitest also provides `populateGlobal` utility function, which can be used to move properties from object into the global namespace:
+A Vitest também fornece a função utilitária `populateGlobal`, que pode ser usada para mover as propriedades do objeto para o nome de espaço:
 
 ```ts
 interface PopulateOptions {
-  // should non-class functions be bind to the global namespace
+  // as funções que não são de classe devem
+  // ser ligados ao nome de espaço
   bindFunctions?: boolean
 }
 
 interface PopulateResult {
-  // a list of all keys that were copied, even if value doesn't exist on original object
+  // uma lista de todas as chaves que foram copiadas,
+  // mesmo se o valor não existir no objeto original
   keys: Set<string>
-  // a map of original object that might have been overridden with keys
-  // you can return these values inside `teardown` function
+  // um mapa de objeto original que pode ter sido sobreposto com chaves
+  // tu podes retornar estes valores dentro da função `teardown`
   originals: Map<string | symbol, any>
 }
 
