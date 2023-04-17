@@ -1,3 +1,7 @@
+---
+title: Test Environment | Guide
+---
+
 # Test Environment
 
 Vitest provides [`environment`](/config/#environment) option to run code inside a specific environment. You can modify how environment behaves with [`environmentOptions`](/config/#environmentoptions) option.
