@@ -1,43 +1,43 @@
 ---
-title: Test Context | Guide
+title: Contexto de Teste | Guia
 ---
 
-# Test Context
+# Contexto de Teste {#test-context}
 
-Inspired by [Playwright Fixtures](https://playwright.dev/docs/test-fixtures), Vitest's test context allows you to define utils, states, and fixtures that can be used in your tests.
+Inspirado pela [Instalações de Playwright](https://playwright.dev/docs/test-fixtures), o contexto de teste da Vitest permite-te definir utilitários, estados, e instalações que podem ser usadas nos teus testes.
 
-## Usage
+## Uso {#usage}
 
-The first argument for each test callback is a test context.
+O primeiro argumento para cada função de resposta de teste é um contexto de teste:
 
 ```ts
 import { it } from 'vitest'
 
 it('should work', (ctx) => {
-  // prints name of the test
+  // imprime o nome do teste
   console.log(ctx.meta.name)
 })
 ```
 
-## Built-in Test Context
+## Contexto de Teste Embutido {#built-in-test-context}
 
-#### `context.meta`
+#### `context.meta` {#context-meta}
 
-A readonly object containing metadata about the test.
+Um objeto de apenas leitura que contém metadados sobre o teste.
 
-#### `context.expect`
+#### `context.expect` {#context-expect}
 
-The `expect` API bound to the current test.
+A API `expect` ligada ao teste atual.
 
-## Extend Test Context
+## Estender o Contexto de Teste {#extend-test-context}
 
-The contexts are different for each test. You can access and extend them within the `beforeEach` and `afterEach` hooks.
+Os contextos são diferentes para cada teste. Tu podes acessar e estendê-los dentro dos gatilhos `beforeEach` e `afterEach`:
 
 ```ts
 import { beforeEach, it } from 'vitest'
 
 beforeEach(async (context) => {
-  // extend context
+  // estender o contexto
   context.foo = 'bar'
 })
 
@@ -46,9 +46,9 @@ it('should work', ({ foo }) => {
 })
 ```
 
-### TypeScript
+### TypeScript {#typescript}
 
-To provide property types for all your custom contexts, you can aggregate the `TestContext` type by adding
+Para fornecer tipos de propriedades para todos os teus contextos personalizados, podes agregar o tipo `TestContext` adicionando:
 
 ```ts
 declare module 'vitest' {
@@ -58,7 +58,7 @@ declare module 'vitest' {
 }
 ```
 
-If you want to provide property types only for specific `beforeEach`, `afterEach`, `it` and `test` hooks, you can pass the type as a generic.
+Se quiseres fornecer tipos de propriedade apenas para gatilhos específicos como `afterEach`, `it`, e `test`, podes passar o tipo como um genérico:
 
 ```ts
 interface LocalTestContext {
@@ -66,12 +66,12 @@ interface LocalTestContext {
 }
 
 beforeEach<LocalTestContext>(async (context) => {
-  // typeof context is 'TestContext & LocalTestContext'
+  // o tipo de `context` é 'TestContext & LocalTestContext'
   context.foo = 'bar'
 })
 
 it<LocalTestContext>('should work', ({ foo }) => {
-  // typeof foo is 'string'
+  // o tipo de `foo` é 'string'
   console.log(foo) // 'bar'
 })
 ```
