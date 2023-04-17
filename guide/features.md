@@ -44,7 +44,7 @@ Learn more about [Test Filtering](./filtering.md).
 
 ## Running tests concurrently
 
-Use `.concurrent` in consecutive tests to run them in parallel. 
+Use `.concurrent` in consecutive tests to run them in parallel.
 
 ```ts
 import { describe, it } from 'vitest'
