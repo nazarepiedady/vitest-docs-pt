@@ -1,55 +1,57 @@
 ---
-title: Features | Guide
+title: Funcionalidades | Guia
 outline: deep
 ---
 
-# Features
+# Funcionalidades {#features}
 
 <FeaturesList class="!gap-1 text-lg" />
 
 <div h-2 />
-<CourseLink href="https://vueschool.io/lessons/your-first-test?friend=vueuse">Learn how to write your first test by Video</CourseLink>
+<CourseLink href="https://vueschool.io/lessons/your-first-test?friend=vueuse">
+Saiba como escrever o teu primeiro teste
+</CourseLink>
 
-## Shared config between test, dev and build
+## Configuração Partilhada entre Teste, Desenvolvimento e Construção {#shared-config-between-test-dev-build}
 
-Vite's config, transformers, resolvers, and plugins. Use the same setup from your app to run the tests.
+Resolvedores, transformadores, configuração e extensões da Vite. Usa a mesma configuração da tua aplicação para executar os testes.
 
-Learn more at [Configuring Vitest](/guide/#configuring-vitest).
+Saiba mais em [Configurando a Vitest](/guide/#configuring-vitest).
 
-## Watch Mode
+## Modo de Observação {#watch-mode}
 
 ```bash
 $ vitest
 ```
 
-When you modify your source code or the test files, Vitest smartly searches the module graph and only reruns the related tests, [just like how HMR works in Vite!](https://twitter.com/antfu7/status/1468233216939245579)
+Quando modificas o teu código-fonte ou ficheiros de teste, a Vitest procura inteligentemente o gráfico do módulo e apenas executa novamente os testes relacionados, [tal como a substituição de módulo instantânea funciona na Vite!](https://twitter.com/antfu7/status/1468233216939245579).
 
-`vitest` starts in `watch mode` **by default in development environment** and `run mode` in CI environment (when `process.env.CI` presents) smartly. You can use `vitest watch` or `vitest run` to explicitly specify the desired mode.
+A `vitest` inicia inteligentemente no `watch mode` **por padrão em ambiente de desenvolvimento** e `run mode` em ambiente de integração continua (quando `process.env.CI` estiver presente). Tu podes usar `vitest watch` ou `vitest run` para especificar explicitamente o modo desejado.
 
-## Common web idioms out-of-the-box
+## Idiomas de Web Comuns Fora da Caixa {#common-web-idioms-out-of-the-box}
 
-Out-of-the-box ES Module / TypeScript / JSX support / PostCSS
+Suporte de Módulo de ECMAScript / TypeScript / JSX / PostCSS fora da caixa.
 
-## Threads
+## Linhas de Processamento {#threads}
 
-Workers multi-threading via [Tinypool](https://github.com/tinylibs/tinypool) (a lightweight fork of [Piscina](https://github.com/piscinajs/piscina)), allowing tests to run simultaneously. Threads are enabled by default in Vitest, and can be disabled by passing `--no-threads` in the CLI.
+Operários executando em várias linhas de processamentos através de [Tinypool](https://github.com/tinylibs/tinypool) (uma bifurcação leve de [Piscina](https://github.com/piscinajs/piscina)), permitindo os testes executar simultaneamente. As linhas de processamento são ativadas por padrão na Vitest, e podem ser desativadas passando `--no-threads` na interface da linha de comando.
 
-Vitest also isolates each file's environment so env mutations in one file don't affect others. Isolation can be disabled by passing `--no-isolate` to the CLI (trading correctness for run performance).
+A Vitest também isola cada ambiente do ficheiro assim as mutações de ambiente em um ficheiro não afetam os outros. O isolamento pode ser desativado passando `--no-isolate` para a interface da linha de comando (trocando correção por desempenho de execução).
 
-## Test Filtering
+## Filtragem de Teste {#test-filtering}
 
-Vitest provided many ways to narrow down the tests to run in order to speed up testing so you can focus on development.
+A Vitest fornece muitas maneiras de reduzir os testes à executar para acelerar a testagem assim podes concentrar-te no desenvolvimento.
 
-Learn more about [Test Filtering](./filtering.md).
+Saiba mais sobre [Filtragem de Teste](./filtering.md).
 
-## Running tests concurrently
+## Executando Testes Simultaneamente {#running-tests-concurrently}
 
-Use `.concurrent` in consecutive tests to run them in parallel.
+Use `.concurrent` nos testes consecutivos para executá-los em paralelo:
 
 ```ts
 import { describe, it } from 'vitest'
 
-// The two tests marked with concurrent will be run in parallel
+// Os dois testes marcados com `.concurrent` executarão em paralelo
 describe('suite', () => {
   it('serial test', async () => { /* ... */ })
   it.concurrent('concurrent test 1', async ({ expect }) => { /* ... */ })
@@ -57,12 +59,12 @@ describe('suite', () => {
 })
 ```
 
-If you use `.concurrent` on a suite, every test in it will be run in parallel.
+Se usares `.concurrent` em um grupo, todo teste nele será executado em paralelo:
 
 ```ts
 import { describe, it } from 'vitest'
 
-// All tests within this suite will be run in parallel
+// Todos os testes dentro deste grupo serão executados em paralelo
 describe.concurrent('suite', () => {
   it('concurrent test 1', async ({ expect }) => { /* ... */ })
   it('concurrent test 2', async ({ expect }) => { /* ... */ })
@@ -70,15 +72,15 @@ describe.concurrent('suite', () => {
 })
 ```
 
-You can also use `.skip`, `.only`, and `.todo` with concurrent suites and tests. Read more in the [API Reference](/api/#test-concurrent).
+Tu também podes usar `.skip`, `.only`, e `.todo` com os grupos e testes simultâneos. Leia mais na [Referência da API](/api/#test-concurrent).
 
-::: warning
-When running concurrent tests, Snapshots and Assertions must use `expect` from the local [Test Context](/guide/test-context.md) to ensure the right test is detected.
+:::warning AVISO
+Quando executares testes simultâneos, as fotografias e afirmações devem usar `expect` do [Contexto de Teste](/guide/test-context.md) local para garantir que o teste correto é detetado.
 :::
 
-## Snapshot
+## Fotografia {#snapshot}
 
-[Jest-compatible](https://jestjs.io/docs/snapshot-testing) snapshot support.
+Suporte de fotografia [compatível com a Jest](https://jestjs.io/docs/snapshot-testing):
 
 ```ts
 import { expect, it } from 'vitest'
@@ -89,17 +91,17 @@ it('renders correctly', () => {
 })
 ```
 
-Learn more at [Snapshot](/guide/snapshot).
+Saiba mais em [Fotografia](/guide/snapshot).
 
-## Chai and Jest `expect` compatibility
+## Compatibilidade de `expect` de Jest e Chai {#chai-and-jest-expect-compatibility}
 
-[Chai](https://www.chaijs.com/) is built-in for assertions plus [Jest `expect`](https://jestjs.io/docs/expect)-compatible APIs.
+A [Chai](https://www.chaijs.com/) é embutida para afirmações mais as APIs compatíveis com a [`expect` de Jest](https://jestjs.io/docs/expect).
 
-Notice that if you are using third-party libraries that add matchers, setting `test.globals` to `true` will provide better compatibility.
+Repara que se estiveres a usar bibliotecas de terceiros que adicionam correspondentes, definir `test.globals` para `true` fornecerá melhor compatibilidade.
 
-## Mocking
+## Simulação {#mocking}
 
-[Tinyspy](https://github.com/tinylibs/tinyspy) is built-in for mocking with `jest`-compatible APIs on `vi` object.
+A [Tinyspy](https://github.com/tinylibs/tinyspy) é embutida para simulação com as APIs compatíveis de `jest` no objeto `vi`:
 
 ```ts
 import { expect, vi } from 'vitest'
@@ -118,15 +120,15 @@ fn('world', 2)
 expect(fn.mock.results[1].value).toBe('world')
 ```
 
-Vitest supports both [happy-dom](https://github.com/capricorn86/happy-dom) or [jsdom](https://github.com/jsdom/jsdom) for mocking DOM and browser APIs. They don't come with Vitest, you might need to install them:
+A Vitest suporta ambos [`happy-dom`](https://github.com/capricorn86/happy-dom) e [`jsdom`](https://github.com/jsdom/jsdom) para simular as APIs do Navegador e do DOM. Elas não vem com a Vitest, podes precisar de instalá-las:
 
 ```bash
 $ npm i -D happy-dom
-# or
+# ou
 $ npm i -D jsdom
 ```
 
-After that, change the `environment` option in your config file:
+Depois disto, mude a opção `environment` no teu ficheiro de configuração:
 
 ```ts
 // vite.config.ts
@@ -134,16 +136,16 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    environment: 'happy-dom', // or 'jsdom', 'node'
+    environment: 'happy-dom', // ou 'jsdom', 'node'
   },
 })
 ```
 
-Learn more at [Mocking](/guide/mocking).
+Saiba mais em [Simulação](/guide/mocking).
 
-## Coverage
+## Cobertura {#coverage}
 
-Vitest supports Native code coverage via [`c8`](https://github.com/bcoe/c8) and instrumented code coverage via [`istanbul`](https://istanbul.js.org/).
+A Vitest suporta a cobertura de código nativa através de [`c8`](https://github.com/bcoe/c8) e a cobertura de código instrumentalizada através da [`istanbul`](https://istanbul.js.org/):
 
 ```json
 {
@@ -154,23 +156,23 @@ Vitest supports Native code coverage via [`c8`](https://github.com/bcoe/c8) and 
 }
 ```
 
-Learn more at [Coverage](/guide/coverage).
+Saiba mais em [Cobertura](/guide/coverage).
 
-## In-source testing
+## Testagem Na Fonte {#in-source-testing}
 
-Vitest also provides a way to run tests within your source code along with the implementation, similar to [Rust's module tests](https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-module-and-cfgtest).
+A Vitest também fornece uma maneira de executar os testes dentro do teu código-fonte juntamente com a implementação, parecido com os [testes de módulo da Rust](https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-module-and-cfgtest).
 
-This makes the tests share the same closure as the implementations and able to test against private states without exporting. Meanwhile, it also brings the feedback loop closer for development.
+Isto faz os testes partilharem o mesmo encerramento que as implementações e capaz de testar contra estados privados sem exportar. Entretanto, também trás o laço de reações para mais próximo do desenvolvimento:
 
 ```ts
 // src/index.ts
 
-// the implementation
+// a implementação
 export function add(...args: number[]) {
   return args.reduce((a, b) => a + b, 0)
 }
 
-// in-source test suites
+// grupos de teste na fonte
 if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest
   it('add', () => {
@@ -181,12 +183,11 @@ if (import.meta.vitest) {
 }
 ```
 
-Learn more at [In-source testing](/guide/in-source).
+Saiba mais em [testagem na fonte](/guide/in-source).
 
-## Benchmarking <sup><code>experimental</code></sup>
+## Analise Comparativa <sup><code>experimental</code></sup> {#benchmarking-experimental}
 
-Since Vitest 0.23.0, you can run benchmark tests with [`bench`](/api/#bench)
-function via [Tinybench](https://github.com/tinylibs/tinybench) to compare performance results.
+Desde a versão 0.23.0 da Vitest, podes executar testes de marco de referência com a função [`bench`](/api/#bench) através da [Tinybench](https://github.com/tinylibs/tinybench) para comparar os resultados de desempenho:
 
 ```ts
 import { bench, describe } from 'vitest'
@@ -208,9 +209,9 @@ describe('sort', () => {
 })
 ```
 
-## Type Testing <sup><code>experimental</code></sup>
+## Testagem de Tipo <sup><code>experimental</code></sup> {#type-testing-experimental}
 
-Since Vitest 0.25.0 you can [write tests](/guide/testing-types) to catch type regressions. Vitest comes with [`expect-type`](https://github.com/mmkal/expect-type) package to provide you with a similar and easy to understand API.
+Desde a versão 0.25.0, podes [escrever testes](/guide/testing-types) para capturar regressões de tipo. A Vitest com o pacote [`expect-type`](https://github.com/mmkal/expect-type) para fornecer-te uma API parecida e fácil de entender:
 
 ```ts
 import { assertType, expectTypeOf } from 'vitest'
