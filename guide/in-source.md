@@ -1,26 +1,26 @@
 ---
-title: In-source testing | Guide
+title: Testagem Na Fonte | Guia
 ---
 
-# In-source testing
+# Testagem Na Fonte {#in-source-testing}
 
-Vitest also provides a way to run tests within your source code along side the implementation, similar to [Rust's module tests](https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-module-and-cfgtest).
+A Vitest também fornece uma maneira de executares os testes dentro do teu código-fonte juntamente com a implementação, parecido com os [testes de módulo da Rust](https://doc.rust-lang.org/book/ch11-03-test-organization.html#the-tests-module-and-cfgtest).
 
-This makes the tests share the same closure as the implementations and able to test against private states without exporting. Meanwhile, it also brings a closer feedback loop for development.
+Isto faz os testes partilharem o mesmo encerramento que as implementações e capaz de testar contra estados privados sem exportar. Entretanto, também trás o laço de reações para mais próximo do desenvolvimento.
 
-## Setup
+## Configuração {#setup}
 
-To get started, put a `if (import.meta.vitest)` block at the end of your source file and write some tests inside it. For example:
+Para começares, coleque um bloco `if (import.meta.vitest)` no final do teu ficheiro de fonte e escreva alguns testes dentro dele. Por exemplo:
 
 ```ts
 // src/index.ts
 
-// the implementation
+// a implementação
 export function add(...args: number[]) {
   return args.reduce((a, b) => a + b, 0)
 }
 
-// in-source test suites
+// grupos de teste na fonte
 if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest
   it('add', () => {
@@ -31,7 +31,7 @@ if (import.meta.vitest) {
 }
 ```
 
-Update the `includeSource` config for Vitest to grab the files under `src/`:
+Atualize a configuração de `includeSource` para Vitest apanhar os ficheiros dentro de `src/`:
 
 ```ts
 // vite.config.ts
@@ -44,15 +44,15 @@ export default defineConfig({
 })
 ```
 
-Then you can start to test!
+Depois podes começar à testar:
 
 ```bash
 $ npx vitest
 ```
 
-## Production build
+## Construção de Produção {#production build}
 
-For the production build, you will need to set the `define` options in your config file, letting the bundler do the dead code elimination. For example, in Vite
+Para construção de produção, precisarás de definir as opções `define` no teu ficheiro de configuração, deixando o empacotador fazer a eliminação de código morto. Por exemplo, na Vite:
 
 ```diff
 // vite.config.ts
@@ -68,7 +68,7 @@ export default defineConfig({
 })
 ```
 
-### Other Bundlers
+### Outros Empacotadores {#other-bundlers}
 
 <details mt4>
 <summary text-xl>unbuild</summary>
@@ -81,11 +81,11 @@ export default defineBuildConfig({
 + replace: {
 +   'import.meta.vitest': 'undefined',
 + },
-  // other options
+  // outras opções
 })
 ```
 
-Learn more: <a href="https://github.com/unjs/unbuild" target="_blank">unbuild</a>
+Saiba mais: [unbuild](https://github.com/unjs/unbuild)
 
 </details>
 
@@ -102,17 +102,17 @@ export default {
 +     'import.meta.vitest': 'undefined',
 +   })
   ],
-  // other options
+  // outras opções
 }
 ```
 
-Learn more: <a href="https://rollupjs.org/" target="_blank">rollup</a>
+Saiba mais: [rollup](https://rollupjs.org/)
 
 </details>
 
-## TypeScript
+## TypeScript {#typescript}
 
-To get TypeScript support for `import.meta.vitest`, add `vitest/importMeta` to your `tsconfig.json`:
+Para receberes suporte de TypeScript para `import.meta.vitest`, adicione `vitest/import` ao teu `tsconfig.json`:
 
 ```diff
 // tsconfig.json
@@ -125,14 +125,14 @@ To get TypeScript support for `import.meta.vitest`, add `vitest/importMeta` to y
 }
 ```
 
-Reference to [`test/import-meta`](https://github.com/vitest-dev/vitest/tree/main/test/import-meta) for the full example.
+Consulte a [`test/import-meta`](https://github.com/vitest-dev/vitest/tree/main/test/import-meta) por um exemplo completo.
 
-## Notes
+## Notas {#notes}
 
-This feature could be useful for:
+Esta funcionalidade poderia ser útil para:
 
-- Unit testing for small-scoped functions or utilities
-- Prototyping
-- Inline Assertion
+- Testagem unitário para pequenas funções isoladas ou utilitários.
+- Prototipação
+- Afirmação Em Linha.
 
-It's recommended to **use separate test files instead** for more complex tests like components or E2E testing.
+É recomendado **usar ficheiros de teste separados**  para testes mais complexos como componentes ou testagem de ponta-a-ponta.
