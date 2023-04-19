@@ -117,7 +117,7 @@ Saiba mais sobre as [Integrações de IDE](/guide/ide).
 | `vue` | [GitHub](https://github.com/vitest-dev/vitest/tree/main/examples/vue) | [Testar Online](https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/vue?initialPath=__vitest__) |
 | `vue2` | [GitHub](https://github.com/vitest-dev/vitest/tree/main/examples/vue2) | [Testar Online](https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/vue2?initialPath=__vitest__) |
 
-## Projetos usando a Vitest {#projects-using-vitest}
+## Projetos Usando a Vitest {#projects-using-vitest}
 
 - [unocss](https://github.com/antfu/unocss)
 - [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)
@@ -149,7 +149,7 @@ Thanks for choosing Vitest!
 
 Se não puderes esperar por um novo lançamento para testar as funcionalidades mais recentes, precisarás de clonar o [repositório da Vitest](https://github.com/vitest-dev/vitest) para a tua máquina local e depois construir e ligá-lo tu mesmo ([pnpm](https://pnpm.io/) é obrigatório):
 
-```bash
+```sh
 git clone https://github.com/vitest-dev/vitest.git
 cd vitest
 pnpm install
