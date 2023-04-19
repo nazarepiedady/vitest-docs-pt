@@ -2,7 +2,7 @@
 title: Testing Types | Guide
 ---
 
-# Testing Types
+# Testing Types {#testing-types}
 
 Vitest allows you to write tests for your types, using `expectTypeOf` or `assertType` syntaxes. By default all tests inside `*.test-d.ts` files are considered type tests, but you can change it with [`typecheck.include`](/config/#typecheck-include) config option.
 
@@ -29,7 +29,7 @@ Any type error triggered inside a test file will be treated as a test error, so 
 
 You can see a list of possible matchers in [API section](/api/expect-typeof).
 
-## Reading Errors
+## Reading Errors {#reading-errors}
 
 If you are using `expectTypeOf` API, you might notice hard to read errors or unexpected:
 
@@ -64,7 +64,7 @@ assertType<string>(answr) //
 ```
 :::
 
-## Run typechecking
+## Run typechecking {#run-typechecking}
 
 Add this command to your `scripts` section in `package.json`:
 
