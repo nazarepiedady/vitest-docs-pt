@@ -1,24 +1,24 @@
 ---
-title: Debugging | Guide
+title: Depuração | Guide
 ---
 
-# Debugging
+# Depuração {#debugging}
 
-:::tip
-When debugging tests you might want to use `--test-timeout` CLI argument to prevent tests from timing out when stopping at breakpoints.
+:::tip DICA
+Quando depurares os testes podes usar o argumento de interface da linha de comando `--test-timeout` para impedir que os testes de pausarem quando pararem nos pontos de quebra.
 :::
 
-## VSCode
+## VSCode {#vscode}
 
-Quick way to debug tests in VSCode is via `JavaScript Debug Terminal`. Open a new `JavaScript Debug Terminal` and run `npm run test` or `vitest` directly. *this works with any code ran in Node, so will work with most JS testing frameworks*
+A maneira perspicaz de depurar os testes no VSCode é através de `JavaScript Debug Terminal`. Abra um nova `JavaScript Debug Terminal` e execute diretamente `npm run test` ou `vitest`. *Isto funciona com qualquer código executado na Node, então funcionará com a maioria das abstrações de testagem de JavaScript*.
 
 ![image](https://user-images.githubusercontent.com/5594348/212169143-72bf39ce-f763-48f5-822a-0c8b2e6a8484.png)
 
-You can also add a dedicated launch configuration to debug a test file in VSCode:
+Tu também podes adicionar uma configuração de lançamento dedicado para depurar um ficheiro de teste no VSCode:
 
 ```json
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  // Para mais informações, visite: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
@@ -36,32 +36,32 @@ You can also add a dedicated launch configuration to debug a test file in VSCode
 }
 ```
 
-Then in the debug tab, ensure 'Debug Current Test File' is selected. You can then open the test file you want to debug and press F5 to start debugging.
+Depois no separador de depuração, assegure que `Debug Current Test File` é selecionado. Tu podes então abra o ficheiro de teste que quiseres depurar e pressione `F5` para iniciar a depuração.
 
-## IntelliJ IDEA
+## IntelliJ IDEA {#intellij-idea}
 
-Create a 'Node.js' run configuration. Use the following settings to run all tests in debug mode:
+Crie uma configuração de execução de `Node.js`. Use as seguintes definições para executar todos os testes no modo de depuração:
 
-Setting | Value
+Definição | Valor
  --- | ---
-Working directory | /path/to/your-project-root
-JavaScript file | ./node_modules/vitest/vitest.mjs
-Application parameters | run --threads false
+Diretório de trabalho | /path/to/your-project-root
+Ficheiro de JavaScript | ./node_modules/vitest/vitest.mjs
+Parâmetros de aplicação | run --threads false
 
-Then run this configuration in debug mode. The IDE will stop at JS/TS breakpoints set in the editor.
+Depois execute esta configuração no modo de depuração. O IDE parará nos pontos de quebra de JavaScript ou TypeScript definido no editor.
 
-## Node Inspector, e.g. Chrome DevTools
+## Inspetor de Node {#node-inspector}
 
-Vitest also supports debugging tests without IDEs. However this requires that tests are not run parallel. Use one of the following commands to launch Vitest.
+A Vitest também suporta testes de depuração sem os IDEs. No entanto, isto exige que os testes não sejam executados em paralelo. Use um dos seguintes comandos para lançar a Vitest:
 
 ```sh
-# To run in a single worker
+# Para executar um único operário
 vitest --inspect-brk --single-thread
 
-# To run in a child process
+# Para executar um processo filho
 vitest --inspect-brk --no-threads
 ```
 
-Once Vitest starts it will stop execution and waits for you to open developer tools that can connect to [NodeJS inspector](https://nodejs.org/en/docs/guides/debugging-getting-started/). You can use Chrome DevTools for this by opening `chrome://inspect` on browser.
+Assim que a Vitest começar parará a execução e esperará que abras as ferramentas de programação que possam conectar-se ao [inspetor da NodeJS](https://nodejs.org/en/docs/guides/debugging-getting-started/). Tu podes usar as ferramentas de programação do Chrome para isto abrindo `chrome://inspect` no navegador.
 
-In watch mode you can keep the debugger open during test re-runs by using the `--single-thread --isolate false` options.
+No modo de observação podes manter o depurador aberto durante re-execuções de teste usando as opções `--single-thread --isolate false`.
