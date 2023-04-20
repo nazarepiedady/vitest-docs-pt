@@ -2,7 +2,7 @@
 title: Mocking | Guide
 ---
 
-# Mocking
+# Mocking {#mocking}
 
 When writing tests it's only a matter of time before you need to create a "fake" version of an internal — or external — service. This is commonly referred to as **mocking**. Vitest provides utility functions to help you out through its **vi** helper. You can `import { vi } from 'vitest'` or access it **globally** (when [global configuration](/config/#globals) is **enabled**).
 
@@ -12,11 +12,11 @@ Always remember to clear or restore mocks before or after each test run to undo 
 
 If you wanna dive in head first, check out the [API section](/api/vi) otherwise keep reading to take a deeper dive into the world of mocking.
 
-## Dates
+## Dates {#dates}
 
 Sometimes you need to be in control of the date to ensure consistency when testing. Vitest uses [`@sinonjs/fake-timers`](https://github.com/sinonjs/fake-timers) package for manipulating timers, as well as system date. You can find more about the specific API in detail [here](/api/vi#vi-setsystemtime).
 
-### Example
+### Example {#dates-example}
 
 ```js
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -64,7 +64,7 @@ describe('purchasing flow', () => {
 })
 ```
 
-## Functions
+## Functions {#functions}
 
 Mocking functions can be split up into two different categories; *spying & mocking*.
 
@@ -74,7 +74,7 @@ However spies can only help you **spy** on functions, they are not able to alter
 
 We use [Tinyspy](https://github.com/tinylibs/tinyspy) as a base for mocking functions, but we have our own wrapper to make it `jest` compatible. Both `vi.fn()` and `vi.spyOn()` share the same methods, however only the return result of `vi.fn()` is callable.
 
-### Example
+### Example {#functions-example}
 
 ```js
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -129,11 +129,11 @@ describe('reading messages', () => {
 })
 ```
 
-### More
+### More {#more-functions}
 
 - [Jest's Mock Functions](https://jestjs.io/docs/mock-function-api)
 
-## Globals
+## Globals {#globals}
 
 You can mock global variables that are not present with `jsdom` or `node` by using [`vi.stubGlobal`](/api/vi#vi-stubglobal) helper. It will put the value of the global variable into a `globalThis` object.
 
@@ -152,13 +152,13 @@ vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
 // now you can access it as `IntersectionObserver` or `window.IntersectionObserver`
 ```
 
-## Modules
+## Modules {#modules}
 
 Mock modules observe third-party-libraries, that are invoked in some other code, allowing you to test arguments, output or even redeclare its implementation.
 
 See the [`vi.mock()` api section](/api/vi#vi-mock) for a more in-depth detailed API description.
 
-### Automocking algorithm
+### Automocking algorithm {#automocking-algorithm}
 
 If your code is importing a mocked module, without any associated `__mocks__` file or `factory` for this module, Vitest will mock the module itself by invoking it and mocking every export.
 
@@ -168,7 +168,7 @@ The following principles apply
 * All objects will be deeply cloned
 * All instances of classes and their prototypes will be deeply cloned
 
-### Example
+### Example {#module-example}
 
 ```js
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -264,16 +264,17 @@ describe('get a list of todo items', () => {
 })
 ```
 
-## Requests
+## Requests {#requests}
 
 Because Vitest runs in Node, mocking network requests is tricky; web APIs are not available, so we need something that will mimic network behavior for us. We recommend [Mock Service Worker](https://mswjs.io/) to accomplish this. It will let you mock both `REST` and `GraphQL` network requests, and is framework agnostic.
 
 Mock Service Worker (MSW) works by intercepting the requests your tests make, allowing you to use it without changing any of your application code. In-browser, this uses the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API). In Node.js, and for Vitest, it uses [node-request-interceptor](https://mswjs.io/docs/api/setup-server#operation). To learn more about MSW, read their [introduction](https://mswjs.io/docs/)
 
 
-### Configuration
+### Configuration {#configuration}
 
 You can use it like below in your [setup file](/config/#setupfiles)
+
 ```js
 import { afterAll, afterEach, beforeAll } from 'vitest'
 import { setupServer } from 'msw/node'
@@ -315,11 +316,12 @@ afterEach(() => server.resetHandlers())
 
 > Configuring the server with `onUnhandleRequest: 'error'` ensures that an error is thrown whenever there is a request that does not have a corresponding request handler.
 
-### Example
+### Example {#requests-example}
 
 We have a full working example which uses MSW: [React Testing with MSW](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib-msw).
 
-### More
+### More {#more-requests}
+
 There is much more to MSW. You can access cookies and query parameters, define mock error responses, and much more! To see all you can do with MSW, read [their documentation](https://mswjs.io/docs/recipes).
 
 ## Timers
@@ -328,7 +330,7 @@ Whenever we test code that involves timeouts or intervals, instead of having our
 
 See the [`vi.useFakeTimers` api section](/api/vi#vi-usefaketimers) for a more in depth detailed API description.
 
-### Example
+### Example {#timers-example}
 
 ```js
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -371,7 +373,7 @@ describe('delayed execution', () => {
 })
 ```
 
-## Cheat Sheet
+## Cheat Sheet {#cheat-sheet}
 
 :::info
 `vi` in the examples below is imported directly from `vitest`. You can also use it globally, if you set `globals` to `true` in your [config](/config/).
@@ -387,6 +389,7 @@ vi.spyOn(instance, 'method')
 ```
 
 - Mock exported variables
+
 ```js
 // some-path.js
 export const getter = 'variable'
@@ -401,6 +404,7 @@ vi.spyOn(exports, 'getter', 'get').mockReturnValue('mocked')
 - Mock exported function
 
 Example with `vi.mock`:
+
 ```ts
 // ./some-path.js
 export function method() {}
@@ -413,11 +417,12 @@ vi.mock('./some-path.js', () => ({
 }))
 ```
 
-::: warning
+:::warning
 Don't forget that `vi.mock` call is hoisted to top of the file. **Do not** put `vi.mock` calls inside `beforeEach`, only one of these will actually mock a module.
 :::
 
 Example with `vi.spyOn`:
+
 ```ts
 import * as exports from './some-path.js'
 
@@ -427,6 +432,7 @@ vi.spyOn(exports, 'method').mockImplementation(() => {})
 - Mock exported class implementation
 
 Example with `vi.mock` and prototype:
+
 ```ts
 // some-path.ts
 export class SomeClass {}
@@ -443,6 +449,7 @@ vi.mock('./some-path.js', () => {
 ```
 
 Example with `vi.mock` and return value:
+
 ```ts
 import { SomeClass } from './some-path.js'
 
