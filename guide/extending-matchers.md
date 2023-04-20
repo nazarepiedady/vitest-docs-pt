@@ -2,7 +2,7 @@
 title: Extending Matchers | Guide
 ---
 
-# Extending Matchers
+# Extending Matchers {#extending-matchers}
 
 Since Vitest is compatible with both Chai and Jest, you can use either the `chai.use` API or `expect.extend`, whichever you prefer.
 
@@ -65,26 +65,26 @@ Matcher function have access to `this` context with the following properties:
 
 - `isNot`
 
-  Returns true, if matcher was called on `not` (`expect(received).not.toBeFoo()`).
+Returns true, if matcher was called on `not` (`expect(received).not.toBeFoo()`).
 
 - `promise`
 
-  If matcher was called on `resolved/rejected`, this value will contain the name of modifier. Otherwise, it will be an empty string.
+If matcher was called on `resolved/rejected`, this value will contain the name of modifier. Otherwise, it will be an empty string.
 
 - `equals`
 
-  This is a utility function that allows you to compare two values. It will return `true` if values are equal, `false` otherwise. This function is used internally for almost every matcher. It supports objects with asymmetric matchers by default.
+This is a utility function that allows you to compare two values. It will return `true` if values are equal, `false` otherwise. This function is used internally for almost every matcher. It supports objects with asymmetric matchers by default.
 
 - `utils`
 
-  This contains a set of utility functions that you can use to display messages.
+This contains a set of utility functions that you can use to display messages.
 
 `this` context also contains information about the current test. You can also get it by calling `expect.getState()`. The most useful properties are:
 
 - `currentTestName`
 
-  Full name of the current test (including describe block).
+Full name of the current test (including describe block).
 
 - `testPath`
 
-  Path to the current test.
+Path to the current test.
