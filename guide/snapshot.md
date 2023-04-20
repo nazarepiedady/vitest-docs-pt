@@ -2,7 +2,7 @@
 title: Snapshot | Guide
 ---
 
-# Snapshot
+# Snapshot {#snapshot}
 
 <CourseLink href="https://vueschool.io/lessons/snapshots-in-vitest?friend=vueuse">Learn Snapshot by video from Vue School</CourseLink>
 
@@ -10,7 +10,7 @@ Snapshot tests are a very useful tool whenever you want to make sure the output 
 
 When using snapshot, Vitest will take a snapshot of the given value, then compares it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match: either the change is unexpected, or the reference snapshot needs to be updated to the new version of the result.
 
-## Use Snapshots
+## Use Snapshots {#use-snapshots}
 
 To snapshot a value, you can use the [`toMatchSnapshot()`](/api/expect#tomatchsnapshot) from `expect()` API:
 
@@ -33,11 +33,11 @@ exports['toUpperCase 1'] = '"FOOBAR"'
 
 The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. On subsequent test runs, Vitest will compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.
 
-::: warning
+:::warning
 When using Snapshots with async concurrent tests, `expect` from the local [Test Context](/guide/test-context.md) must be used to ensure the right test is detected.
 :::
 
-## Inline Snapshots
+## Inline Snapshots {#inline-snapshots}
 
 Similarly, you can use the [`toMatchInlineSnapshot()`](/api/expect#tomatchinlinesnapshot) to store the snapshot inline within the test file.
 
@@ -67,7 +67,7 @@ This allows you to see the expected output directly without jumping across diffe
 When using Snapshots with async concurrent tests, `expect` from the local [Test Context](/guide/test-context.md) must be used to ensure the right test is detected.
 :::
 
-## Updating Snapshots
+## Updating Snapshots {#updating-snapshots}
 
 When the received value doesn't match the snapshot, the test fails and shows you the difference between them. When the snapshot change is expected, you may want to update the snapshot from the current state.
 
@@ -79,7 +79,7 @@ Or you can use the `--update` or `-u` flag in the CLI to make Vitest update snap
 vitest -u
 ```
 
-## File Snapshots
+## File Snapshots {#file-snapshots}
 
 When calling `toMatchSnapshot()`, we store all snapshots in a formatted snap file. That means we need to escaping some characters (namely the double-quote `"` and backtick `\``) in the snapshot string. Meanwhile, you might lose the syntax highlighting for the snapshot content (if they are in some language).
 
@@ -96,7 +96,7 @@ it('render basic', async () => {
 
 It will compare with the content of `./test/basic.output.html`. And can be written back with the `--update` flag.
 
-## Image Snapshots
+## Image Snapshots {#image-snapshots}
 
 It's also possible to snapshot images using [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot).
 
@@ -113,7 +113,7 @@ test('image snapshot', () => {
 
 You can learn more in the [`examples/image-snapshot`](https://github.com/vitest-dev/vitest/blob/main/examples/image-snapshot) example.
 
-## Custom Serializer
+## Custom Serializer {#custom-serializer}
 
 You can add your own logic to alter how your snapshots are serialized. Like Jest, Vitest has default serializers for built-in JavaScript types, HTML elements, ImmutableJS and for React elements.
 
@@ -157,11 +157,11 @@ Pretty foo: Object {
 
 We are using Jest's `pretty-format` for serializing snapshots. You can read more about it here: [pretty-format](https://github.com/facebook/jest/blob/main/packages/pretty-format/README.md#serialize).
 
-## Difference from Jest
+## Difference from Jest {#difference-from-jest}
 
 Vitest provides an almost compatible Snapshot feature with [Jest's](https://jestjs.io/docs/snapshot-testing) with a few exceptions:
 
-#### 1. Comment header in the snapshot file is different
+#### 1. Comment header in the snapshot file is different {#comment-header-in-the-snapshot-file-is-different}
 
 ```diff
 - // Jest Snapshot v1, https://goo.gl/fbAQLP
@@ -170,7 +170,7 @@ Vitest provides an almost compatible Snapshot feature with [Jest's](https://jest
 
 This does not really affect the functionality but might affect your commit diff when migrating from Jest.
 
-#### 2. `printBasicPrototype` is default to `false`
+#### 2. `printBasicPrototype` is default to `false` {#printbasicprototype-is-default-to-false}
 
 Both Jest and Vitest's snapshots are powered by [`pretty-format`](https://github.com/facebook/jest/blob/main/packages/pretty-format). In Vitest we set `printBasicPrototype` default to `false` to provide a cleaner snapshot output, while in Jest <29.0.0 it's `true` by default.
 
@@ -217,11 +217,12 @@ export default defineConfig({
 })
 ```
 
-#### 3. Chevron `>` is used as a separator instead of colon `:` for custom messages
+#### 3. Chevron `>` is used as a separator instead of colon `:` for custom messages {#chevron-is-used-as-a-separator-instead-of-colon-for-custom-messages}
 
 Vitest uses chevron `>` as a separator instead of colon `:` for readability, when a custom message is passed during creation of a snapshot file.
 
 For the following example test code:
+
 ```js
 test('toThrowErrorMatchingSnapshot', () => {
   expect(() => {
@@ -231,11 +232,13 @@ test('toThrowErrorMatchingSnapshot', () => {
 ```
 
 In Jest, the snapshot will be:
+
 ```console
 exports[`toThrowErrorMatchingSnapshot: hint 1`] = `"error"`;
 ```
 
 In Vitest, the equivalent snapshot will be:
+
 ```console
 exports[`toThrowErrorMatchingSnapshot > hint 1`] = `"error"`;
 ```
