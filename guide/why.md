@@ -2,13 +2,13 @@
 title: Why Vitest | Guide
 ---
 
-# Why Vitest
+# Why Vitest {#why-vitest}
 
 :::tip NOTE
 This guide assumes that you are familiar with Vite. A good way to start learning more is to read the [Why Vite Guide](https://vitejs.dev/guide/why.html), and [Next generation frontend tooling with ViteJS](https://www.youtube.com/watch?v=UJypSr8IhKY), a stream where [Evan You](https://twitter.com/youyuxi) did a demo explaining the main concepts.
 :::
 
-## The need for a Vite native test runner
+## The need for a Vite native test runner {#the-need-for-a-vite-native-test-runner}
 
 Vite's out-of-the-box support for common web patterns, features like glob imports and SSR primitives, and its many plugins and integrations are fostering a vibrant ecosystem. Its dev and build story are key to its success. For docs, there are several SSG-based alternatives powered by Vite. Vite's Unit Testing story hasn't been clear though. Existing options like [Jest](https://jestjs.io/) were created in a different context. There is a lot of duplication between Jest and Vite, forcing users to configure two different pipelines.
 
@@ -20,6 +20,6 @@ Given Jest's massive adoption, Vitest provides a compatible API that allows you 
 
 Continue reading in the [Getting Started Guide](./index)
 
-## How is Vitest Different from X?
+## How is Vitest Different from X? {#how-is-vitest-different-from-x}
 
 You can check out the [Comparisons](./comparisons) section for more details on how Vitest differs from other similar tools.
