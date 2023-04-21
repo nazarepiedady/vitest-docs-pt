@@ -1,16 +1,16 @@
 ---
-title: Testing Types | Guide
+title: Testando Tipos | Guia
 ---
 
-# Testing Types {#testing-types}
+# Testando Tipos {#testing-types}
 
-Vitest allows you to write tests for your types, using `expectTypeOf` or `assertType` syntaxes. By default all tests inside `*.test-d.ts` files are considered type tests, but you can change it with [`typecheck.include`](/config/#typecheck-include) config option.
+A Vitest permite-te escrever testes para os teus tipos, usando as sintaxes `expectTypeOf` ou `assertType`. Por padrão todos os testes dentro dos ficheiros `*.test-d.ts` são considerados testes de tipo, mas podes mudar isto com a opção de configuração [`typecheck.include`](/config/#typecheck-include).
 
-Under the hood Vitest calls `tsc` or `vue-tsc`, depending on your config, and parses results. Vitest will also print out type errors in your source code, if it finds any. You can disable it with [`typecheck.ignoreSourceErrors`](/config/#typecheck-ignoresourceerrors) config option.
+Nos bastidores a Vitest chama a `tsc` ou `vue-tsc`, dependendo da tua configuração, e analisa os resultados. A Vitest também imprime erros de tipo no teu código-fonte, se encontrar algum. Tu podes desativar isto com a opção de configuração [`typecheck.ignoreSourceErrors`](/config/#typecheck-ignoresourceerrors).
 
-Keep in mind that Vitest doesn't run or compile these files, they are only statically analyzed by the compiler, and because of that you cannot use any dynamic statements. Meaning, you cannot use dynamic test names, and `test.each`, `test.runIf`, `test.skipIf`, `test.concurrent` APIs. But you can use other APIs, like `test`, `describe`, `.only`, `.skip` and `.todo`.
+Lembra-te de que a Vitest não executa ou compila estes ficheiros, apenas são analisadas estaticamente pelo compilador, e por causa esta razão não podes usar quaisquer declarações dinâmicas. Significa que, não podes usar os nomes de teste dinâmicos, e as APIs `test.each`, `test.runIf`, `test.skipIf`, `test.concurrent`. Mas podes usar outras APIs, como `test`, `describe`, `.only`, `.skip` e `.todo`.
 
-Using CLI flags, like `--allowOnly` and `-t` are also supported for type checking.
+Usando opções de interface da linha de comando, como `--allowOnly` e `-` também são suportadas pela verificação de tipo:
 
 ```ts
 import { assertType, expectTypeOf } from 'vitest'
@@ -25,13 +25,13 @@ test('my types work properly', () => {
 })
 ```
 
-Any type error triggered inside a test file will be treated as a test error, so you can use any type trick you want to test types of your project.
+Qualquer erro de tipo acionado dentro de um ficheiro de teste será tratado como erro de teste, assim podes usar qualquer truque de tipo que quiseres para testar os tipos do teu projeto.
 
-You can see a list of possible matchers in [API section](/api/expect-typeof).
+Tu podes ver uma lista de possíveis correspondentes na [seção da API](/api/expect-typeof).
 
-## Reading Errors {#reading-errors}
+## Lendo os Erros {#reading-errors}
 
-If you are using `expectTypeOf` API, you might notice hard to read errors or unexpected:
+Se estiveres a usar a API `expectTypeOf`, podes notar a dificuldade de ler erros ou lidar com coisas inesperadas:
 
 ```ts
 expectTypeOf(1).toEqualTypeOf<string>()
@@ -39,11 +39,11 @@ expectTypeOf(1).toEqualTypeOf<string>()
 // index-c3943160.d.ts(90, 20): Arguments for the rest parameter 'MISMATCH' were not provided.
 ```
 
-This is due to how [`expect-type`](https://github.com/mmkal/expect-type) handles type errors.
+Isto é devido ao como a [`expect-type`](https://github.com/mmkal/expect-type) lida com os erros de tipo.
 
-Unfortunately, TypeScript doesn't provide type metadata without patching, so we cannot provide useful error messages at this point, but there are <a href="https://github.com/microsoft/TypeScript/pull/40468" target="_blank">works in TypeScript project</a> to fix this. If you want better messages, please, ask TypeScript team to have a look at mentioned PR.
+Infelizmente, a TypeScript não fornece metadados de tipo sem remendar, assim não podemos fornecer mensagens de erro úteis até o momento, mas existem [trabalhos no projeto da TypeScript](https://github.com/microsoft/TypeScript/pull/40468) para corrigir isto. Se quiseres mensagens melhores, peça a equipa da TypeScript que dê uma olhada no pedido de atualização de repositório mencionada.
 
-If you find it hard working with `expectTypeOf` API and figuring out errors, you can always use more simple `assertType` API:
+Se o considerares difícil de trabalhar com a API a `expectTypeOf` e descobrires erros, sempre podes usar a API mais simples `assertType`:
 
 ```ts
 const answer = 42
@@ -53,10 +53,10 @@ assertType<number>(answer)
 assertType<string>(answer)
 ```
 
-::: tip
-When using `@ts-expect-error` syntax, you might want to make sure that you didn't make a typo. You can do that by including your type files in [`test.include`](/config/#include) config option, so Vitest will also actually *run* these tests and fail with `ReferenceError`.
+:::tip DICA
+Quando usares a sintaxe `@ts-expect-error`, podes querer certificar-te de que cometeste um erro de digitação. Tu podes fazer isto incluindo os teus ficheiros de tipo na opção de configuração [`test.include`](/config/#include), assim a Vitest também *executará* efetivamente estes testes e falhará com `ReferenceError`.
 
-This will pass, because it expects an error, but the word “answer” has a typo, so it's a false positive error:
+Isto passará, porque espera um erro, mas a palavra “answer” tem um erro de digitação, assim é um erro de falso positivo:
 
 ```ts
 // @ts-expect-error answer is not a string
@@ -64,9 +64,9 @@ assertType<string>(answr) //
 ```
 :::
 
-## Run typechecking {#run-typechecking}
+## Executar a Verificação de Tipo {#run-typechecking}
 
-Add this command to your `scripts` section in `package.json`:
+Adicione este comando à tua seção de `scripts` no `package.json`:
 
 ```json
 {
@@ -76,7 +76,7 @@ Add this command to your `scripts` section in `package.json`:
 }
 ```
 
-Now you can run typecheck:
+Agora podes executar a verificação de tipo:
 
 ```sh
 # npm
@@ -89,4 +89,4 @@ yarn typecheck
 pnpm run typecheck
 ```
 
-Vitest uses `tsc --noEmit` or `vue-tsc --noEmit`, depending on your configuration, so you can remove these scripts from your pipeline.
+A Vitest usa `tsc --noEmit` ou `vue-tsc --noEmit`, dependendo da tua configuração, assim podes remover estes programas da tua contunda.
