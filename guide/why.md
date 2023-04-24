@@ -1,25 +1,25 @@
 ---
-title: Why Vitest | Guide
+title: Porquê Vitest | Guia
 ---
 
-# Why Vitest {#why-vitest}
+# Porquê Vitest? {#why-vitest}
 
-:::tip NOTE
-This guide assumes that you are familiar with Vite. A good way to start learning more is to read the [Why Vite Guide](https://vitejs.dev/guide/why.html), and [Next generation frontend tooling with ViteJS](https://www.youtube.com/watch?v=UJypSr8IhKY), a stream where [Evan You](https://twitter.com/youyuxi) did a demo explaining the main concepts.
+:::tip NOTA
+Este guia presume que estás familiarizado com a Vite. Uma boa maneira de começar a aprender mais é ler o [Guia do Porquê da Vite](https://pt.vitejs.dev/guide/why.html), e a [próxima geração de ferramental de frontend com a ViteJS](https://www.youtube.com/watch?v=UJypSr8IhKY), uma corrente onde o [Evan You](https://twitter.com/youyuxi) fez uma demonstração explicando os conceitos principais.
 :::
 
-## The need for a Vite native test runner {#the-need-for-a-vite-native-test-runner}
+## A Necessidade de um Executor de Teste Nativo de Vite {#the-need-for-a-vite-native-test-runner}
 
-Vite's out-of-the-box support for common web patterns, features like glob imports and SSR primitives, and its many plugins and integrations are fostering a vibrant ecosystem. Its dev and build story are key to its success. For docs, there are several SSG-based alternatives powered by Vite. Vite's Unit Testing story hasn't been clear though. Existing options like [Jest](https://jestjs.io/) were created in a different context. There is a lot of duplication between Jest and Vite, forcing users to configure two different pipelines.
+O suporte fora da caixa da Vite para padrões de web comuns, as funcionalidades como importações glob e os primitivos da interpretação no lado do servidor, e sua muitas extensões e integrações são a estimular um ecossistema vibrante. Sua história de construção e desenvolvimento são chave para o seu sucesso. Para documentação, existem várias alternativas baseadas geração de aplicação estática alimentada pela Vite. Mesmo assim a história da testagem unitária da Vite não tem sido clara. Existem opções como a [Jest](https://jestjs.io/) que foram criadas num contexto diferente. Existe muita duplicação entre a Jest e a Vite, forçando os utilizadores a configurarem duas condutas diferentes.
 
-Using Vite dev server to transform your files during testing, enables the creation of a simple runner that doesn't need to deal with the complexity of transforming source files and can solely focus on providing the best DX during testing. A test runner that uses the same configuration of your App (through `vite.config.js`), sharing a common transformation pipeline during dev, build, and test time. That is extensible with the same plugin API that lets you and the maintainers of your tools provide first-class integration with Vite. A tool that is built with Vite in mind from the start, taking advantage of its improvements in DX, like its instant Hot Module Reload (HMR). This is Vitest, a blazing fast unit-test framework powered by Vite.
+Usar o servidor de desenvolvimento da Vite para transformar os teus ficheiros durante a testagem, ativa a criação de um executor simples que não precisa de lidar com a complexidade da transformação de ficheiros de fonte e pode unicamente concentrar-se em fornecer a melhor experiência de programação durante a testagem. Um executor de teste que usa a mesma configuração de tua aplicação (através de `vite.config.ts`), partilhando uma conduta de transformação comum durante o tempo de desenvolvimento, construção, e teste. Que é extensível com a mesma API de extensão que permite-te a ti e os responsáveis das tuas ferramentas fornecer integração de primeira de classe com Vite. Uma ferramenta que é construída com Vite em mente desde o principio, beneficiando-se das suas melhorias na experiência de programação, como sua substituição de módulo instantânea (HMR). Esta é a Vitest, uma abstração de teste unitário extremamente rápida alimentada pela Vite.
 
-Given Jest's massive adoption, Vitest provides a compatible API that allows you to use it as a drop-in replacement in most projects. It also includes the most common features required when setting up your unit tests (mocking, snapshots, coverage). Vitest cares a lot about performance and uses Worker threads to run as much as possible in parallel. Some ports have seen test running an order of magnitude faster. Watch mode is enabled by default, aligning itself with the way Vite pushes for a dev first experience. Even with all these improvements in DX, Vitest stays lightweight by carefully choosing its dependencies (or directly inlining needed pieces).
+Dada a massiva adoção da Jest, a Vitest fornece uma API compatível que permite-te usá-la como uma substituição na maioria dos projetos. Isto também inclui a maioria das funcionalidades comuns exigida quando defines os teus testes unitários (simulação, fotografias, cobertura). A Vitest importa-se muito com o desempenho e usa linhas de processamento de operário para executar tanto quanto possível em paralelo. Algumas portas têm visto o teste a executar um ordem de grandeza mais rápida. O modo de observação é ativado por padrão, alinhando-se a si mesmo com a maneira que a Vite empurra para uma experiência de programador em primeiro. Mesmo com todas estas melhorias na experiência de programação, a Vitest continua leve escolhendo cuidadosamente suas dependências (ou embutindo diretamente os pedaços necessários).
 
-**Vitest aims to position itself as the Test Runner of choice for Vite projects, and as a solid alternative even for projects not using Vite.**
+**A Vitest tem por objetivo posicionar-se como o Executor de Teste de escolha para projetos de Vite, e como uma alternativa sólida mesmo para projetos que não usam a Vite.**
 
-Continue reading in the [Getting Started Guide](./index)
+Continue a leitura no [Guia Começar](./index)
 
-## How is Vitest Different from X? {#how-is-vitest-different-from-x}
+## Como a Vitest se Diferencia de X? {#how-is-vitest-different-from-x}
 
-You can check out the [Comparisons](./comparisons) section for more details on how Vitest differs from other similar tools.
+Tu podes consultar a seção de [Comparações](./comparisons) para mais detalhes sobre como a Vitest difere de outras ferramentas parecidas.
