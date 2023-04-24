@@ -10,7 +10,7 @@ Isto faz os testes partilharem o mesmo encerramento que as implementações e ca
 
 ## Configuração {#setup}
 
-Para começares, coleque um bloco `if (import.meta.vitest)` no final do teu ficheiro de fonte e escreva alguns testes dentro dele. Por exemplo:
+Para começares, coloque um bloco `if (import.meta.vitest)` no final do teu ficheiro de fonte e escreva alguns testes dentro dele. Por exemplo:
 
 ```ts
 // src/index.ts
