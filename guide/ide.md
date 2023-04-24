@@ -2,7 +2,7 @@
 title: Integrações de IDE | Guia
 ---
 
-# Integrações de IDE {#ide-integrations}
+# Integrações de Ambiente de Desenvolvimento Integrado {#ide-integrations}
 
 ## VS Code <sup><code>Oficial</code></sup> {#vs-code-official}
 
