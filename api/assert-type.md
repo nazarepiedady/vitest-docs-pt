@@ -1,4 +1,4 @@
-# assertType
+# assertType {#asserttype}
 
   - **Tipo:** `<T>(value: T): void`
 
