@@ -1,94 +1,93 @@
 ---
-title: Browser Mode | Guide
+title: Modo de Navegador | Guia
 ---
 
-# Browser Mode (experimental) {#browser-mode-experimental}
+# Modo de Navegador <sup><code>experimental</code></sup> {#browser-mode-experimental}
 
-This page provides information about the experimental browser mode feature in the Vitest API, which allows you to run your tests in the browser natively, providing access to browser globals like window and document. This feature is currently under development, and APIs may change in the future.
+Esta página fornece informação sobre a funcionalidade de mode de navegador experimental na API da Vitest, o qual permite-te executar os teus testes no navegador de maneira nativa, fornecendo acesso aos globais do navegador como `window` e `document`. Esta funcionalidade está atualmente sob desenvolvimento, e as APIs podem mudar no futuro.
 
-## Motivation {#motivation}
+## Motivação {#motivation}
 
-We developed the Vitest browser mode feature to help improve testing workflows and achieve more accurate and reliable test results. This experimental addition to our testing API allows developers to run tests in a native browser environment. In this section, we'll explore the motivations behind this feature and its benefits for testing.
+Nós desenvolvemos a funcionalidade de mode de navegador da Vitest para ajudar a melhorar os fluxos de trabalho de testagem e alcançar resultados de teste mais fiáveis e precisos. Esta adição experimental à nossa API de testagem permite os programadores executarem testes num ambiente de navegador nativo. Nesta seção, exploraremos as motivações por trás desta funcionalidades e seus benefícios para testagem.
 
-### Different ways of testing {#different-ways-of-testing}
+### Diferentes Maneiras de Testar {#different-ways-of-testing}
 
-There are different ways to test JavaScript code. Some testing frameworks simulate browser environments in Node.js, while others run tests in real browsers. In this context, [jsdom](https://www.npmjs.com/package/jsdom) is an example of a spec implementation that simulates a browser environment by being used with a test runner like Jest or Vitest, while other testing tools such as [WebdriverIO](https://webdriver.io/) or [Cypress](https://www.cypress.io/) allow developers to test their applications in a real browser or in case of [Playwright](https://playwright.dev/) provide you a browser engine.
+Existem diferentes maneiras de testar código de JavaScript. Algumas abstrações de testagem simulam ambientes de navegador na Node.js, enquanto outras executam os testes em navegadores verdadeiros. Neste contexto, a [`jsdom`](https://www.npmjs.com/package/jsdom) é um exemplo de uma implementação de especificação que simula um ambiente de navegador sendo usada com um executor de teste como a Jest ou Vitest, enquanto outras ferramentas de testagem tais como [WebdriverIO](https://webdriver.io/) ou [Cypress](https://www.cypress.io/) permitem os programadores testarem suas aplicações num navegador de verdade ou no caso da [Playwright](https://playwright.dev/) que fornece-te um motor de navegador.
 
-### The simulation caveat {#the-simulation-caveat}
+### A Advertência de Simulação {#the-simulation-caveat}
 
-Testing JavaScript programs in simulated environments such as jsdom or happy-dom has simplified the test setup and provided an easy-to-use API, making them suitable for many projects and increasing confidence in test results. However, it is crucial to keep in mind that these tools only simulate a browser environment and not an actual browser, which may result in some discrepancies between the simulated environment and the real environment. Therefore, false positives or negatives in test results may occur.
+Testar programas de JavaScript em ambientes simulados tais como `jsdom` ou `happy-dom` têm simplificado a configuração de teste e fornecido uma API fácil de se usar, tornando-os adequados para muitos projetos e aumentando a confiança nos resultados do teste. No entanto, é crucial manter em mente que estas ferramentas apenas simulam um ambiente de navegador e não um navegador de fato, o que pode resultar em algumas divergências entre o ambiente simulado e o ambiente real. Portanto, falsos positivos ou negativos nos resultados do teste podem ocorrer.
 
-To achieve the highest level of confidence in our tests, it's crucial to test in a real browser environment. This is why we developed the browser mode feature in Vitest, allowing developers to run tests natively in a browser and gain more accurate and reliable test results. With browser-level testing, developers can be more confident that their application will work as intended in a real-world scenario.
+Para alcançar o mais alto nível de confiança nos nossos testes, é crucial testar num ambiente de navegador verdadeiro. É por isto que desenvolvemos a funcionalidade de modo de navegador na Vitest, permitindo os programadores executar os testes de maneira nativa num navegador e ganharem resultados de teste mais fiáveis de precisos. Com a testagem a nível do navegador, os programadores podem estar mais confiantes de que sua aplicação funcionará como pretendida num cenário do mundo real.
 
-## Drawbacks
+## Desvantagens {#drawbacks}
 
-When using Vitest browser, it is important to consider the following drawbacks:
+Quando usares o navegador da Vitest, é importante considerar as seguintes desvantagens:
 
-### Early Development {#early-development}
+### Desenvolvimento Prematuro {#early-development}
 
-The browser mode feature of Vitest is still in its early stages of development. As such, it may not yet be fully optimized, and there may be some bugs or issues that have not yet been ironed out. It is recommended that users augment their Vitest browser experience with a standalone browser-side test runner like WebdriverIO, Cypress or Playwright.
+A funcionalidade de modo de navegador da Vitest continua em seus primeiros estágios de desenvolvimento. Como tal, talvez nao esteja completamente otimizada, e talvez existam alguns erros de programação ou problemas que ainda não foram resolvidos. É recomendado que os utilizadores aumentem a sua experiência do navegador de Vitest com uma executor de teste no lado do navegador isolado como a WebdriverIO, Cypress ou Playwright.
 
-### Longer Initialization {#longer-initialization}
+### Inicialização Mais Longa {#longer-initialization}
 
-Vitest browser requires spinning up the provider and the browser during the initialization process, which can take some time. This can result in longer initialization times compared to other testing patterns.
+O navegador da Vitest precisa de girar o provedor e o navegador durante o processo de inicialização, o que pode demorar algum tempo. Isto pode resultar em tempos de inicialização mais longo comparado aos outros padrões de testagem.
 
-## Configuration {#configuration}
+## Configuração {#configuration}
 
-To activate browser mode in your Vitest configuration, you can use the `--browser` flag or set the `browser.enabled` field to `true` in your Vitest configuration file. Here is an example configuration using the browser field:
+Para ativares o modo de navegador na tua configuração de Vitest, podes usar a opção `--browser` ou definir o campo `browser.enabled` para `true` no teu ficheiro de configuração da Vitest. Aqui está uma configuração de exemplo usando o campo `browser`:
 
 ```ts
 export default defineConfig({
   test: {
     browser: {
       enabled: true,
-      name: 'chrome', // browser name is required
-    },
+      name: 'chrome', // o nome do navegador é obrigatório
   }
 })
 ```
 
-## Browser Option Types: {#browser-option-types}
+## Tipos de Opção de Navegador: {#browser-option-types}
 
-The browser option in Vitest depends on the provider. Vitest will fail, if you pass `--browser` and don't specify its name in the config file. Available options:
+A opção de navegador na Vitest depende do provedor. A Vitest falhará, se passares `--browser` e não especificares o seu nome no ficheiro de configuração. Opções disponíveis:
 
-- `webdriverio` (default) supports these browsers:
+- `webdriverio` (padrão) suporta estes navegadores:
   - `firefox`
   - `chrome`
   - `edge`
   - `safari`
 
-- `playwright` supports these browsers:
+- `playwright` suporta estes navegadores:
   - `firefox`
   - `webkit`
   - `chromium`
 
-## Cross-browser Testing: {#cross-browser-testing}
+## Testagem de Navegador Cruzada: {#cross-browser-testing}
 
-When you specify a browser name in the browser option, Vitest will try to run the specified browser using [WebdriverIO](https://webdriver.io/) by default, and then run the tests there. This feature makes cross-browser testing easy to use and configure in environments like a CI. If you don't want to use WebdriverIO, you can configure the custom browser provider by using `browser.provider` option.
+Quando especificas um nome de navegador na opção de navegador, a Vitest tentará executar o navegador especificados usando a [WebdriverIO](https://webdriver.io/) por padrão, e depois executar os testes lá. Esta funcionalidade torna a testagem de navegador cruzada fácil de usar e configurar em ambientes como uma integração continua. Se não quiseres usar a WebdriverIO, podes configurar o provedor de navegador personalizado usando a opção `browser.provider`.
 
-To specify a browser using the CLI, use the `--browser` flag followed by the browser name, like this:
+Para especificares um navegador usando a interface da linha de comando, use a opção `--browser` seguida pelo nome do navegador, como esta:
 
 ```sh
 npx vitest --browser=chrome
 ```
 
-Or you can provide browser options to CLI with dot notation:
+Ou podes fornecer as opções de navegador para a linha de comando com a notação de ponto:
 
 ```sh
 npx vitest --browser.name=chrome --browser.headless
 ```
 
-:::tip NOTE
-When using the Safari browser option with WebdriverIO, the `safaridriver` needs to be activated by running `sudo safaridriver --enable` on your device.
+:::tip NOTA
+Quando usares a opção de navegador Safari com a WebdriverIO, o `safaridriver` precisa ser ativado executando `sudo safaridriver --enable` no teu dispositivo.
 
-Additionally, when running your tests, Vitest will attempt to install some drivers for compatibility with `safaridriver`.
+Adicionalmente, quando executares os teus testes, a Vitest tentará instalar alguns condutores para compatibilidade com o `safaridriver`.
 :::
 
-## Headless {#headless}
+## Desgovernado {#headless}
 
-Headless mode is another option available in the browser mode. In headless mode, the browser runs in the background without a user interface, which makes it useful for running automated tests. The headless option in Vitest can be set to a boolean value to enable or disable headless mode.
+O modo desgovernado é uma outra opção disponível no modo de navegador. No modo desgovernado, o navegador executa no último plano sem uma interface de utilizador, o que o torna útil para execução de testes automatizados. A opção desgovernada na Vitest pode ser definida para um valor booleano para ativar ou desativar o modo desgovernado.
 
-Here's an example configuration enabling headless mode:
+Cá está um exemplo de configuração ativando o modo desgovernado:
 
 ```ts
 export default defineConfig({
@@ -101,17 +100,18 @@ export default defineConfig({
 })
 ```
 
-You can also set headless mode using the `--browser.headless` flag in the CLI, like this:
+Tu podes também definir o modo desgovernado usando a opção `--browser.headless` na interface da linha de comando, como esta:
 
 ```sh
 npx vitest --browser.name=chrome --browser.headless
 ```
 
-In this case, Vitest will run in headless mode using the Chrome browser.
+Neste caso, a Vitest executará no modo desgovernado usando o navegador Chrome.
 
-## Limitations {#limitations}
-### Thread Blocking Dialogs {#thread-blocking-dialogs}
+## Limitações {#limitations}
 
-When using Vitest Browser, it's important to note that thread blocking dialogs like `alert` or `confirm` cannot be used natively. This is because they block the web page, which means Vitest cannot continue communicating with the page, causing the execution to hang.
+### Diálogos Que Bloqueiam a Linha de Processamento {#thread-blocking-dialogs}
 
-In such situations, Vitest provides default mocks with default returned values for these APIs. This ensures that if the user accidentally uses synchronous popup web APIs, the execution would not hang. However, it's still recommended for the user to mock these web APIs for better experience. Read more in [Mocking](/guide/mocking).
+Quando usares o navegador da Vitest, é importante notar que diálogos que bloqueiam a linha de processamento como `alert` ou `confirm` não podem ser usados de maneira nativa. Isto porque bloqueiam a página, o que significa que a Vitest não pode continuar a comunicar com a página, levando a execução a pendurar.
+
+Em tais situações, a Vitest fornece simulações padrão com valores retornados padrão para estas APIs. Isto garante que se o utilizador usar acidentalmente APIs de Web de aparecimentos síncronos, a execução não seria pendurada. No entanto, ainda é recomendado ao utilizador simular estas APIs de Web por melhor experiência. Leia mais em [Simulação](/guide/mocking).
