@@ -1,21 +1,22 @@
 ---
-title: Extending Matchers | Guide
+title: Estendendo os Avaliadores de Correspondência | Guia
 ---
 
-# Extending Matchers {#extending-matchers}
+# Estendendo os Avaliadores de Correspondência {#extending-matchers}
 
-Since Vitest is compatible with both Chai and Jest, you can use either the `chai.use` API or `expect.extend`, whichever you prefer.
+Já que a Vitest é compatível com ambas Chai e Jest, podes usar tanto a API de `chai.use` ou `expect.extend`, seja qual for que preferires.
 
-This guide will explore extending matchers with `expect.extend`. If you are interested in Chai's API, check [their guide](https://www.chaijs.com/guide/plugins/).
+Este guia explorará o ampliar dos avaliadores de correspondência com `expect.extend`. Se estiveres interessado na API da Chai. consulte [este guia](https://www.chaijs.com/guide/plugins/).
 
-To extend default matchers, call `expect.extend` with an object containing your matchers.
+Para estenderes os avaliadores de correspondência padrão, chame `expect.extend` com um objeto contendo os teus avaliadores:
 
 ```ts
 expect.extend({
   toBeFoo(received, expected) {
     const { isNot } = this
     return {
-      // do not alter your "pass" based on isNot. Vitest does it for you
+      // não altere a tua "pass" baseada no isNot.
+      // A Vitest faz isto por ti
       pass: received === 'foo',
       message: () => `${received} is${isNot ? ' not' : ''} foo`
     }
@@ -23,7 +24,7 @@ expect.extend({
 })
 ```
 
-If you are using TypeScript, you can extend default Matchers interface in an ambient declaration file (e.g: `vitest.d.ts`) with the code below:
+Se estiveres a usar a TypeScript, podes estender a interface dos avaliadores padrão num ficheiro de declaração de ambiente (por exemplo, `vitest.d.ts`) com o código abaixo:
 
 ```ts
 interface CustomMatchers<R = unknown> {
@@ -34,57 +35,57 @@ declare namespace Vi {
   interface Assertion extends CustomMatchers {}
   interface AsymmetricMatchersContaining extends CustomMatchers {}
 
-  // Note: augmenting jest.Matchers interface will also work.
+  // Nota: o aumento da interface jest.Matchers também funcionará.
 }
 ```
 
-::: warning
-Don't forget to include the ambient declaration file in your `tsconfig.json`.
+:::warning AVISO
+Não te esqueças de incluir o ficheiro de declaração de ambiente no teu `tsconfig.json`.
 :::
 
-The return value of a matcher should be compatible with the following interface:
+O valor de retorno de um avaliador deve ser compatível com a seguinte interface:
 
 ```ts
 interface MatcherResult {
   pass: boolean
   message: () => string
-  // If you pass these, they will automatically appear inside a diff when
-  // the matcher does not pass, so you don't need to print the diff yourself
+  // Se passares estes, aparecerão automaticamente dentro de uma diferença
+  // quando o avaliador não passar, então não precisas de imprimir a diferença
   actual?: unknown
   expected?: unknown
 }
 ```
 
-::: warning
-If you create an asynchronous matcher, don't forget to `await` the result (`await expect('foo').toBeFoo()`) in the test itself.
+:::warning AVISO
+Se criares um avaliadores de correspondência assíncrono, não te esqueças de `await` o resultado `(await expect('foo').toBeFoo())` no próprio teste.
 :::
 
-The first argument inside a matcher's function is the received value (the one inside `expect(received)`). The rest are arguments passed directly to the matcher.
+O primeiro argumento dentro de uma função de avaliação de correspondência é o valor recebido (aquele dentro de `expect(received)`). O resto são argumentos passados diretamente ao avaliador.
 
-Matcher function have access to `this` context with the following properties:
+A função avaliadora tem acesso ao contexto `this` com as seguintes propriedades:
 
 - `isNot`
 
-Returns true, if matcher was called on `not` (`expect(received).not.toBeFoo()`).
+Retorna verdadeiro, se o avaliador foi chamado no `not` (`expect(received).not.toBeFoo()`).
 
 - `promise`
 
-If matcher was called on `resolved/rejected`, this value will contain the name of modifier. Otherwise, it will be an empty string.
+Se o avaliador foi chamado no `resolved/rejected`, este valor conterá o nome do modificador. De outro modo, será um sequência de caracteres vazia.
 
 - `equals`
 
-This is a utility function that allows you to compare two values. It will return `true` if values are equal, `false` otherwise. This function is used internally for almost every matcher. It supports objects with asymmetric matchers by default.
+Isto é uma função utilitária que permite-te comparar dois valores. Isto retornará `true` se os valores forem iguais, de outro modo é `false`. Esta função é usada intencionalmente para praticamente todo avaliador. Esta suporta objetos com avaliadores assimétricos por padrão.
 
 - `utils`
 
-This contains a set of utility functions that you can use to display messages.
+Isto contém um conjunto de função utilitárias que podes usar para exibir mensagens.
 
-`this` context also contains information about the current test. You can also get it by calling `expect.getState()`. The most useful properties are:
+O contexto de `this` também contém informação sobre o teste atual. Tu podes também recebê-lo chamando `expect.getState()`. As propriedades mais úteis são:
 
 - `currentTestName`
 
-Full name of the current test (including describe block).
+Nome completo do teste atual (incluindo bloco que descreve).
 
 - `testPath`
 
-Path to the current test.
+Caminho para o teste atual.
