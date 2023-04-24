@@ -82,7 +82,7 @@ Para executar os testes uma vez sem observar as mudanças de ficheiro, use `vite
 
 Saiba mais sobre a [Interface da Linha de Comando](/guide/cli)
 
-## Integrações da IDE {#ide-integrations}
+## Integrações de Ambiente de Desenvolvimento Integrado {#ide-integrations}
 
 Nós também fornecemos uma extensão oficial para o Visual Studio Code para melhorar a tua experiência de testagem com a Vitest.
 
