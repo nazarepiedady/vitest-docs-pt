@@ -6,7 +6,7 @@ title: Começar | Guia
 
 ## Visão de Conjunto {#overview}
 
-A Vitest é uma abstração de teste unitário extremamente rápido alimentado pela Vite.
+A Vitest é uma abstração de teste unitário extremamente rápida alimentada pela Vite.
 
 Tu podes aprender mais sobre o fundamento lógico por trás do projeto na seção [Porquê Vitest](/guide/why).
 
