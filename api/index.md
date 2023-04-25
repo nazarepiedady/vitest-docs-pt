@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# Test API Reference
+# Test API Reference {#Test API Reference}
 
 The following types are used in the type signatures below
 
@@ -18,11 +18,11 @@ interface TestOptions {
 
 When a test function returns a promise, the runner will wait until it is resolved to collect async expectations. If the promise is rejected, the test will fail.
 
-::: tip
+:::tip DICA
 In Jest, `TestFunction` can also be of type `(done: DoneCallback) => void`. If this form is used, the test will not be concluded until `done` is called. You can achieve the same using an `async` function, see the [Migration guide Done Callback section](/guide/migration#done-callback).
 :::
 
-## test
+## test {#test}
 
 - **Type:** `(name: string, fn: TestFunction, timeout?: number | TestOptions) => void`
 - **Alias:** `it`
@@ -39,7 +39,7 @@ In Jest, `TestFunction` can also be of type `(done: DoneCallback) => void`. If t
   })
   ```
 
-### test.skip
+### test.skip {#test.skip}
 
 - **Type:** `(name: string, fn: TestFunction, timeout?: number | TestOptions) => void`
 - **Alias:** `it.skip`
@@ -55,7 +55,7 @@ In Jest, `TestFunction` can also be of type `(done: DoneCallback) => void`. If t
   })
   ```
 
-### test.skipIf
+### test.skipIf {#test.skipIf}
 
 - **Type:** `(condition: any) => Test`
 - **Alias:** `it.skipIf`
@@ -72,11 +72,11 @@ In Jest, `TestFunction` can also be of type `(done: DoneCallback) => void`. If t
   })
   ```
 
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-### test.runIf
+### test.runIf {#test.runIf}
 
 - **Type:** `(condition: any) => Test`
 - **Alias:** `it.runIf`
@@ -93,11 +93,11 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
   })
   ```
 
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-### test.only
+### test.only {#test.only}
 
 - **Type:** `(name: string, fn: TestFunction, timeout?: number) => void`
 - **Alias:** `it.only`
@@ -118,11 +118,12 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
   Sometimes it is very useful to run `only` tests in a certain file, ignoring all other tests from the whole test suite, which pollute the output.
 
   In order to do that run `vitest` with specific file containing the tests in question.
+
   ```
-  # vitest interesting.test.ts
+  # vitest interesting.test.ts {#vitest interesting.test.ts}
   ```
 
-### test.concurrent
+### test.concurrent {#test.concurrent}
 
 - **Type:** `(name: string, fn: TestFunction, timeout?: number) => void`
 - **Alias:** `it.concurrent`
@@ -161,11 +162,11 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
   })
   ```
 
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-### test.todo
+### test.todo {#test.todo}
 
 - **Type:** `(name: string) => void`
 - **Alias:** `it.todo`
@@ -177,7 +178,7 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
   test.todo('unimplemented test')
   ```
 
-### test.fails
+### test.fails {#test.fails}
 
 - **Type:** `(name: string, fn: TestFunction, timeout?: number) => void`
 - **Alias:** `it.fails`
@@ -195,11 +196,11 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
   })
   ```
 
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-### test.each
+### test.each {#test.each}
 
 - **Type:** `(cases: ReadonlyArray<T>, ...args: any[]) => void`
 - **Alias:** `it.each`
@@ -287,15 +288,15 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
 
   If you want to have access to `TestContext`, use `describe.each` with a single test.
 
-::: tip
+:::tip DICA
 Vitest processes `$values` with chai `format` method. If the value is too truncated, you can increase [chaiConfig.truncateThreshold](/config/#chaiconfig-truncatethreshold) in your config file.
 :::
 
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-## bench
+## bench {#bench}
 
 - **Type:** `(name: string, fn: BenchFunction, options?: BenchOptions) => void`
 
@@ -362,7 +363,7 @@ Vitest uses [`tinybench`](https://github.com/tinylibs/tinybench) library under t
   }
   ```
 
-### bench.skip
+### bench.skip {#bench.skip}
 
 - **Type:** `(name: string, fn: BenchFunction, options?: BenchOptions) => void`
 
@@ -379,7 +380,7 @@ You can use `bench.skip` syntax to skip running certain benchmarks.
   })
   ```
 
-### bench.only
+### bench.only {#bench.only}
 
 - **Type:** `(name: string, fn: BenchFunction, options?: BenchOptions) => void`
 
@@ -396,7 +397,7 @@ Use `bench.only` to only run certain benchmarks in a given suite. This is useful
   })
   ```
 
-### bench.todo
+### bench.todo {#bench.todo}
 
 - **Type:** `(name: string) => void`
 
@@ -408,7 +409,7 @@ Use `bench.todo` to stub benchmarks to be implemented later.
   bench.todo('unimplemented test')
   ```
 
-## describe
+## describe {#describe}
 
 When you use `test` or `bench` in the top level of file, they are collected as part of the implicit suite for it. Using `describe` you can define a new suite in the current context, as a set of related tests or benchmarks and other nested suites. A suite lets you organize your tests and benchmarks so reports are more clear.
 
@@ -488,7 +489,7 @@ When you use `test` or `bench` in the top level of file, they are collected as p
   })
   ```
 
-### describe.skip
+### describe.skip {#describe.skip}
 
 - **Type:** `(name: string, fn: TestFunction, options?: number | TestOptions) => void`
 
@@ -505,7 +506,7 @@ When you use `test` or `bench` in the top level of file, they are collected as p
   })
   ```
 
-### describe.skipIf
+### describe.skipIf {#describe.skipIf}
 
 - **Type:** `(condition: any) => void`
 
@@ -521,11 +522,11 @@ When you use `test` or `bench` in the top level of file, they are collected as p
   })
   ```
 
-::: warning
+:::warning AVISO
 You cannot use this syntax when using Vitest as [type checker](/guide/testing-types).
 :::
 
-### describe.only
+### describe.only {#describe.only}
 
 - **Type:** `(name: string, fn: TestFunction, options?: number | TestOptions) => void`
 
@@ -547,11 +548,12 @@ You cannot use this syntax when using Vitest as [type checker](/guide/testing-ty
   Sometimes it is very useful to run `only` tests in a certain file, ignoring all other tests from the whole test suite, which pollute the output.
 
   In order to do that run `vitest` with specific file containing the tests in question.
+
   ```
-  # vitest interesting.test.ts
+  # vitest interesting.test.ts {#vitest interesting.test.ts}
   ```
 
-### describe.concurrent
+### describe.concurrent {#describe.concurrent}
 
 - **Type:** `(name: string, fn: TestFunction, options?: number | TestOptions) => void`
 
@@ -588,11 +590,11 @@ When running concurrent tests, Snapshots and Assertions must use `expect` from t
     })
   })
   ```
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-### describe.shuffle
+### describe.shuffle {#describe.shuffle}
 
 - **Type:** `(name: string, fn: TestFunction, options?: number | TestOptions) => void`
 
@@ -609,11 +611,11 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
 
 `.skip`, `.only`, and `.todo` works with random suites.
 
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-### describe.todo
+### describe.todo {#describe.todo}
 
 - **Type:** `(name: string) => void`
 
@@ -624,7 +626,7 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
   describe.todo('unimplemented suite')
   ```
 
-### describe.each
+### describe.each {#describe.each}
 
 - **Type:** `(cases: ReadonlyArray<T>, ...args: any[]): (name: string, fn: (...args: T[]) => void, options?: number | TestOptions) => void`
 
@@ -670,15 +672,15 @@ You cannot use this syntax, when using Vitest as [type checker](/guide/testing-t
   })
   ```
 
-::: warning
+:::warning AVISO
 You cannot use this syntax, when using Vitest as [type checker](/guide/testing-types).
 :::
 
-## Setup and Teardown
+## Setup and Teardown {#Setup and Teardown}
 
 These functions allow you to hook into the life cycle of tests to avoid repeating setup and teardown code. They apply to the current context: the file if they are used at the top-level or the current suite if they are inside a `describe` block. These hooks are not called, when you are running Vitest as a type checker.
 
-### beforeEach
+### beforeEach {#beforeEach}
 
 - **Type:** `beforeEach(fn: () => Awaitable<void>, timeout?: number)`
 
@@ -715,7 +717,7 @@ These functions allow you to hook into the life cycle of tests to avoid repeatin
   })
   ```
 
-### afterEach
+### afterEach {#afterEach}
 
 - **Type:** `afterEach(fn: () => Awaitable<void>, timeout?: number)`
 
@@ -733,7 +735,7 @@ These functions allow you to hook into the life cycle of tests to avoid repeatin
   ```
   Here, the `afterEach` ensures that testing data is cleared after each test runs.
 
-### beforeAll
+### beforeAll {#beforeAll}
 
 - **Type:** `beforeAll(fn: () => Awaitable<void>, timeout?: number)`
 
@@ -768,7 +770,7 @@ These functions allow you to hook into the life cycle of tests to avoid repeatin
   })
   ```
 
-### afterAll
+### afterAll {#afterAll}
 
 - **Type:** `afterAll(fn: () => Awaitable<void>, timeout?: number)`
 
