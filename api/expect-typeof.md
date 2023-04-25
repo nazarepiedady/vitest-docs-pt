@@ -1,14 +1,14 @@
-# expectTypeOf
+# expectTypeOf {#expectTypeOf}
 
 - **Type:** `<T>(a: unknown) => ExpectTypeOf`
 
-## not
+## not {#not}
 
   - **Type:** `ExpectTypeOf`
 
   You can negate all assertions, using `.not` property.
 
-## toEqualTypeOf
+## toEqualTypeOf {#toEqualTypeOf}
 
   - **Type:** `<T>(expected: T) => void`
 
@@ -23,7 +23,7 @@
   expectTypeOf({ a: 1, b: 1 }).not.toEqualTypeOf<{ a: number }>()
   ```
 
-## toMatchTypeOf
+## toMatchTypeOf {#toMatchTypeOf}
 
   - **Type:** `<T>(expected: T) => void`
 
@@ -37,7 +37,7 @@
   expectTypeOf<string | number>().not.toMatchTypeOf<number>()
   ```
 
-## extract
+## extract {#extract}
 
   - **Type:** `ExpectTypeOf<ExtractedUnion>`
 
@@ -65,11 +65,11 @@
     .toEqualTypeOf<CSSProperties[]>()
   ```
 
-  ::: warning
+  :::warning AVISO
   If no type is found in the union, `.extract` will return `never`.
   :::
 
-## exclude
+## exclude {#exclude}
 
   - **Type:** `ExpectTypeOf<NonExcludedUnion>`
 
@@ -94,11 +94,11 @@
     .toEqualTypeOf<CSSProperties>()
   ```
 
-  ::: warning
+  :::warning AVISO
   If no type is found in the union, `.exclude` will return `never`.
   :::
 
-## returns
+## returns {#returns}
 
   - **Type:** `ExpectTypeOf<ReturnValue>`
 
@@ -111,11 +111,11 @@
   expectTypeOf((a: number) => [a, a]).returns.toEqualTypeOf([1, 2])
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-function type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-## parameters
+## parameters {#parameters}
 
   - **Type:** `ExpectTypeOf<Parameters>`
 
@@ -131,15 +131,15 @@
   expectTypeOf<HasParam>().parameters.toEqualTypeOf<[string]>()
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-function type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-  ::: tip
+  :::tip DICA
   You can also use [`.toBeCallableWith`](#tobecallablewith) matcher as a more expressive assertion.
   :::
 
-## parameter
+## parameter {#parameter}
 
   - **Type:** `(nth: number) => ExpectTypeOf`
 
@@ -156,11 +156,11 @@
   expectTypeOf(foo).parameter(1).toBeString()
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-function type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-## constructorParameters
+## constructorParameters {#constructorParameters}
 
   - **Type:** `ExpectTypeOf<ConstructorParameters>`
 
@@ -172,15 +172,15 @@
   expectTypeOf(Date).constructorParameters.toEqualTypeOf<[] | [string | number | Date]>()
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-function type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-  ::: tip
+  :::tip DICA
   You can also use [`.toBeConstructibleWith`](#tobeconstructiblewith) matcher as a more expressive assertion.
   :::
 
-## instance
+## instance {#instance}
 
   - **Type:** `ExpectTypeOf<ConstructableInstance>`
 
@@ -192,11 +192,11 @@
   expectTypeOf(Date).instance.toHaveProperty('toISOString')
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-function type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-## items
+## items {#items}
 
   - **Type:** `ExpectTypeOf<T>`
 
@@ -209,7 +209,7 @@
   expectTypeOf([1, 2, 3]).items.not.toEqualTypeOf<string>()
   ```
 
-## resolves
+## resolves {#resolves}
 
   - **Type:** `ExpectTypeOf<ResolvedPromise>`
 
@@ -226,11 +226,11 @@
   expectTypeOf(Promise.resolve('string')).resolves.toBeString()
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-promise type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-## guards
+## guards {#guards}
 
   - **Type:** `ExpectTypeOf<Guard>`
 
@@ -245,11 +245,11 @@
   expectTypeOf(isString).guards.toBeString()
   ```
 
-  ::: warning
+  :::warning AVISO
   Returns `never`, if the value is not a guard function, so you won't be able to chain it with other matchers.
   :::
 
-## asserts
+## asserts {#asserts}
 
   - **Type:** `ExpectTypeOf<Assert>`
 
@@ -266,11 +266,11 @@
   expectTypeOf(assertNumber).asserts.toBeNumber()
   ```
 
-  ::: warning
+  :::warning AVISO
   Returns `never`, if the value is not an assert function, so you won't be able to chain it with other matchers.
   :::
 
-## toBeAny
+## toBeAny {#toBeAny}
 
   - **Type:** `() => void`
 
@@ -284,7 +284,7 @@
   expectTypeOf('string').not.toBeAny()
   ```
 
-## toBeUnknown
+## toBeUnknown {#toBeUnknown}
 
   - **Type:** `() => void`
 
@@ -298,7 +298,7 @@
   expectTypeOf('string').not.toBeUnknown()
   ```
 
-## toBeNever
+## toBeNever {#toBeNever}
 
   - **Type:** `() => void`
 
@@ -311,7 +311,7 @@
   expectTypeOf((): never => {}).returns.toBeNever()
   ```
 
-## toBeFunction
+## toBeFunction {#toBeFunction}
 
   - **Type:** `() => void`
 
@@ -324,7 +324,7 @@
   expectTypeOf((): never => {}).toBeFunction()
   ```
 
-## toBeObject
+## toBeObject {#toBeObject}
 
   - **Type:** `() => void`
 
@@ -337,7 +337,7 @@
   expectTypeOf({}).toBeObject()
   ```
 
-## toBeArray
+## toBeArray {#toBeArray}
 
   - **Type:** `() => void`
 
@@ -352,7 +352,7 @@
   expectTypeOf([{}, 42]).toBeArray()
   ```
 
-## toBeString
+## toBeString {#toBeString}
 
   - **Type:** `() => void`
 
@@ -366,7 +366,7 @@
   expectTypeOf('a').toBeString()
   ```
 
-## toBeBoolean
+## toBeBoolean {#toBeBoolean}
 
   - **Type:** `() => void`
 
@@ -380,7 +380,7 @@
   expectTypeOf<boolean>().toBeBoolean()
   ```
 
-## toBeVoid
+## toBeVoid {#toBeVoid}
 
   - **Type:** `() => void`
 
@@ -393,7 +393,7 @@
   expectTypeOf<void>().toBeVoid()
   ```
 
-## toBeSymbol
+## toBeSymbol {#toBeSymbol}
 
   - **Type:** `() => void`
 
@@ -406,7 +406,7 @@
   expectTypeOf<symbol>().toBeSymbol()
   ```
 
-## toBeNull
+## toBeNull {#toBeNull}
 
   - **Type:** `() => void`
 
@@ -420,7 +420,7 @@
   expectTypeOf(undefined).not.toBeNull()
   ```
 
-## toBeUndefined
+## toBeUndefined {#toBeUndefined}
 
   - **Type:** `() => void`
 
@@ -434,7 +434,7 @@
   expectTypeOf(null).not.toBeUndefined()
   ```
 
-## toBeNullable
+## toBeNullable {#toBeNullable}
 
   - **Type:** `() => void`
 
@@ -448,7 +448,7 @@
   expectTypeOf<1 | undefined | null>().toBeNullable()
   ```
 
-## toBeCallableWith
+## toBeCallableWith {#toBeCallableWith}
 
   - **Type:** `() => void`
 
@@ -464,11 +464,11 @@
   expectTypeOf<HasParam>().toBeCallableWith('some string')
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-function type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-## toBeConstructibleWith
+## toBeConstructibleWith {#toBeConstructibleWith}
 
   - **Type:** `() => void`
 
@@ -481,11 +481,11 @@
   expectTypeOf(Date).toBeConstructibleWith('01-01-2000')
   ```
 
-  ::: warning
+  :::warning AVISO
   If used on a non-function type, it will return `never`, so you won't be able to chain it with other matchers.
   :::
 
-## toHaveProperty
+## toHaveProperty {#toHaveProperty}
 
   - **Type:** `<K extends keyof T>(property: K) => ExpectTypeOf<T[K>`
 
