@@ -1,4 +1,4 @@
-# expect
+# expect {#expect}
 
 The following types are used in the type signatures below
 
@@ -23,11 +23,11 @@ type Awaitable<T> = T | PromiseLike<T>
 
   Also, `expect` can be used statically to access matchers functions, described later, and more.
 
-::: warning
+:::warning AVISO
 `expect` has no effect on testing types, if the expression doesn't have a type error. If you want to use Vitest as [type checker](/guide/testing-types), use [`expectTypeOf`](/api/expect-typeof) or [`assertType`](/api/assert-type).
 :::
 
-## not
+## not {#not}
 
   Using `not` will negate the assertion. For example, this code asserts that an `input` value is not equal to `2`. If it's equal, the assertion will throw an error, and the test will fail.
 
@@ -40,7 +40,7 @@ type Awaitable<T> = T | PromiseLike<T>
   expect(input).not.toBe(2) // jest API
   ```
 
-## toBe
+## toBe {#toBe}
 
 - **Type:** `(value: any) => Awaitable<void>`
 
@@ -70,7 +70,7 @@ type Awaitable<T> = T | PromiseLike<T>
 
   Try not to use `toBe` with floating-point numbers. Since JavaScript rounds them, `0.1 + 0.2` is not strictly `0.3`. To reliably assert floating-point numbers, use [`toBeCloseTo`](#tobecloseto) assertion.
 
-## toBeCloseTo
+## toBeCloseTo {#toBeCloseTo}
 
 - **Type:** `(value: number, numDigits?: number) => Awaitable<void>`
 
@@ -91,7 +91,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeDefined
+## toBeDefined {#toBeDefined}
 
 - **Type:** `() => Awaitable<void>`
 
@@ -109,7 +109,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeUndefined
+## toBeUndefined {#toBeUndefined}
 
 - **Type:** `() => Awaitable<void>`
 
@@ -128,7 +128,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeTruthy
+## toBeTruthy {#toBeTruthy}
 
 - **Type:** `() => Awaitable<void>`
 
@@ -138,7 +138,7 @@ type Awaitable<T> = T | PromiseLike<T>
 
   ```ts
   import { Stocks } from './stocks.js'
-  
+
   const stocks = new Stocks()
   stocks.sync('Bill')
   if (stocks.getInfo('Bill'))
@@ -150,7 +150,7 @@ type Awaitable<T> = T | PromiseLike<T>
   ```ts
   import { expect, test } from 'vitest'
   import { Stocks } from './stocks.js'
-  
+
   const stocks = new Stocks()
 
   test('if we know Bill stock, sell apples to him', () => {
@@ -161,7 +161,7 @@ type Awaitable<T> = T | PromiseLike<T>
 
   Everything in JavaScript is truthy, except `false`, `0`, `''`, `null`, `undefined`, and `NaN`.
 
-## toBeFalsy
+## toBeFalsy {#toBeFalsy}
 
 - **Type:** `() => Awaitable<void>`
 
@@ -171,7 +171,7 @@ type Awaitable<T> = T | PromiseLike<T>
 
   ```ts
   import { Stocks } from './stocks.js'
-  
+
   const stocks = new Stocks()
   stocks.sync('Bill')
   if (!stocks.stockFailed('Bill'))
@@ -183,7 +183,7 @@ type Awaitable<T> = T | PromiseLike<T>
   ```ts
   import { expect, test } from 'vitest'
   import { Stocks } from './stocks.js'
-  
+
   const stocks = new Stocks()
 
   test('if Bill stock hasn\'t failed, sell apples to him', () => {
@@ -194,7 +194,7 @@ type Awaitable<T> = T | PromiseLike<T>
 
   Everything in JavaScript is truthy, except `false`, `0`, `''`, `null`, `undefined`, and `NaN`.
 
-## toBeNull
+## toBeNull {#toBeNull}
 
 - **Type:** `() => Awaitable<void>`
 
@@ -212,7 +212,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeNaN
+## toBeNaN {#toBeNaN}
 
 - **Type:** `() => Awaitable<void>`
 
@@ -234,7 +234,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeTypeOf
+## toBeTypeOf {#toBeTypeOf}
 
 - **Type:** `(c: 'bigint' | 'boolean' | 'function' | 'number' | 'object' | 'string' | 'symbol' | 'undefined') => Awaitable<void>`
 
@@ -242,7 +242,7 @@ type Awaitable<T> = T | PromiseLike<T>
 
   ```ts
   import { expect, test } from 'vitest'
-  
+
   const actual = 'stock'
 
   test('stock is type of string', () => {
@@ -250,7 +250,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeInstanceOf
+## toBeInstanceOf {#toBeInstanceOf}
 
 - **Type:** `(c: any) => Awaitable<void>`
 
@@ -259,7 +259,7 @@ type Awaitable<T> = T | PromiseLike<T>
   ```ts
   import { expect, test } from 'vitest'
   import { Stocks } from './stocks.js'
-  
+
   const stocks = new Stocks()
 
   test('stocks are instance of Stocks', () => {
@@ -267,7 +267,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeGreaterThan
+## toBeGreaterThan {#toBeGreaterThan}
 
 - **Type:** `(n: number | bigint) => Awaitable<void>`
 
@@ -282,7 +282,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeGreaterThanOrEqual
+## toBeGreaterThanOrEqual {#toBeGreaterThanOrEqual}
 
 - **Type:** `(n: number | bigint) => Awaitable<void>`
 
@@ -297,7 +297,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeLessThan
+## toBeLessThan {#toBeLessThan}
 
 - **Type:** `(n: number | bigint) => Awaitable<void>`
 
@@ -312,7 +312,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toBeLessThanOrEqual
+## toBeLessThanOrEqual {#toBeLessThanOrEqual}
 
 - **Type:** `(n: number | bigint) => Awaitable<void>`
 
@@ -327,7 +327,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toEqual
+## toEqual {#toEqual}
 
 - **Type:** `(received: any) => Awaitable<void>`
 
@@ -355,11 +355,11 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-  :::warning
+  :::warning AVISO
   A _deep equality_ will not be performed for `Error` objects. To test if something was thrown, use [`toThrowError`](#tothrowerror) assertion.
   :::
 
-## toStrictEqual
+## toStrictEqual {#toStrictEqual}
 
 - **Type:** `(received: any) => Awaitable<void>`
 
@@ -386,7 +386,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toContain
+## toContain {#toContain}
 
 - **Type:** `(received: string) => Awaitable<void>`
 
@@ -401,7 +401,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toContainEqual
+## toContainEqual {#toContainEqual}
 
 - **Type:** `(received: any) => Awaitable<void>`
 
@@ -417,7 +417,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toHaveLength
+## toHaveLength {#toHaveLength}
 
 - **Type:** `(received: number) => Awaitable<void>`
 
@@ -435,7 +435,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toHaveProperty
+## toHaveProperty {#toHaveProperty}
 
 - **Type:** `(key: any, received?: any) => Awaitable<void>`
 
@@ -491,7 +491,7 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-## toMatch
+## toMatch {#toMatch}
 
 - **Type:** `(received: string | regexp) => Awaitable<void>`
 
@@ -506,11 +506,11 @@ type Awaitable<T> = T | PromiseLike<T>
   })
   ```
 
-::: tip
+:::tip DICA
 If the value in the error message is too truncated, you can increase [chaiConfig.truncateThreshold](/config/#chaiconfig-truncatethreshold) in your config file.
 :::
 
-## toMatchObject
+## toMatchObject {#toMatchObject}
 
 - **Type:** `(received: object | array) => Awaitable<void>`
 
@@ -562,7 +562,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toThrowError
+## toThrowError {#toThrowError}
 
 - **Type:** `(received: any) => Awaitable<void>`
 
@@ -575,7 +575,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   - regular expression: error message matches the pattern
   - string: error message includes the substring
 
-  :::tip
+  :::tip DICA
   You must wrap the code in a function, otherwise the error will not be caught, and test will fail.
   :::
 
@@ -603,7 +603,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  :::tip
+  :::tip DICA
   To test async functions, use in combination with [rejects](#rejects).
 
   ```js
@@ -617,7 +617,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   ```
   :::
 
-## toMatchSnapshot
+## toMatchSnapshot {#toMatchSnapshot}
 
 - **Type:** `<T>(shape?: Partial<T> | string, message?: string) => void`
 
@@ -625,7 +625,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
 
   You can provide an optional `hint` string argument that is appended to the test name. Although Vitest always appends a number at the end of a snapshot name, short descriptive hints might be more useful than numbers to differentiate multiple snapshots in a single it or test block. Vitest sorts snapshots by name in the corresponding `.snap` file.
 
-  :::tip
+  :::tip DICA
     When snapshot mismatch and causing the test failing, if the mismatch is expected, you can press `u` key to update the snapshot for once. Or you can pass `-u` or `--update` CLI options to make Vitest always update the tests.
   :::
 
@@ -649,7 +649,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toMatchInlineSnapshot
+## toMatchInlineSnapshot {#toMatchInlineSnapshot}
 
 - **Type:** `<T>(shape?: Partial<T> | string, snapshot?: string, message?: string) => void`
 
@@ -692,7 +692,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toMatchFileSnapshot
+## toMatchFileSnapshot {#toMatchFileSnapshot}
 
 - **Type:** `<T>(filepath: string, message?: string) => Promise<void>`
 - **Version:** Vitest 0.30.0
@@ -710,7 +710,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
 
   Note that since file system operation is async, you need to use `await` with `toMatchFileSnapshot()`.
 
-## toThrowErrorMatchingSnapshot
+## toThrowErrorMatchingSnapshot {#toThrowErrorMatchingSnapshot}
 
 - **Type:** `(message?: string) => void`
 
@@ -718,7 +718,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
 
   If the function throws an `Error`, the snapshot will be the error message. Otherwise, snapshot will be the value thrown by the function.
 
-## toThrowErrorMatchingInlineSnapshot
+## toThrowErrorMatchingInlineSnapshot {#toThrowErrorMatchingInlineSnapshot}
 
 - **Type:** `(snapshot?: string, message?: string) => void`
 
@@ -726,7 +726,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
 
   If the function throws an `Error`, the snapshot will be the error message. Otherwise, snapshot will be the value thrown by the function.
 
-## toHaveBeenCalled
+## toHaveBeenCalled {#toHaveBeenCalled}
 
 - **Type:** `() => Awaitable<void>`
 
@@ -752,7 +752,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveBeenCalledTimes
+## toHaveBeenCalledTimes {#toHaveBeenCalledTimes}
 
  - **Type**: `(amount: number) => Awaitable<void>`
 
@@ -777,7 +777,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveBeenCalledWith
+## toHaveBeenCalledWith {#toHaveBeenCalledWith}
 
  - **Type**: `(...args: any[]) => Awaitable<void>`
 
@@ -803,7 +803,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveBeenLastCalledWith
+## toHaveBeenLastCalledWith {#toHaveBeenLastCalledWith}
 
  - **Type**: `(...args: any[]) => Awaitable<void>`
 
@@ -829,7 +829,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveBeenNthCalledWith
+## toHaveBeenNthCalledWith {#toHaveBeenNthCalledWith}
 
  - **Type**: `(time: number, ...args: any[]) => Awaitable<void>`
 
@@ -856,7 +856,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveReturned
+## toHaveReturned {#toHaveReturned}
 
   - **Type**: `() => Awaitable<void>`
 
@@ -880,7 +880,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveReturnedTimes
+## toHaveReturnedTimes {#toHaveReturnedTimes}
 
   - **Type**: `(amount: number) => Awaitable<void>`
 
@@ -899,7 +899,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveReturnedWith
+## toHaveReturnedWith {#toHaveReturnedWith}
 
   - **Type**: `(returnValue: any) => Awaitable<void>`
 
@@ -917,7 +917,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveLastReturnedWith
+## toHaveLastReturnedWith {#toHaveLastReturnedWith}
 
   - **Type**: `(returnValue: any) => Awaitable<void>`
 
@@ -936,7 +936,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toHaveNthReturnedWith
+## toHaveNthReturnedWith {#toHaveNthReturnedWith}
 
   - **Type**: `(time: number, returnValue: any) => Awaitable<void>`
 
@@ -955,7 +955,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## toSatisfy
+## toSatisfy {#toSatisfy}
 
   - **Type:** `(predicate: (value: any) => boolean) => Awaitable<void>`
 
@@ -975,7 +975,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## resolves
+## resolves {#resolves}
 
 - **Type:** `Promisify<Assertions>`
 
@@ -999,11 +999,11 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  :::warning
+  :::warning AVISO
   If the assertion is not awaited, then you will have a false-positive test that will pass every time. To make sure that assertions are actually called, you may use [`expect.assertions(number)`](#expect-assertions).
   :::
 
-## rejects
+## rejects {#rejects}
 
 - **Type:** `Promisify<Assertions>`
 
@@ -1027,11 +1027,11 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  :::warning
+  :::warning AVISO
   If the assertion is not awaited, then you will have a false-positive test that will pass every time. To make sure that assertions were actually called, you can use [`expect.assertions(number)`](#expect-assertions).
   :::
 
-## expect.assertions
+## expect.assertions {#expect.assertions}
 
 - **Type:** `(count: number) => void`
 
@@ -1060,12 +1060,12 @@ If the value in the error message is too truncated, you can increase [chaiConfig
     await doAsync(callback1, callback2)
   })
   ```
-  ::: warning
+  :::warning AVISO
   When using `assertions` with async concurrent tests, `expect` from the local [Test Context](/guide/test-context.md) must be used to ensure the right test is detected.
   :::
 
 
-## expect.hasAssertions
+## expect.hasAssertions {#expect.hasAssertions}
 
 - **Type:** `() => void`
 
@@ -1106,7 +1106,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
 
 <!-- asymmetric matchers -->
 
-## expect.anything
+## expect.anything {#expect.anything}
 
 - **Type:** `() => any`
 
@@ -1120,7 +1120,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## expect.any
+## expect.any {#expect.any}
 
 - **Type:** `(constructor: unknown) => any`
 
@@ -1135,7 +1135,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-## expect.arrayContaining
+## expect.arrayContaining {#expect.arrayContaining}
 
 - **Type:** `<T>(expected: T[]) => any`
 
@@ -1160,11 +1160,11 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  :::tip
+  :::tip DICA DICA DICA
   You can use `expect.not` with this matcher to negate the expected value.
   :::
 
-## expect.objectContaining
+## expect.objectContaining {#expect.objectContaining}
 
 - **Type:** `(expected: any) => any`
 
@@ -1190,11 +1190,11 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  :::tip
+  :::tip DICA
   You can use `expect.not` with this matcher to negate the expected value.
   :::
 
-## expect.stringContaining
+## expect.stringContaining {#expect.stringContaining}
 
 - **Type:** `(expected: any) => any`
 
@@ -1215,11 +1215,11 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  :::tip
+  :::tip DICA
   You can use `expect.not` with this matcher to negate the expected value.
   :::
 
-## expect.stringMatching
+## expect.stringMatching {#expect.stringMatching}
 
 - **Type:** `(expected: any) => any`
 
@@ -1240,11 +1240,11 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  :::tip
+  :::tip DICA
   You can use `expect.not` with this matcher to negate the expected value.
   :::
 
-## expect.addSnapshotSerializer
+## expect.addSnapshotSerializer {#expect.addSnapshotSerializer}
 
 - **Type:** `(plugin: PrettyFormatPlugin) => void`
 
@@ -1252,11 +1252,11 @@ If the value in the error message is too truncated, you can increase [chaiConfig
 
   If you are adding custom serializers, you should call this method inside [`setupFiles`](/config/#setupfiles). This will affect every snapshot.
 
-  :::tip
+  :::tip DICA
   If you previously used Vue CLI with Jest, you might want to install [jest-serializer-vue](https://www.npmjs.com/package/jest-serializer-vue). Otherwise, your snapshots will be wrapped in a string, which cases `"` to be escaped.
   :::
 
-## expect.extend
+## expect.extend {#expect.extend}
 
 - **Type:** `(matchers: MatchersObject) => void`
 
@@ -1284,7 +1284,7 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   })
   ```
 
-  ::: tip
+  :::tip DICA
   If you want your matchers to appear in every test, you should call this method inside [`setupFiles`](/config/#setupFiles).
   :::
 
@@ -1305,10 +1305,10 @@ If the value in the error message is too truncated, you can increase [chaiConfig
   }
   ```
 
-  ::: warning
+  :::warning AVISO
   Don't forget to include the ambient declaration file in your `tsconfig.json`.
   :::
 
-  :::tip
+  :::tip DICA
   If you want to know more, checkout [guide on extending matchers](/guide/extending-matchers).
   :::
