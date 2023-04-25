@@ -1,4 +1,4 @@
-# Vi
+# Vi {#Vi}
 
 Vitest provides utility functions to help you out through its `vi` helper. You can access it globally (when [globals configuration](/config/#globals) is **enabled**), or import from `vitest`:
 
@@ -6,7 +6,7 @@ Vitest provides utility functions to help you out through its `vi` helper. You c
 import { vi } from 'vitest'
 ```
 
-## vi.advanceTimersByTime
+## vi.advanceTimersByTime {#vi.advanceTimersByTime}
 
 - **Type:** `(ms: number) => Vitest`
 
@@ -19,7 +19,7 @@ import { vi } from 'vitest'
   vi.advanceTimersByTime(150)
   ```
 
-### vi.advanceTimersByTimeAsync
+### vi.advanceTimersByTimeAsync {#vi.advanceTimersByTimeAsync}
 
 - **Type:** `(ms: number) => Promise<Vitest>`
 
@@ -32,7 +32,7 @@ import { vi } from 'vitest'
   await vi.advanceTimersByTimeAsync(150)
   ```
 
-## vi.advanceTimersToNextTimer
+## vi.advanceTimersToNextTimer {#vi.advanceTimersToNextTimer}
 
 - **Type:** `() => Vitest`
 
@@ -47,7 +47,7 @@ import { vi } from 'vitest'
     .advanceTimersToNextTimer() // log 3
   ```
 
-### vi.advanceTimersToNextTimerAsync
+### vi.advanceTimersToNextTimerAsync {#vi.advanceTimersToNextTimerAsync}
 
 - **Type:** `() => Promise<Vitest>`
 
@@ -62,25 +62,25 @@ import { vi } from 'vitest'
     .advanceTimersToNextTimerAsync() // log 3
   ```
 
-## vi.getTimerCount
+## vi.getTimerCount {#vi.getTimerCount}
 
 - **Type:** `() => number`
 
   Get the number of waiting timers.
 
-## vi.clearAllMocks
+## vi.clearAllMocks {#vi.clearAllMocks}
 
   Will call [`.mockClear()`](/api/mock#mockclear) on all spies. This will clear mock history, but not reset its implementation to the default one.
 
-## vi.clearAllTimers
+## vi.clearAllTimers {#vi.clearAllTimers}
 
   Removes all timers that are scheduled to run. These timers will never run in the future.
 
-## vi.dynamicImportSettled
+## vi.dynamicImportSettled {#vi.dynamicImportSettled}
 
   Wait for all imports to load. Useful, if you have a synchronous call that starts importing a module, that you cannot wait otherwise.
 
-## vi.fn
+## vi.fn {#vi.fn}
 
 - **Type:** `(fn?: Function) => CallableMockInstance`
 
@@ -102,31 +102,31 @@ import { vi } from 'vitest'
   expect(getApples).toHaveNthReturnedWith(2, 5)
   ```
 
-## vi.getMockedSystemTime
+## vi.getMockedSystemTime {#vi.getMockedSystemTime}
 
 - **Type**: `() => Date | null`
 
   Returns mocked current date that was set using `setSystemTime`. If date is not mocked, will return `null`.
 
-## vi.getRealSystemTime
+## vi.getRealSystemTime {#vi.getRealSystemTime}
 
 - **Type**: `() => number`
 
   When using `vi.useFakeTimers`, `Date.now` calls are mocked. If you need to get real time in milliseconds, you can call this function.
 
-## vi.mock
+## vi.mock {#vi.mock}
 
 - **Type**: `(path: string, factory?: () => unknown) => void`
 
   Substitutes all imported modules from provided `path` with another module. You can use configured Vite aliases inside a path. The call to `vi.mock` is hoisted, so it doesn't matter where you call it. It will always be executed before all imports.
 
-  ::: warning
+  :::warning AVISO
   `vi.mock` works only for modules that were imported with the `import` keyword. It doesn't work with `require`.
 
   Vitest statically analyzes your files to hoist `vi.mock`. It means that you cannot use `vi` that was not imported directly from `vitest` package (for example, from some utility file). To fix this, always use `vi.mock` with `vi` imported from `vitest`, or enable [`globals`](/config/#globals) config option.
   :::
 
-  ::: warning
+  :::warning AVISO
 	Mocking modules is not currently supported in the [browser mode](/guide/browser). You can track this feature in the GitHub <a href="https://github.com/vitest-dev/vitest/issues/3046">issue</a>.
   :::
 
@@ -145,7 +145,7 @@ import { vi } from 'vitest'
   })
   ```
 
-  ::: warning
+  :::warning AVISO
   `vi.mock` is hoisted (in other words, _moved_) to **top of the file**. It means that whenever you write it (be it inside `beforeEach` or `test`), it will actually be called before that.
 
   This also means that you cannot use any variables inside the factory that are defined outside the factory.
@@ -153,7 +153,7 @@ import { vi } from 'vitest'
   If you need to use variables inside the factory, try [`vi.doMock`](#vi-domock). It works the same way but isn't hoisted. Beware that it only mocks subsequent imports.
   :::
 
-  ::: warning
+  :::warning AVISO
   If you are mocking a module with default export, you will need to provide a `default` key within the returned factory function object. This is an ES modules-specific caveat, therefore `jest` documentation may differ as `jest` uses CommonJS modules. For example,
 
   ```ts
@@ -198,13 +198,13 @@ import { vi } from 'vitest'
   axios.get(`/apples/${increment(1)}`)
   ```
 
-  ::: warning
+  :::warning AVISO
   Beware that if you don't call `vi.mock`, modules **are not** mocked automatically.
   :::
 
   If there is no `__mocks__` folder or a factory provided, Vitest will import the original module and auto-mock all its exports. For the rules applied, see [algorithm](/guide/mocking#automocking-algorithm).
 
-## vi.doMock
+## vi.doMock {#vi.doMock}
 
 - **Type**: `(path: string, factory?: () => unknown) => void`
 
@@ -242,7 +242,7 @@ test('importing the next module imports mocked one', async () => {
 })
 ```
 
-## vi.mocked
+## vi.mocked {#vi.mocked}
 
 - **Type**: `<T>(obj: T, deep?: boolean) => MaybeMockedDeep<T>`
 - **Type**: `<T>(obj: T, options?: { partial?: boolean; deep?: boolean }) => MaybePartiallyMockedDeep<T>`
@@ -252,7 +252,7 @@ test('importing the next module imports mocked one', async () => {
   When `partial` is `true` it will expect a `Partial<T>` as a return value.
   ```ts
   import example from './example'
-  
+
   vi.mock('./example')
 
   test('1+1 equals 2', async () => {
@@ -264,7 +264,7 @@ test('importing the next module imports mocked one', async () => {
   })
   ```
 
-## vi.importActual
+## vi.importActual {#vi.importActual}
 
 - **Type**: `<T>(path: string) => Promise<T>`
 
@@ -278,23 +278,23 @@ test('importing the next module imports mocked one', async () => {
   })
    ```
 
-## vi.importMock
+## vi.importMock {#vi.importMock}
 
 - **Type**: `<T>(path: string) => Promise<MaybeMockedDeep<T>>`
 
   Imports a module with all of its properties (including nested properties) mocked. Follows the same rules that [`vi.mock`](#vi-mock) follows. For the rules applied, see [algorithm](/guide/mocking#automocking-algorithm).
 
-## vi.resetAllMocks
+## vi.resetAllMocks {#vi.resetAllMocks}
 
   Will call [`.mockReset()`](/api/mock#mockreset) on all spies. This will clear mock history and reset its implementation to an empty function (will return `undefined`).
 
-## vi.resetConfig
+## vi.resetConfig {#vi.resetConfig}
 
 - **Type**: `RuntimeConfig`
 
   If [`vi.setConfig`](#vi-setconfig) was called before, this will reset config to the original state.
 
-## vi.resetModules
+## vi.resetModules {#vi.resetModules}
 
 - **Type**: `() => Vitest`
 
@@ -320,21 +320,21 @@ test('importing the next module imports mocked one', async () => {
   })
   ```
 
-::: warning
+:::warning AVISO
 Does not reset mocks registry. To clear mocks registry, use [`vi.unmock`](#vi-unmock) or [`vi.doUnmock`](#vi-dounmock).
 :::
 
-## vi.restoreAllMocks
+## vi.restoreAllMocks {#vi.restoreAllMocks}
 
   Will call [`.mockRestore()`](/api/mock#mockrestore) on all spies. This will clear mock history and reset its implementation to the original one.
 
-## vi.restoreCurrentDate
+## vi.restoreCurrentDate {#vi.restoreCurrentDate}
 
 - **Type:** `() => void`
 
   Restores `Date` back to its native implementation.
 
-## vi.stubEnv
+## vi.stubEnv {#vi.stubEnv}
 
 - **Type:** `(name: string, value: string) => Vitest`
 - **Version:** Since Vitest 0.26.0
@@ -355,7 +355,7 @@ import.meta.env.NODE_ENV === 'production'
 import.meta.env.MODE === 'development'
 ```
 
-:::tip
+:::tip DICA
 You can also change the value by simply assigning it, but you won't be able to use `vi.unstubAllEnvs` to restore previous value:
 
 ```ts
@@ -363,13 +363,13 @@ import.meta.env.MODE = 'test'
 ```
 :::
 
-:::warning
+:::warning DICA
 Vitest transforms all `import.meta.env` calls into `process.env`, so they can be easily changed at runtime. Node.js only supports string values as env parameters, while Vite supports several built-in envs as boolean (namely, `SSR`, `DEV`, `PROD`). To mimic Vite, set "truthy" values as env: `''` instead of `false`, and `'1'` instead of `true`.
 
 But beware that you cannot rely on `import.meta.env.DEV === false` in this case. Use `!import.meta.env.DEV`. This also affects simple assigning, not just `vi.stubEnv` method.
 :::
 
-## vi.unstubAllEnvs
+## vi.unstubAllEnvs {#vi.unstubAllEnvs}
 
 - **Type:** `() => Vitest`
 - **Version:** Since Vitest 0.26.0
@@ -399,7 +399,7 @@ process.env.NODE_ENV === 'development'
 import.meta.env.NODE_ENV === 'development'
 ```
 
-## vi.stubGlobal
+## vi.stubGlobal {#vi.stubGlobal}
 
 - **Type:** `(name: string | number | symbol, value: unknown) => Vitest`
 
@@ -418,7 +418,7 @@ globalThis.innerWidth === 100
 window.innerWidth === 100
 ```
 
-:::tip
+:::tip DICA
 You can also change the value by simply assigning it to `globalThis` or `window` (if you are using `jsdom` or `happy-dom` environment), but you won't be able to use `vi.unstubAllGlobals` to restore original value:
 
 ```ts
@@ -428,7 +428,7 @@ window.innerWidth = 100
 ```
 :::
 
-## vi.unstubAllGlobals
+## vi.unstubAllGlobals {#vi.unstubAllGlobals}
 
 - **Type:** `() => Vitest`
 - **Version:** Since Vitest 0.26.0
@@ -458,13 +458,13 @@ globalThis.IntersectionObserver === undefined
 IntersectionObserver === undefined
 ```
 
-## vi.runAllTicks
+## vi.runAllTicks {#vi.runAllTicks}
 
 - **Type:** `() => Vitest`
 
   Calls every microtask that was queued by `process.nextTick`. This will also run all microtasks scheduled by themselves.
 
-## vi.runAllTimers
+## vi.runAllTimers {#vi.runAllTimers}
 
 - **Type:** `() => Vitest`
 
@@ -484,7 +484,7 @@ IntersectionObserver === undefined
   vi.runAllTimers()
   ```
 
-### vi.runAllTimersAsync
+### vi.runAllTimersAsync {#vi.runAllTimersAsync}
 
 - **Type:** `() => Promise<Vitest>`
 
@@ -499,7 +499,7 @@ IntersectionObserver === undefined
   await vi.runAllTimersAsync()
   ```
 
-## vi.runOnlyPendingTimers
+## vi.runOnlyPendingTimers {#vi.runOnlyPendingTimers}
 
 - **Type:** `() => Vitest`
 
@@ -512,7 +512,7 @@ IntersectionObserver === undefined
   vi.runOnlyPendingTimers()
   ```
 
-### vi.runOnlyPendingTimersAsync
+### vi.runOnlyPendingTimersAsync {#vi.runOnlyPendingTimersAsync}
 
 - **Type:** `() => Promise<Vitest>`
 
@@ -534,7 +534,7 @@ IntersectionObserver === undefined
   await vi.runOnlyPendingTimersAsync()
   ```
 
-## vi.setSystemTime
+## vi.setSystemTime {#vi.setSystemTime}
 
 - **Type**: `(date: string | number | Date) => void`
 
@@ -553,13 +553,13 @@ IntersectionObserver === undefined
   vi.useRealTimers()
   ```
 
-## vi.setConfig
+## vi.setConfig {#vi.setConfig}
 
 - **Type**: `RuntimeConfig`
 
   Updates config for the current test file. You can only affect values that are used, when executing tests.
 
-## vi.spyOn
+## vi.spyOn {#vi.spyOn}
 
 - **Type:** `<T, K extends keyof T>(object: T, method: K, accessType?: 'get' | 'set') => MockInstance`
 
@@ -580,7 +580,7 @@ IntersectionObserver === undefined
   expect(spy).toHaveReturnedWith(1)
   ```
 
-## vi.stubGlobal
+## vi.stubGlobal {#vi.stubGlobal}
 
 - **Type**: `(key: keyof globalThis & Window, value: any) => Vitest`
 
@@ -588,13 +588,13 @@ IntersectionObserver === undefined
 
   Read more in ["Mocking Globals" section](/guide/mocking.html#globals).
 
-## vi.unmock
+## vi.unmock {#vi.unmock}
 
 - **Type**: `(path: string) => void`
 
   Removes module from the mocked registry. All calls to import will return the original module even if it was mocked before. This call is hoisted (moved) to the top of the file, so it will only unmock modules that were defined in `setupFiles`, for example.
 
-## vi.doUnmock
+## vi.doUnmock {#vi.doUnmock}
 
 - **Type**: `(path: string) => void`
 
@@ -634,7 +634,7 @@ unmockedIncrement(1) === 2
 unmockedIncrement(30) === 31
 ```
 
-## vi.useFakeTimers
+## vi.useFakeTimers {#vi.useFakeTimers}
 
 - **Type:** `() => Vitest`
 
@@ -642,7 +642,7 @@ unmockedIncrement(30) === 31
 
   The implementation is based internally on [`@sinonjs/fake-timers`](https://github.com/sinonjs/fake-timers).
 
-## vi.useRealTimers
+## vi.useRealTimers {#vi.useRealTimers}
 
 - **Type:** `() => Vitest`
 
