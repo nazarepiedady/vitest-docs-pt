@@ -1,6 +1,6 @@
-# Test Runner
+# Test Runner {#test-runner}
 
-::: warning
+:::warning AVISO
 This is advanced API. If you are just running tests, you probably don't need this. It is primarily used by library authors.
 :::
 
@@ -85,17 +85,17 @@ export interface VitestRunner {
 
 When initiating this class, Vitest passes down Vitest config, - you should expose it as a `config` property.
 
-::: warning
+:::warning AVISO
 Vitest also injects an instance of `ViteNodeRunner` as `__vitest_executor` property. You can use it to process files in `importFile` method (this is default behavior of `TestRunner`` and `BenchmarkRunner`).
 
 `ViteNodeRunner` exposes `executeId` method, which is used to import test files in a Vite-friendly environment. Meaning, it will resolve imports and transform file content at runtime so that Node can understand it.
 :::
 
-::: tip
+:::tip DICA
 Snapshot support and some other features depend on the runner. If you don't want to lose it, you can extend your runner from `VitestTestRunner` imported from `vitest/runners`. It also exposes `BenchmarkNodeRunner`, if you want to extend benchmark functionality.
 :::
 
-## Your task function
+## Your task function {#your-task-function}
 
 You can extend Vitest task system with your tasks. A task is an object that is part of a suite. It is automatically added to the current suite with a `suite.custom` method:
 
@@ -142,10 +142,10 @@ describe('take care of the garden', () => {
 vitest ./garden/tasks.test.js
 ```
 
-::: warning
+:::warning AVISO
 If you don't have a custom runner or didn't define `runTest` method, Vitest will try to retrieve a task automatically. If you didn't add a function with `setFn`, it will fail.
 :::
 
-::: tip
+:::tip DICA
 Custom task system supports hooks and contexts. If you want to support property chaining (like, `only`, `skip`, and your custom ones), you can import `createChainable` from `vitest/suite` and wrap your function with it. You will need to call `custom` as `custom.call(this)`, if you decide to do this.
 :::
