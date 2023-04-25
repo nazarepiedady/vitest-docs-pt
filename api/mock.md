@@ -1,4 +1,4 @@
-# Mock Functions
+# Mock Functions {#Mock Functions}
 
 You can create a spy function (mock) to track its execution with `vi.fn` method. If you want to track a method on an already created object, you can use `vi.spyOn` method:
 
@@ -20,13 +20,13 @@ getApplesSpy.mock.calls.length === 1
 
 You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeencalled)) on [`expect`](/api/expect) to assert spy result. This API reference describes available properties and methods to manipulate spy behavior.
 
-## getMockName
+## getMockName {#getMockName}
 
 - **Type:** `() => string`
 
   Use it to return the name given to mock with method `.mockName(name)`.
 
-## mockClear
+## mockClear {#mockClear}
 
 - **Type:** `() => MockInstance`
 
@@ -35,13 +35,13 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   If you want this method to be called before each test automatically, you can enable [`clearMocks`](/config/#clearmocks) setting in config.
 
 
-## mockName
+## mockName {#mockName}
 
 - **Type:** `(name: string) => MockInstance`
 
   Sets internal mock name. Useful to see what mock has failed the assertion.
 
-## mockImplementation
+## mockImplementation {#mockImplementation}
 
 - **Type:** `(fn: Function) => MockInstance`
 
@@ -63,7 +63,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   mockFn.mock.calls[1][0] === 1 // true
   ```
 
-## mockImplementationOnce
+## mockImplementationOnce {#mockImplementationOnce}
 
 - **Type:** `(fn: Function) => MockInstance`
 
@@ -91,7 +91,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   console.log(myMockFn(), myMockFn(), myMockFn(), myMockFn())
   ```
 
-## withImplementation
+## withImplementation {#withImplementation}
 
 - **Type:** `(fn: Function, callback: () => void) => MockInstance`
 - **Type:** `(fn: Function, callback: () => Promise<unknown>) => Promise<MockInstance>`
@@ -128,7 +128,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
 
   Also, it takes precedence over the [`mockImplementationOnce`](https://vitest.dev/api/mock.html#mockimplementationonce).
 
-## mockRejectedValue
+## mockRejectedValue {#mockRejectedValue}
 
 - **Type:** `(value: any) => MockInstance`
 
@@ -140,7 +140,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   await asyncMock() // throws "Async error"
   ```
 
-## mockRejectedValueOnce
+## mockRejectedValueOnce {#mockRejectedValueOnce}
 
 - **Type:** `(value: any) => MockInstance`
 
@@ -156,7 +156,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   await asyncMock() // throws "Async error"
   ```
 
-## mockReset
+## mockReset {#mockReset}
 
 - **Type:** `() => MockInstance`
 
@@ -164,7 +164,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
 
   If you want this method to be called before each test automatically, you can enable [`mockReset`](/config/#mockreset) setting in config.
 
-## mockRestore
+## mockRestore {#mockRestore}
 
 - **Type:** `() => MockInstance`
 
@@ -174,7 +174,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
 
   If you want this method to be called before each test automatically, you can enable [`restoreMocks`](/config/#restoreMocks) setting in config.
 
-## mockResolvedValue
+## mockResolvedValue {#mockResolvedValue}
 
 - **Type:** `(value: any) => MockInstance`
 
@@ -186,7 +186,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   await asyncMock() // 43
   ```
 
-## mockResolvedValueOnce
+## mockResolvedValueOnce {#mockResolvedValueOnce}
 
 - **Type:** `(value: any) => MockInstance`
 
@@ -205,13 +205,13 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   await asyncMock() // default
   ```
 
-## mockReturnThis
+## mockReturnThis {#mockReturnThis}
 
 - **Type:** `() => MockInstance`
 
   Sets inner implementation to return `this` context.
 
-## mockReturnValue
+## mockReturnValue {#mockReturnValue}
 
 - **Type:** `(value: any) => MockInstance`
 
@@ -225,7 +225,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   mock() // 43
   ```
 
-## mockReturnValueOnce
+## mockReturnValueOnce {#mockReturnValueOnce}
 
 - **Type:** `(value: any) => MockInstance`
 
@@ -242,7 +242,7 @@ You should use spy assertions (e.g., [`toHaveBeenCalled`](/api/expect#tohavebeen
   console.log(myMockFn(), myMockFn(), myMockFn(), myMockFn())
   ```
 
-## mock.calls
+## mock.calls {#mock.calls}
 
 This is an array containing all arguments for each call. One item of the array is the arguments of that call.
 
@@ -258,11 +258,11 @@ fn.mock.calls === [
 ]
 ```
 
-## mock.lastCall
+## mock.lastCall {#mock.lastCall}
 
 This contains the arguments of the last call. If spy wasn't called, will return `undefined`.
 
-## mock.results
+## mock.results {#mock.results}
 
 This is an array containing all values, that were `returned` from the function. One item of the array is an object with properties `type` and `value`. Available types are:
 
@@ -295,11 +295,11 @@ fn.mock.results === [
 ]
 ```
 
-## mock.instances
+## mock.instances {#mock.instances}
 
 This is an array containing all instances that were instantiated when mock was called with a `new` keyword. Note, this is an actual context (`this`) of the function, not a return value.
 
-::: warning
+:::warning AVISO
 If mock was instantiated with `new MyClass()`, then `mock.instances` will be an array with one value:
 
 ```js
