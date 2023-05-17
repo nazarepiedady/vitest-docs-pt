@@ -172,7 +172,6 @@ A Vitest fornece uma funcionalidade de fotografia quase compatível com as de [J
 
 Isto de fato não afeta a funcionalidade mas pode afetar a tua diferença de consolidação quando migrares da Jest.
 
-#### 2. `printBasicPrototype` is default to `false` {#printbasicprototype-is-default-to-false}
 #### 2. `printBasicPrototype` é predefinido para `false` {#printbasicprototype-is-default-to-false}
 
 Ambas fotografias de Jest e Vitest são alimentadas pelo [`pretty-format`](https://github.com/facebook/jest/blob/main/packages/pretty-format). Na Vitest definimos o valor padrão de `printBasicPrototype` para `false` para fornecer uma saída de fotografia mais clara, enquanto na Jest <29.0.0 é `true` por padrão:
