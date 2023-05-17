@@ -1,6 +1,7 @@
 {
   "name": "vitest-docs-pt",
   "version": "0.29.8",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vitepress",
