@@ -1,18 +1,20 @@
 ---
-title: Snapshot | Guide
+title: Fotografia | Guia
 ---
 
-# Snapshot {#snapshot}
+# Fotografia {#snapshot}
 
-<CourseLink href="https://vueschool.io/lessons/snapshots-in-vitest?friend=vueuse">Learn Snapshot by video from Vue School</CourseLink>
+<CourseLink href="https://vueschool.io/lessons/snapshots-in-vitest?friend=vueuse">
+  Saiba mais sobre Fotografia na Vue School
+</CourseLink>
 
-Snapshot tests are a very useful tool whenever you want to make sure the output of your functions does not change unexpectedly.
+Testes de fotografia são uma ferramenta muito útil sempre quiseres ter a certeza de que a saída das tuas funções não mudam inesperadamente.
 
-When using snapshot, Vitest will take a snapshot of the given value, then compares it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match: either the change is unexpected, or the reference snapshot needs to be updated to the new version of the result.
+Quando usas fotografia, a Vitest tirará uma fotografia do dado valor, depois compara-o com um ficheiro de fotografia de referência armazenado ao lado do teste. O teste falhará se as duas fotografias não condizerem: ou a mudança é inesperada, ou a fotografia de referência precisa de ser atualizada para a nova versão do resultado.
 
-## Use Snapshots {#use-snapshots}
+## Usar Fotografias {#use-snapshots}
 
-To snapshot a value, you can use the [`toMatchSnapshot()`](/api/expect#tomatchsnapshot) from `expect()` API:
+Para fotografares um valor, podes usar a [`toMatchSnapshot()`](/api/expect#tomatchsnapshot) da API `expect()`:
 
 ```ts
 import { expect, it } from 'vitest'
@@ -23,7 +25,7 @@ it('toUpperCase', () => {
 })
 ```
 
-The first time this test is run, Vitest creates a snapshot file that looks like this:
+A primeira vez que este teste for executado, a Vitest cria um ficheiro de fotografia que parece-se com este:
 
 ```js
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
@@ -31,15 +33,15 @@ The first time this test is run, Vitest creates a snapshot file that looks like 
 exports['toUpperCase 1'] = '"FOOBAR"'
 ```
 
-The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. On subsequent test runs, Vitest will compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.
+O artefacto de fotografia deveria ser consolidado junto das mudanças de código, e revisado como parte do teu processo de revisão de código. Na execução do teste subsequente, a Vitest comparará a saída apresentada com a fotografia anterior. Se condizerem, o teste passará. Se não condizerem, ou o executor de teste encontrou um erro de programação no teu código que deveria ser corregido, ou a implementação mudou e a fotografia precisa de ser atualizada.
 
-:::warning
-When using Snapshots with async concurrent tests, `expect` from the local [Test Context](/guide/test-context.md) must be used to ensure the right test is detected.
+:::warning AVISO
+Quando usas Fotografias com testes simultâneos assíncronos, o `expect` do [Contexto de Teste](/guide/test-context) Local deve ser usado para garantir que o teste correto foi detetado.
 :::
 
-## Inline Snapshots {#inline-snapshots}
+## Fotografias Em Linha {#inline-snapshots}
 
-Similarly, you can use the [`toMatchInlineSnapshot()`](/api/expect#tomatchinlinesnapshot) to store the snapshot inline within the test file.
+Similarmente, podes usar [`toMatchInlineSnapshot()`](/api/expect#tomatchinlinesnapshot) para armazenar a fotografia em linha dentro do ficheiro de teste:
 
 ```ts
 import { expect, it } from 'vitest'
@@ -50,7 +52,7 @@ it('toUpperCase', () => {
 })
 ```
 
-Instead of creating a snapshot file, Vitest will modify the test file directory to update the snapshot as a string:
+No lugar de criar um ficheiro de fotografia, a Vitest modificará o diretório do ficheiro de teste para atualizar a fotografia como uma sequência de caracteres:
 
 ```ts
 import { expect, it } from 'vitest'
@@ -61,29 +63,29 @@ it('toUpperCase', () => {
 })
 ```
 
-This allows you to see the expected output directly without jumping across different files.
+Isto permite-te ver a saída esperada diretamente sem saltar através dos diferentes ficheiros.
 
-::: warning
-When using Snapshots with async concurrent tests, `expect` from the local [Test Context](/guide/test-context.md) must be used to ensure the right test is detected.
+:::warning AVISO
+Quando usas Fotografias com testes simultâneos assíncronos, o `expect` do [Contexto de Teste](/guide/test-context) Local deve ser usado para garantir que o teste correto foi detetado.
 :::
 
-## Updating Snapshots {#updating-snapshots}
+## Atualizando as Fotografias {#updating-snapshots}
 
-When the received value doesn't match the snapshot, the test fails and shows you the difference between them. When the snapshot change is expected, you may want to update the snapshot from the current state.
+Quando o valor recebido não condizer com a fotografia, o teste falha e mostra-te a diferença entre eles. Quando a mudança da fotografia é esperada, talvez queiras atualizar a fotografia a partir do estado atual.
 
-In watch mode, you can press the `u` key in the terminal to update the failed snapshot directly.
+No modo de observação, podes pressionar a tecla  `u` no terminal para atualizar a fotografia falhada diretamente.
 
-Or you can use the `--update` or `-u` flag in the CLI to make Vitest update snapshots.
+Ou podes usar a opção `--update` ou `-u` na interface da linha de comando para fazer a Vitest atualizar as fotografias:
 
 ```bash
 vitest -u
 ```
 
-## File Snapshots {#file-snapshots}
+## Fotografias de Ficheiro {#file-snapshots}
 
-When calling `toMatchSnapshot()`, we store all snapshots in a formatted snap file. That means we need to escaping some characters (namely the double-quote `"` and backtick `\``) in the snapshot string. Meanwhile, you might lose the syntax highlighting for the snapshot content (if they are in some language).
+Quando chamamos `toMatchSnapshot()`, armazenamos todas as fotografias num ficheiro de foto formatado. Isto significa que precisamos de escapar alguns caracteres (nomeadamente as aspas duplas `"` e `\``) na sequência de caracteres da fotografia. Entretanto, podes perder o destacamento de sintaxe para o conteúdo da fotografia (se estiverem em alguma linguagem).
 
-To improve this case, we introduce [`toMatchFileSnapshot()`](/api/expect#tomatchfilesnapshot) to explicitly snapshot in a file. This allows you to assign any file extension to the snapshot file, and making them more readable.
+Para melhorar este caso, introduzimos [`toMatchFileSnapshot()`](/api/expect#tomatchfilesnapshot) para fotografar explicitamente num ficheiro. Isto permite-te atribuir qualquer extensão de ficheiro ao ficheiro da fotografia, e torná-los mais legíveis:
 
 ```ts
 import { expect, it } from 'vitest'
@@ -94,11 +96,11 @@ it('render basic', async () => {
 })
 ```
 
-It will compare with the content of `./test/basic.output.html`. And can be written back with the `--update` flag.
+Ela comparará com o conteúdo de `./test/basic.output.html`. E pode ser escrito de volta com a opção `--update`.
 
-## Image Snapshots {#image-snapshots}
+## Fotografias de Imagem {#image-snapshots}
 
-It's also possible to snapshot images using [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot).
+É também possível fotografar imagens usando [`jest-image-snapshot`](https://github.com/americanexpress/jest-image-snapshot):
 
 ```bash
 npm i -D jest-image-snapshot
@@ -111,18 +113,18 @@ test('image snapshot', () => {
 })
 ```
 
-You can learn more in the [`examples/image-snapshot`](https://github.com/vitest-dev/vitest/blob/main/examples/image-snapshot) example.
+Tu podes saber mais no exemplo [`examples/image-snapshot`](https://github.com/vitest-dev/vitest/blob/main/examples/image-snapshot).
 
-## Custom Serializer {#custom-serializer}
+## Serializador Personalizado {#custom-serializer}
 
-You can add your own logic to alter how your snapshots are serialized. Like Jest, Vitest has default serializers for built-in JavaScript types, HTML elements, ImmutableJS and for React elements.
+Tu podes adicionar a tua própria lógica para alterar como as tuas fotografias são serializadas. Tal como a Jest, a Vitest tem serializadores padrão para os tipos de JavaScript embutidos, elementos de HTML, ImmutableJS e para os elementos de React.
 
-Example serializer module:
+Exemplificar o módulo serializador:
 
 ```ts
 expect.addSnapshotSerializer({
   serialize(val, config, indentation, depth, refs, printer) {
-    // `printer` is a function that serializes a value using existing plugins.
+    // `printer` é uma função que serializa um valor usando extensões existentes.
     return `Pretty foo: ${printer(val.foo)}`
   },
   test(val) {
@@ -131,7 +133,7 @@ expect.addSnapshotSerializer({
 })
 ```
 
-After adding a test like this:
+Depois de adicionar um teste como este:
 
 ```ts
 test('foo snapshot test', () => {
@@ -146,7 +148,7 @@ test('foo snapshot test', () => {
 })
 ```
 
-You will get the following snapshot:
+Tu receberás a seguinte fotografia:
 
 ```
 Pretty foo: Object {
@@ -155,24 +157,25 @@ Pretty foo: Object {
 }
 ```
 
-We are using Jest's `pretty-format` for serializing snapshots. You can read more about it here: [pretty-format](https://github.com/facebook/jest/blob/main/packages/pretty-format/README.md#serialize).
+Nós estamos a usar a `pretty-format` da Jest para serializar as fotografia. Tu podes ler mais sobre isto aqui: [pretty-format](https://github.com/facebook/jest/blob/main/packages/pretty-format/README.md#serialize).
 
-## Difference from Jest {#difference-from-jest}
+## Diferenciar da Jest {#difference-from-jest}
 
-Vitest provides an almost compatible Snapshot feature with [Jest's](https://jestjs.io/docs/snapshot-testing) with a few exceptions:
+A Vitest fornece uma funcionalidade de fotografia quase compatível com as de [Jest](https://jestjs.io/docs/snapshot-testing) com algumas exceções:
 
-#### 1. Comment header in the snapshot file is different {#comment-header-in-the-snapshot-file-is-different}
+#### 1. Cabeçalho de comentário no ficheiro de fotografia é diferente {#comment-header-in-the-snapshot-file-is-different}
 
 ```diff
 - // Jest Snapshot v1, https://goo.gl/fbAQLP
 + // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 ```
 
-This does not really affect the functionality but might affect your commit diff when migrating from Jest.
+Isto de fato não afeta a funcionalidade mas pode afetar a tua diferença de consolidação quando migrares da Jest.
 
 #### 2. `printBasicPrototype` is default to `false` {#printbasicprototype-is-default-to-false}
+#### 2. `printBasicPrototype` é predefinido para `false` {#printbasicprototype-is-default-to-false}
 
-Both Jest and Vitest's snapshots are powered by [`pretty-format`](https://github.com/facebook/jest/blob/main/packages/pretty-format). In Vitest we set `printBasicPrototype` default to `false` to provide a cleaner snapshot output, while in Jest <29.0.0 it's `true` by default.
+Ambas fotografias de Jest e Vitest são alimentadas pelo [`pretty-format`](https://github.com/facebook/jest/blob/main/packages/pretty-format). Na Vitest definimos o valor padrão de `printBasicPrototype` para `false` para fornecer uma saída de fotografia mais clara, enquanto na Jest <29.0.0 é `true` por padrão:
 
 ```ts
 import { expect, test } from 'vitest'
@@ -184,7 +187,7 @@ test('snapshot', () => {
     },
   ]
 
-  // in Jest
+  // na Jest
   expect(bar).toMatchInlineSnapshot(`
     Array [
       Object {
@@ -193,7 +196,7 @@ test('snapshot', () => {
     ]
   `)
 
-  // in Vitest
+  // na Vitest
   expect(bar).toMatchInlineSnapshot(`
     [
       {
@@ -204,7 +207,7 @@ test('snapshot', () => {
 })
 ```
 
-We believe this is a more reasonable default for readability and overall DX. If you still prefer Jest's behavior, you can change your config:
+Nós acreditamos que isto é um padrão mais razoável para legibilidade e toda experiência de programação. Se ainda preferires o comportamento da Jest, podes mudar a tua configuração:
 
 ```ts
 // vitest.config.js
@@ -217,11 +220,11 @@ export default defineConfig({
 })
 ```
 
-#### 3. Chevron `>` is used as a separator instead of colon `:` for custom messages {#chevron-is-used-as-a-separator-instead-of-colon-for-custom-messages}
+#### 3. O sinal de maior do que `>` é usado como um separador no lugar dos dois pontos `:` para mensagens personalizados {#chevron-is-used-as-a-separator-instead-of-colon-for-custom-messages}
 
-Vitest uses chevron `>` as a separator instead of colon `:` for readability, when a custom message is passed during creation of a snapshot file.
+A Vitest usa o sinal de maior do que `>` como um separador no lugar dos dois pontos `:` para legibilidade, quando uma mensagem personalizadas é passada durante a criação dum ficheiro de fotografia.
 
-For the following example test code:
+Para o seguinte código de teste de exemplo:
 
 ```js
 test('toThrowErrorMatchingSnapshot', () => {
@@ -231,13 +234,13 @@ test('toThrowErrorMatchingSnapshot', () => {
 })
 ```
 
-In Jest, the snapshot will be:
+Na Jest, a fotografia seria:
 
 ```console
 exports[`toThrowErrorMatchingSnapshot: hint 1`] = `"error"`;
 ```
 
-In Vitest, the equivalent snapshot will be:
+Na Vitest, a fotografia equivalente será:
 
 ```console
 exports[`toThrowErrorMatchingSnapshot > hint 1`] = `"error"`;
