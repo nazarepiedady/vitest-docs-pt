@@ -18,19 +18,24 @@ import { transformHead } from './scripts/transformHead'
 import { teamMembers } from './contributors'
 
 export default withPwa(defineConfig({
-  lang: 'en-US',
+  lang: 'pt',
   title: vitestName,
   description: vitestDescription,
   locales: {
     root: {
-      label: 'English',
-      lang: 'en',
+      lang: 'pt',
+      label: 'Português',
     },
     en: {
-      label: '简体中文',
-      lang: 'zh',
-      link: 'https://cn.vitest.dev/',
+      lang: 'en',
+      label: 'English',
+      link: 'https://vitest.dev/',
     },
+    zh: {
+      lang: 'zh',
+      label: '简体中文',
+      link: 'https://cn.vitest.dev/',
+    }
   },
   head: [
     ['meta', { name: 'theme-color', content: '#729b1a' }],
@@ -62,8 +67,8 @@ export default withPwa(defineConfig({
     logo: '/logo.svg',
 
     editLink: {
-      pattern: 'https://github.com/vitest-dev/vitest/tree/main/docs/:path',
-      text: 'Suggest changes to this page',
+      pattern: 'https://github.com/nazarepiedady/vitest-docs-pt/tree/main/docs/:path',
+      text: 'Sugerir mudanças para esta página',
     },
 
     algolia: {
@@ -83,24 +88,24 @@ export default withPwa(defineConfig({
     ],
 
     footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2021-PRESENT Anthony Fu, Matías Capeletto and Vitest contributors',
+      message: 'Lançada sob a licença MIT',
+      copyright: 'Copyright © 2021-PRESENTE Anthony Fu, Matías Capeletto e colaboradores da Vitest',
     },
 
     nav: [
-      { text: 'Guide', link: '/guide/' },
+      { text: 'Guia', link: '/guide/' },
       { text: 'API', link: '/api/' },
-      { text: 'Config', link: '/config/' },
-      { text: 'Advanced', link: '/advanced/api' },
+      { text: 'Configuração', link: '/config/' },
+      { text: 'Avançado', link: '/advanced/api' },
       {
         text: `v${version}`,
         items: [
           {
-            text: 'Release Notes ',
+            text: 'Notas de Lançamentos ',
             link: releases,
           },
           {
-            text: 'Contributing ',
+            text: 'Contribuições ',
             link: contributing,
           },
         ],
@@ -111,14 +116,14 @@ export default withPwa(defineConfig({
       // TODO: bring sidebar of apis and config back
       '/advanced': [
         {
-          text: 'Advanced',
+          text: 'Avançado',
           items: [
             {
-              text: 'Vitest Node API',
+              text: 'API de Node da Vitest',
               link: '/advanced/api',
             },
             {
-              text: 'Runner API',
+              text: 'API do Executor',
               link: '/advanced/runner',
             },
           ],
@@ -126,82 +131,82 @@ export default withPwa(defineConfig({
       ],
       '/': [
         {
-          text: 'Guide',
+          text: 'Guia',
           items: [
             {
-              text: 'Why Vitest',
+              text: 'Porquê Vitest',
               link: '/guide/why',
             },
             {
-              text: 'Getting Started',
+              text: 'Começar',
               link: '/guide/',
             },
             {
-              text: 'Features',
+              text: 'Funcionalidades',
               link: '/guide/features',
             },
             {
-              text: 'CLI',
+              text: 'Interface da Linha de Comando',
               link: '/guide/cli',
             },
             {
-              text: 'Test Filtering',
+              text: 'Filtragem de Teste',
               link: '/guide/filtering',
             },
             {
-              text: 'Coverage',
+              text: 'Cobertura',
               link: '/guide/coverage',
             },
             {
-              text: 'Snapshot',
+              text: 'Fotografia',
               link: '/guide/snapshot',
             },
             {
-              text: 'Mocking',
+              text: 'Simulação',
               link: '/guide/mocking',
             },
             {
-              text: 'Testing Types',
+              text: 'Testando Tipos',
               link: '/guide/testing-types',
             },
             {
-              text: 'Vitest UI',
+              text: 'Interface de Utilizador da Vitest',
               link: '/guide/ui',
             },
             {
-              text: 'Browser Mode',
+              text: 'Modo de Navegador',
               link: '/guide/browser',
             },
             {
-              text: 'In-source Testing',
+              text: 'Testagem Na Fonte',
               link: '/guide/in-source',
             },
             {
-              text: 'Test Context',
+              text: 'Contexto de Teste',
               link: '/guide/test-context',
             },
             {
-              text: 'Environment',
+              text: 'Ambiente',
               link: '/guide/environment',
             },
             {
-              text: 'Extending Matchers',
+              text: 'Estendendo os Correspondentes',
               link: '/guide/extending-matchers',
             },
             {
-              text: 'IDE Integration',
+              text: 'Integração de IDE',
               link: '/guide/ide',
             },
             {
-              text: 'Debugging',
+              text: 'Depuração',
               link: '/guide/debugging',
             },
             {
-              text: 'Comparisons',
+              text: 'Comparações',
               link: '/guide/comparisons',
             },
             {
-              text: 'Migration Guide',
+              text: 'Guia de Migração',
               link: '/guide/migration',
             },
           ],
@@ -210,15 +215,15 @@ export default withPwa(defineConfig({
           text: 'API',
           items: [
             {
-              text: 'Test API Reference',
+              text: 'Referência da API de Teste',
               link: '/api/',
             },
             {
-              text: 'Mock Functions',
+              text: 'Funções de Simulação',
               link: '/api/mock',
             },
             {
-              text: 'Vi Utility',
+              text: 'Utilitário Vi',
               link: '/api/vi',
             },
             {
@@ -236,10 +241,10 @@ export default withPwa(defineConfig({
           ],
         },
         {
-          text: 'Config',
+          text: 'Configuração',
           items: [
             {
-              text: 'Config Reference',
+              text: 'Referência da Configuração',
               link: '/config/',
             },
           ],
