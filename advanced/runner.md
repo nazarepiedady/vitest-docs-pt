@@ -1,10 +1,10 @@
-# Test Runner {#test-runner}
+# Executor de Teste {#test-runner}
 
 :::warning AVISO
-This is advanced API. If you are just running tests, you probably don't need this. It is primarily used by library authors.
+Isto é uma API avançada. Se estiveres apenas a executar testes, provavelmente não precisas disto. Isto é usado primariamente por autores de biblioteca.
 :::
 
-You can specify a path to your test runner with the `runner` option in your configuration file. This file should have a default export with a class implementing these methods:
+Tu podes especificar um caminho para o teu executor de teste com a opção `runner` no teu ficheiro de configuração. Este ficheiro deve ter uma exportação padrão com uma classe implementado estes métodos:
 
 ```ts
 export interface VitestRunner {
@@ -83,21 +83,21 @@ export interface VitestRunner {
 }
 ```
 
-When initiating this class, Vitest passes down Vitest config, - you should expose it as a `config` property.
+Quando inicializas esta classe, a Vitest passa a configuração da Vitest, - deverias expor ela como uma propriedade `config`.
 
 :::warning AVISO
-Vitest also injects an instance of `ViteNodeRunner` as `__vitest_executor` property. You can use it to process files in `importFile` method (this is default behavior of `TestRunner`` and `BenchmarkRunner`).
+A Vitest também injeta uma instância de `ViteNodeRunner` como a propriedade `__vitest_executor`. Tu podes usá-la para processar ficheiros no método `importFile` (este é o comportamento padrão de `TestRunner` e `BenchmarkRunner`).
 
-`ViteNodeRunner` exposes `executeId` method, which is used to import test files in a Vite-friendly environment. Meaning, it will resolve imports and transform file content at runtime so that Node can understand it.
+`ViteNodeRunner` expõe o método `executeId`, o qual é usado para importar os ficheiros de teste num ambiente amigável a Vite. Significa que, resolverá as importações e transformará o conteúdo em tempo de execução para que a Node possa entendê-lo.
 :::
 
 :::tip DICA
-Snapshot support and some other features depend on the runner. If you don't want to lose it, you can extend your runner from `VitestTestRunner` imported from `vitest/runners`. It also exposes `BenchmarkNodeRunner`, if you want to extend benchmark functionality.
+Suporte de Fotografia e algumas outras funcionalidades depende do executor. Se não quiseres perdê-lo, podes estender o teu executor a partir de `VitestTestRunner` importado de `vitest/runners`. Ele também expõe `BenchmarkNodeRunner`, se quiseres estender a funcionalidade de avaliação comparativa.
 :::
 
-## Your task function {#your-task-function}
+## A função da tua tarefa {#your-task-function}
 
-You can extend Vitest task system with your tasks. A task is an object that is part of a suite. It is automatically added to the current suite with a `suite.custom` method:
+Tu podes estender o sistema de tarefa da Vitest com as tuas tarefas. Uma tarefa é um objeto que é parte dum grupo. Ele é adicionado automaticamente ao grupo atual com um método `suite.custom`:
 
 ```js
 // ./utils/custom.js
@@ -105,7 +105,7 @@ import { getCurrentSuite, setFn } from 'vitest/suite'
 
 export { describe, beforeAll, afterAll } from 'vitest'
 
-// this function will be called, when Vitest collects tasks
+// esta função será chamada, quando a Vitest recolher as tarefas
 export const myCustomTask = function (name, fn) {
   const task = getCurrentSuite().custom(name)
   task.meta = {
@@ -143,9 +143,9 @@ vitest ./garden/tasks.test.js
 ```
 
 :::warning AVISO
-If you don't have a custom runner or didn't define `runTest` method, Vitest will try to retrieve a task automatically. If you didn't add a function with `setFn`, it will fail.
+Se não tiveres um executor personalizado ou não definiste o método `runTest`, a Vitest tentará recuperar uma tarefa automaticamente. Se não adicionaste uma função com `setFn`, esta falhará.
 :::
 
 :::tip DICA
-Custom task system supports hooks and contexts. If you want to support property chaining (like, `only`, `skip`, and your custom ones), you can import `createChainable` from `vitest/suite` and wrap your function with it. You will need to call `custom` as `custom.call(this)`, if you decide to do this.
+O sistema de tarefa personalizado suporta gatilhos e contextos. Se quiseres suportar acorrentamento de propriedade (como, `only`, `skip`, e aqueles teus personalizados), podes importar `createChainable` de `vitest/suite` e envolver a tua função com ela. Tu precisarás de chamar `custom` como `custom.call(this)`, se decidires fazer isto.
 :::
