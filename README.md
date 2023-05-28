@@ -11,19 +11,19 @@ Uma abstração de teste unitário extremamente rápida alimentada pela Vite.
 </p>
 
 <p align="center">
-  [![](https://img.shields.io/npm/v/vitest?color=729B1B&label=)](https://www.npmjs.com/package/vitest)
+  <a href="https://www.npmjs.com/package/vitest"><img src="https://img.shields.io/npm/v/vitest?color=729B1B&label="></a>
 </p>
 
 <p align="center">
-[**Envolva-te!**](https://chat.vitest.dev)
+  <a href="https://chat.vitest.dev"><b>Envolva-te!</b></a>
 </p>
 
 <p align="center">
-[Documentação](https://vitest-docs-pt.netlify.app) | [Começar](https://vitest-docs-pt.netlify.app/guide/) | [Exemplos](https://vitest-docs-pt.netlify.app/guide/#examples) | [Porquê Vitest?](https://vitest-docs-pt.netlify.app/guide/why)
+  <a href="https://vitest-docs-pt.netlify.app">Documentação</a> | <a href="https://vitest-docs-pt.netlify.app/guide/">Começar</a> | <a href="https://vitest-docs-pt.netlify.app/guide/#examples">Exemplos</a> | <a href="https://vitest-docs-pt.netlify.app/guide/why">Porquê Vitest?</a>
 </p>
 
 <p align="center">
-[English](https://vitest.dev) | [中文文档](https://cn.vitest.dev)
+  <a href="https://vitest.dev">English</a> | <a href="https://cn.vitest.dev">中文文档</a>
 </p>
 
 
@@ -80,19 +80,25 @@ $ npx vitest
 ### Patrocinadores do Anthony
 
 <p align="center">
-  [![](https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg)](https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg)
+  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
+    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg'/>
+  </a>
 </p>
 
 ### Patrocinadores do Vladimir
 
 <p align="center">
-  [![](https://cdn.jsdelivr.net/gh/sheremet-va/static/sponsors.svg)](https://cdn.jsdelivr.net/gh/sheremet-va/static/sponsors.svg)
+  <a href="https://cdn.jsdelivr.net/gh/sheremet-va/static/sponsors.svg">
+    <img src='https://cdn.jsdelivr.net/gh/sheremet-va/static/sponsors.svg'/>
+  </a>
 </p>
 
 ### Patrocinadores do Patak
 
 <p align="center">
-  [![](https://cdn.jsdelivr.net/gh/patak-dev/static/sponsors.svg)](https://cdn.jsdelivr.net/gh/patak-dev/static/sponsors.svg)
+  <a href="https://cdn.jsdelivr.net/gh/patak-dev/static/sponsors.svg">
+    <img src='https://cdn.jsdelivr.net/gh/patak-dev/static/sponsors.svg'/>
+  </a>
 </p>
 
 ## Reconhecimentos
