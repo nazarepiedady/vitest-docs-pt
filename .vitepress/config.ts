@@ -67,7 +67,7 @@ export default withPwa(defineConfig({
     logo: '/logo.svg',
 
     editLink: {
-      pattern: 'https://github.com/nazarepiedady/vitest-docs-pt/tree/main/docs/:path',
+      pattern: 'https://github.com/nazarepiedady/vitest-docs-pt/tree/main/:path',
       text: 'Sugerir mudanças para esta página',
     },
 
