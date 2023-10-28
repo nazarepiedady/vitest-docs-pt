@@ -18,16 +18,16 @@ import { transformHead } from './scripts/transformHead'
 import { teamMembers } from './contributors'
 
 export default withPwa(defineConfig({
-  lang: 'pt',
+  lang: 'pt-PT',
   title: vitestName,
   description: vitestDescription,
   locales: {
     root: {
-      lang: 'pt',
+      lang: 'pt-PT',
       label: 'Português',
     },
     en: {
-      lang: 'en',
+      lang: 'en-US',
       label: 'English',
       link: 'https://vitest.dev/',
     },
@@ -71,13 +71,17 @@ export default withPwa(defineConfig({
       text: 'Sugerir mudanças para esta página',
     },
 
-    algolia: {
-      appId: 'ZTF29HGJ69',
-      apiKey: '9c3ced6fed60d2670bb36ab7e8bed8bc',
-      indexName: 'vitest',
-      // searchParameters: {
-      //   facetFilters: ['tags:en'],
-      // },
+    search: {
+      provider: 'local',
+      /* provider: 'algolia',
+      options: {
+        appId: 'ZTF29HGJ69',
+        apiKey: '9c3ced6fed60d2670bb36ab7e8bed8bc',
+        indexName: 'vitest',
+        // searchParameters: {
+        //  facetFilters: ['tags:en']
+        // },
+      }, */
     },
 
     socialLinks: [
@@ -89,7 +93,7 @@ export default withPwa(defineConfig({
 
     footer: {
       message: 'Lançada sob a licença MIT',
-      copyright: 'Copyright © 2021-PRESENTE Anthony Fu, Matías Capeletto e colaboradores da Vitest',
+      copyright: 'Copyright © 2021-PRESENTE Anthony Fu, Matías Capeletto e os colaboradores da Vitest',
     },
 
     nav: [
@@ -126,6 +130,14 @@ export default withPwa(defineConfig({
               text: 'API do Executor',
               link: '/advanced/runner',
             },
+            {
+              text: 'Metadados da Tarefa',
+              link: '/advanced/metadata',
+            },
+            {
+              text: 'Estendendo os Repórteres Padrão',
+              link: '/advanced/reporters',
+            }
           ],
         },
       ],
@@ -144,6 +156,10 @@ export default withPwa(defineConfig({
             {
               text: 'Funcionalidades',
               link: '/guide/features',
+            },
+            {
+              text: 'Workspace',
+              link: '/guide/workspace',
             },
             {
               text: 'Interface da Linha de Comando',
@@ -208,6 +224,10 @@ export default withPwa(defineConfig({
             {
               text: 'Guia de Migração',
               link: '/guide/migration',
+            },
+            {
+              text: 'Erros Comuns',
+              link: '/guide/common-errors',
             },
           ],
         },
