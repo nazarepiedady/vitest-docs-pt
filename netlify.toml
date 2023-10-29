@@ -1,20 +1,16 @@
 [build.environment]
-  NPM_FLAGS = "--version"
-  NODE_VERSION = "16"
+  NODE_VERSION = "18"
+  # don't need playwright for docs build
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
 [build]
   publish = ".vitepress/dist"
   command = "pnpm run build"
-
-#[[redirects]]
-  #from = "https://vitest-docs-pt.netlify.app/*"
-  #to = "https://pt.vitest.dev/:splat"
-  #status = 301
-  #force = true
+  ignore = "git diff --quiet $COMMIT_REF $CACHED_COMMIT_REF -- ./package.json pnpm-lock.yaml"
 
 [[redirects]]
   from = "/new"
-  to = "https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/basic?initialPath=__vitest__"
+  to = "https://stackblitz.com/fork/github/vitest-dev/vitest/tree/main/examples/basic?initialPath=__vitest__/"
   status = 302
 
 [[redirects]]
