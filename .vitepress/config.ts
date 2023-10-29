@@ -79,7 +79,7 @@ export default withPwa(defineConfig({
         apiKey: '9c3ced6fed60d2670bb36ab7e8bed8bc',
         indexName: 'vitest',
         // searchParameters: {
-        //  facetFilters: ['tags:en']
+        //   facetFilters: ['tags:en'],
         // },
       }, */
     },
@@ -97,10 +97,10 @@ export default withPwa(defineConfig({
     },
 
     nav: [
-      { text: 'Guia', link: '/guide/' },
-      { text: 'API', link: '/api/' },
-      { text: 'Configuração', link: '/config/' },
-      { text: 'Avançado', link: '/advanced/api' },
+      { text: 'Guia', link: '/guide/', activeMatch: '^/guide/' },
+      { text: 'API', link: '/api/', activeMatch: '^/api/' },
+      { text: 'Configuração', link: '/config/', activeMatch: '^/config/' },
+      { text: 'Avançado', link: '/advanced/api', activeMatch: '^/advanced/' },
       {
         text: `v${version}`,
         items: [
@@ -137,7 +137,7 @@ export default withPwa(defineConfig({
             {
               text: 'Estendendo os Repórteres Padrão',
               link: '/advanced/reporters',
-            }
+            },
           ],
         },
       ],
