@@ -38,6 +38,7 @@ import { teamMembers } from '../contributors'
                   loading="lazy"
                   src="/sponsors/antfu.svg"
                   alt="Patrocinadores do Anthony"
+                  decoding="async"
                 >
               </a>
             </div>
@@ -52,6 +53,7 @@ import { teamMembers } from '../contributors'
                   loading="lazy"
                   src="/sponsors/sheremet-va.svg"
                   alt="Patrocinadores do Vladimir"
+                  decoding="async"
                 >
               </a>
             </div>
@@ -66,13 +68,14 @@ import { teamMembers } from '../contributors'
                   loading="lazy"
                   src="/sponsors/patak-dev.svg"
                   alt="Patrocinadores do Patak"
+                  decoding="async"
                 >
               </a>
             </div>
           </div>
           <p class="text-center opacity-75">
             <a href="https://www.netlify.com" rel="noopener noreferrer">
-              <img src="/netlify.svg" alt="Servido pela Netlify" width="114" height="151">
+              <img src="/netlify.svg" alt="Implementada pela Netlify" width="114" height="151" decoding="async">
             </a>
           </p>
         </div>

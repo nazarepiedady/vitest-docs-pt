@@ -21,11 +21,12 @@ function getAvatarUrl(name: string) {
   return import.meta.hot ? `https://github.com/${name}.png` : `/user-avatars/${name}.png`
 }
 
-export const contributors = (contributorNames as string[]).reduce((acc, name) => {
+export const contributors = (contributorNames).reduce<Contributor[]>((acc, name) => {
   contributorsAvatars[name] = getAvatarUrl(name)
   acc.push({ name, avatar: contributorsAvatars[name] })
   return acc
-}, [] as Contributor[])
+}, [])
+
 function createLinks(tm: CoreTeam): CoreTeam {
   tm.links = [{ icon: 'github', link: `https://github.com/${tm.github}` }]
   if (tm.mastodon)
@@ -66,7 +67,7 @@ const plainTeamMembers: CoreTeam[] = [
     twitter: 'sheremet_va',
     sponsor: 'https://github.com/sponsors/sheremet-va',
     title: 'Um Programador de Código-Aberto',
-    desc: 'Membro da Equipa Principal da Vitest e Vite',
+    desc: 'Membro da Equipa Principal da Vitest',
   },
   {
     avatar: contributorsAvatars['patak-dev'],
@@ -86,8 +87,8 @@ const plainTeamMembers: CoreTeam[] = [
     github: 'Aslemammad',
     mastodon: 'https://elk.zone/m.webtoo.ls/@aslemammad',
     twitter: 'asleMammadam',
-    title: 'Um Programador de Código-Aberto',
-    desc: 'Membro da Equipa da Poimandres e Vike',
+    title: 'An open source developer',
+    desc: 'Team member of Poimandres & Vike',
   },
   {
     avatar: contributorsAvatars.Demivan,
@@ -113,24 +114,15 @@ const plainTeamMembers: CoreTeam[] = [
     mastodon: 'https://elk.zone/hachyderm.io/@zx',
     twitter: 'zxch3n',
     title: 'Um Programador',
-    desc: 'Trabalhando na CRDTs & local-first software',
+    desc: 'Trabalhando na CRDTs & Software de Prioridade Local',
   },
   {
     avatar: contributorsAvatars.poyoho,
     name: 'Yoho Po',
     github: 'poyoho',
     twitter: '@yoho_po',
-    title: 'Não Existe Problema No Meu Local',
+    title: 'Não Existe Problema no Meu Local',
     desc: 'Membro da Equipa Principal da Vite e Membro da Equipa da Vitest',
-  },
-  {
-    avatar: contributorsAvatars.AriPerkkio,
-    name: 'Ari Perkkiö',
-    github: 'AriPerkkio',
-    title: 'Um Programador, Trabalhando',
-    desc: 'Membro da Equipa da Vitest',
-    org: 'Cloudamite',
-    orgLink: 'https://cloudamite.com/',
   },
 ]
 
