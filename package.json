@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "vitepress",
-    "build": "nr prefetch && vitepress build",
+    "build": "pnpm prefetch && vitepress build",
     "build-no-prefetch": "vitepress build",
     "serve": "vitepress serve",
     "preview-https": "pnpm run build && serve .vitepress/dist",
